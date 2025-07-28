@@ -8,7 +8,7 @@ services:
   - name: web
     source_dir: /
     github:
-      repo: your-github-username/artemmyassyst
+      repo: Timosan61/artemassyst
       branch: main
     run_command: python webhook.py
     environment_slug: python
@@ -54,7 +54,7 @@ services:
   - name: admin
     source_dir: /
     github:
-      repo: your-github-username/artemmyassyst
+      repo: Timosan61/artemassyst
       branch: main
     run_command: streamlit run admin/streamlit_admin.py --server.port=8501 --server.address=0.0.0.0
     environment_slug: python
