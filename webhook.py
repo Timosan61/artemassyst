@@ -52,9 +52,11 @@ except ImportError as e:
     if os.path.exists('bot'):
         print(f"📁 Файлы в bot/: {os.listdir('bot')}")
     AI_ENABLED = False
+    agent = None
 except Exception as e:
     print(f"❌ Ошибка загрузки AI Agent: {e}")
     AI_ENABLED = False
+    agent = None
 
 # === НАСТРОЙКИ ===
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
@@ -160,7 +162,7 @@ async def health_check():
             "ai_enabled_in_code": AI_ENABLED,
             "openai_key_configured": bool(os.getenv('OPENAI_API_KEY')),
             "openai_key_length": len(os.getenv('OPENAI_API_KEY', '')),
-            "agent_loaded": 'agent' in globals(),
+            "agent_loaded": agent is not None,
             "openai_client_status": "configured" if (AI_ENABLED and agent and agent.openai_client) else "missing"
         }
         
@@ -280,9 +282,9 @@ async def get_debug_config():
                 "zep_key": len(os.getenv('ZEP_API_KEY', ''))
             },
             "agent_status": {
-                "agent_loaded": 'agent' in globals(),
-                "openai_client": "configured" if (AI_ENABLED and 'agent' in globals() and agent.openai_client) else "missing",
-                "zep_client": "configured" if (AI_ENABLED and 'agent' in globals() and agent.zep_client) else "missing"
+                "agent_loaded": agent is not None,
+                "openai_client": "configured" if (AI_ENABLED and agent is not None and agent.openai_client) else "missing",
+                "zep_client": "configured" if (AI_ENABLED and agent is not None and agent.zep_client) else "missing"
             }
         }
         
@@ -296,10 +298,10 @@ async def get_ai_status():
     try:
         ai_status = {
             "ai_enabled_flag": AI_ENABLED,
-            "agent_imported": 'agent' in globals()
+            "agent_imported": agent is not None
         }
         
-        if AI_ENABLED and 'agent' in globals():
+        if AI_ENABLED and agent is not None:
             ai_status.update({
                 "openai_client_exists": agent.openai_client is not None,
                 "zep_client_exists": agent.zep_client is not None,
@@ -447,7 +449,7 @@ async def get_voice_messages_stats():
 async def get_current_prompt():
     """Получить текущие инструкции бота для админ панели"""
     try:
-        if AI_ENABLED and 'agent' in globals():
+        if AI_ENABLED and agent is not None:
             instruction_data = agent.instruction
             return {
                 "status": "success",
@@ -474,7 +476,7 @@ async def get_current_prompt():
 async def reload_prompt():
     """Перезагрузить инструкции бота"""
     try:
-        if AI_ENABLED and 'agent' in globals():
+        if AI_ENABLED and agent is not None:
             old_updated = agent.instruction.get('last_updated', 'неизвестно')
             agent.reload_instruction()
             new_updated = agent.instruction.get('last_updated', 'неизвестно')
