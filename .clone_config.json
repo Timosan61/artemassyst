@@ -1,0 +1,21 @@
+{
+  "project_name": "artemmyassyst",
+  "creation_date": "2025-07-28T09:00:28.099315",
+  "bot_version": "1.0.0",
+  "source_project": "Textill_PRO_BOT",
+  "cloning_system_version": "1.0.0",
+  "config_snapshot": {
+    "BOT_USERNAME": "@artemmyassyst_bot",
+    "PROJECT_NAME": "artemmyassyst",
+    "PROJECT_DESCRIPTION": "artemmyassyst - Professional Telegram Bot Assistant",
+    "ADMIN_PASSWORD": "-cjNadcW3MdDaxo8fprwFA",
+    "CREATION_DATE": "2025-07-28T09:00:28.099315",
+    "BOT_VERSION": "1.0.0",
+    "LAST_UPDATED": "2025-07-28T09:00:28.099330",
+    "WEBHOOK_URL": "https://artemmyassyst-production.up.railway.app",
+    "GITHUB_REPO_URL": "https://github.com/USERNAME/artemmyassyst",
+    "RAILWAY_PROJECT_URL": "https://railway.app/project/PROJECT_ID",
+    "SYSTEM_INSTRUCTION": "Ты профессиональный ассистент artemmyassyst. Отвечай компетентно и вежливо на русском языке.",
+    "WELCOME_MESSAGE": "👋 Привет! Я artemmyassyst - ваш персональный ассистент. Чем могу помочь?"
+  }
+}

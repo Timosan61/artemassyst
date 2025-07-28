@@ -1,0 +1,73 @@
+# Digital Ocean App Platform Configuration for artemmyassyst bot
+# Заменяет railway.json для Digital Ocean деплоя
+
+name: artemmyassyst-app
+region: nyc
+
+services:
+  - name: web
+    source_dir: /
+    github:
+      repo: your-github-username/artemmyassyst
+      branch: main
+    run_command: python webhook.py
+    environment_slug: python
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    
+    http_port: 8000
+    routes:
+      - path: /
+    
+    envs:
+      - key: PORT
+        value: "8000"
+      - key: PYTHONPATH
+        value: /app
+      - key: WEBHOOK_URL
+        value: https://artemmyassyst-app.ondigitalocean.app/webhook
+      
+      # Telegram Bot Configuration
+      - key: TELEGRAM_BOT_TOKEN
+        value: YOUR_BOT_TOKEN_HERE
+        type: SECRET
+      - key: BOT_USERNAME
+        value: artemmyassyst_bot
+      - key: WEBHOOK_SECRET_TOKEN
+        value: artemmyassyst_secret_2025_randomhex
+        type: SECRET
+      
+      # AI API Keys (добавьте ваши ключи)
+      - key: ANTHROPIC_API_KEY
+        value: your_anthropic_api_key_here
+        type: SECRET
+      - key: ZEP_API_KEY
+        value: your_zep_api_key_here
+        type: SECRET
+      
+      # Admin Panel
+      - key: ADMIN_PASSWORD
+        value: artemmyassyst_admin_2025
+        type: SECRET
+
+# Optional: Static site for admin panel
+  - name: admin
+    source_dir: /
+    github:
+      repo: your-github-username/artemmyassyst
+      branch: main
+    run_command: streamlit run admin/streamlit_admin.py --server.port=8501 --server.address=0.0.0.0
+    environment_slug: python
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    
+    http_port: 8501
+    routes:
+      - path: /admin
+    
+    envs:
+      - key: PORT
+        value: "8501"
+      - key: ADMIN_PASSWORD
+        value: artemmyassyst_admin_2025
+        type: SECRET
