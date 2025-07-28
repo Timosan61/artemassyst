@@ -54,3 +54,6 @@ logs/
 tmp/
 temp/
 *.tmp.env
+
+# Claude Code Debug
+debug-history.md
