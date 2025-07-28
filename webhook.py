@@ -185,6 +185,8 @@ async def health_check():
                 "debug_logs": "/debug/logs",
                 "debug_config": "/debug/config", 
                 "debug_ai_status": "/debug/ai-status",
+                "debug_prompt": "/debug/prompt",
+                "admin_reload": "/admin/reload-prompt",
                 "business_owners": "/debug/business-owners",
                 "last_updates": "/debug/last-updates",
                 "structured_logs": "/debug/structured-logs",
@@ -205,7 +207,7 @@ async def set_webhook_get():
 async def set_webhook():
     """Установка webhook"""
     try:
-        webhook_url = os.getenv("WEBHOOK_URL", "https://artemmyassyst-app.ondigitalocean.app/webhook")
+        webhook_url = os.getenv("WEBHOOK_URL", "https://artemassyst-bot-tt5dt.ondigitalocean.app/webhook")
         
         result = bot.set_webhook(
             url=webhook_url,
@@ -438,6 +440,54 @@ async def get_voice_messages_stats():
             "unprocessed_count": total_voice - processed_count,
             "recent_voice_messages": voice_messages[-10:] if voice_messages else []
         }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/debug/prompt")
+async def get_current_prompt():
+    """Получить текущие инструкции бота для админ панели"""
+    try:
+        if AI_ENABLED and 'agent' in globals():
+            instruction_data = agent.instruction
+            return {
+                "status": "success",
+                "ai_enabled": True,
+                "system_instruction": instruction_data.get("system_instruction", ""),
+                "welcome_message": instruction_data.get("welcome_message", ""),
+                "last_updated": instruction_data.get("last_updated", "неизвестно"),
+                "instruction_length": len(instruction_data.get("system_instruction", "")),
+                "agent_status": {
+                    "openai_client": "configured" if agent.openai_client else "missing",
+                    "zep_client": "configured" if agent.zep_client else "missing"
+                }
+            }
+        else:
+            return {
+                "status": "success",
+                "ai_enabled": False,
+                "error": "AI agent не загружен"
+            }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.post("/admin/reload-prompt")
+async def reload_prompt():
+    """Перезагрузить инструкции бота"""
+    try:
+        if AI_ENABLED and 'agent' in globals():
+            old_updated = agent.instruction.get('last_updated', 'неизвестно')
+            agent.reload_instruction()
+            new_updated = agent.instruction.get('last_updated', 'неизвестно')
+            
+            return {
+                "status": "success",
+                "changed": old_updated != new_updated,
+                "old_updated": old_updated,
+                "new_updated": new_updated,
+                "instruction_length": len(agent.instruction.get("system_instruction", ""))
+            }
+        else:
+            return {"error": "AI agent не загружен"}
     except Exception as e:
         return {"error": str(e)}
 
@@ -909,7 +959,7 @@ async def startup():
         # ВСЕГДА автоматически устанавливаем webhook при старте
         print("🔧 Автоматическая установка webhook...")
         try:
-            webhook_url = os.getenv("WEBHOOK_URL", "https://artemmyassyst-app.ondigitalocean.app/webhook")
+            webhook_url = os.getenv("WEBHOOK_URL", "https://artemassyst-bot-tt5dt.ondigitalocean.app/webhook")
             result = bot.set_webhook(
                 url=webhook_url,
                 secret_token=WEBHOOK_SECRET_TOKEN,
