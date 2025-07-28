@@ -683,7 +683,7 @@ async def process_webhook(request: Request):
                                             ai_response = await agent.generate_response(transcribed_text, session_id, user_name)
                                             response_time = datetime.now().timestamp() - start_time
                                             
-                                            response = f"🎤 Ваше сообщение: \"{transcribed_text}\"\n\n{ai_response}"
+                                            response = ai_response
                                             
                                             # Structured logging для voice to AI response
                                             if STRUCTURED_LOGGING:
@@ -691,7 +691,7 @@ async def process_webhook(request: Request):
                                                     log_ai_response(
                                                         user_id=str(user_id),
                                                         user_name=user_name,
-                                                        input_text=f"[VOICE] {transcribed_text}",
+                                                        input_text=transcribed_text,
                                                         response_text=ai_response,
                                                         ai_enabled=True,
                                                         response_time=response_time,
