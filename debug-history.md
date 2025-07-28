@@ -2952,3 +2952,2515 @@ M  webhook.py
 
 ---
 
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:39:47
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+Working tree clean
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:39:55
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:39:59
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:06
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:12
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:18
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:23
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:30
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:35
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:39
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:45
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:50
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:40:55
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:41:00
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:41:07
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:41:16
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:41:26
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:41:32
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:41:45
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:41:55
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:42:01
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:42:06
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+M  webhook.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:42:15
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:42:26
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+- Хорошо. Теперь зафиксируем исправление и отправим на сервер:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:42:31
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:43:37
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:43:43
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:43:48
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:43:54
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:44:03
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:44:09
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:44:29
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:44:36
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:44:44
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:45:10
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+- Видно что ошибка `name 'time' is not defined` все еще есть! Значит деплой еще не произошел или есть другая проблема. Провер
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:46:07
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:46:14
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:46:23
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:46:28
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:46:41
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:48:51
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:48:56
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:49:03
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:49:11
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:49:15
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:49:44
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:50:15
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:50:20
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:50:27
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+- [Request interrupted by user]
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:50:33
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 16:51:47
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:04:10
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:04:15
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:04:28
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:04:58
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+- [Request interrupted by user for tool use]
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:05:07
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:05:16
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:05:44
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+- Теперь давайте посмотрим на исходный рабочий бот, как там обрабатываются голосовые сообщения:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:05:51
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:06:06
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:06:17
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:06:30
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:06:38
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:06:43
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:06:50
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:06:58
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:07:05
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:07:12
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:07:32
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:07:38
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:07:50
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:07:55
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+M  webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:08:06
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:08:15
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:08:21
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:08:40
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:08:52
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:09:01
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:09:07
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:10:14
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:10:23
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:10:31
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:10:38
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+M  webhook.py
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:10:47
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:10:53
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:12:16
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:12:22
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:13:45
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:13:51
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:13:57
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:14:38
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:14:46
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:14:52
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:15:07
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:15:34
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:15:42
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:15:53
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:16:05
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+- Создам скрипт для диагностики автоматического деплоя:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:16:59
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:17:10
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:17:16
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:17:32
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:18:32
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:18:40
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:18:48
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:18:56
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:19:04
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:19:14
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:19:45
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:20:48
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:21:10
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:21:17
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:21:23
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:21:53
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:22:02
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:22:28
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M webhook.py
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:22:34
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+M  webhook.py
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:22:44
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:22:52
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:23:17
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:23:29
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:23:35
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:24:56
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:26:31
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:27:48
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? diagnose_autodeploy_simple.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:27:57
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? diagnose_autodeploy_simple.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:28:18
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? diagnose_autodeploy_simple.py
+?? force_deploy.py
+```
+
+### Recent Events:
+- Теперь запустим диагностику и деплой:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:29:37
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? diagnose_autodeploy_simple.py
+?? force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:30:04
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? diagnose_autodeploy_simple.py
+?? force_deploy.py
+?? test_autodeploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:30:30
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? AUTODEPLOY_FIX_GUIDE.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? diagnose_autodeploy_simple.py
+?? force_deploy.py
+?? test_autodeploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:30:37
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? AUTODEPLOY_FIX_GUIDE.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? diagnose_autodeploy_simple.py
+?? force_deploy.py
+?? test_autodeploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:30:47
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? AUTODEPLOY_FIX_GUIDE.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? diagnose_autodeploy_simple.py
+?? force_deploy.py
+?? test_autodeploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:30:54
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+?? AUTODEPLOY_FIX_GUIDE.md
+?? check_deploy_status.py
+?? deploy_and_diagnose.py
+?? diagnose_autodeploy.py
+?? diagnose_autodeploy_simple.py
+?? force_deploy.py
+?? test_autodeploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:47:54
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+Working tree clean
+```
+
+### Recent Events:
+- Теперь создам итоговый отчет с пошаговыми инструкциями для пользователя:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:48:05
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M deploy_and_diagnose.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:48:09
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M deploy_and_diagnose.py
+```
+
+### Recent Events:
+- ## 🎯 Диагностика и решение завершены
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:48:14
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ M deploy_and_diagnose.py
+ M force_deploy.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:48:21
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+Working tree clean
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 17:48:31
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ D deploy_and_diagnose.py
+ D force_deploy.py
+```
+
+### Recent Events:
+
+---
+
