@@ -670,37 +670,11 @@ async def process_webhook(request: Request):
                                         logger.info(f"🎤 Текст распознан: {transcribed_text[:100]}...")
                                         
                                         if transcribed_text.strip():
-                                            # Обрабатываем распознанный текст через AI
-                                            session_id = f"user_{user_id}"
-                                            if agent.zep_client:
-                                                await agent.ensure_user_exists(f"user_{user_id}", {
-                                                    'first_name': user_name,
-                                                    'email': f'{user_id}@telegram.user'
-                                                })
-                                                await agent.ensure_session_exists(session_id, f"user_{user_id}")
+                                            # КЛЮЧЕВОЙ МОМЕНТ: устанавливаем text = транскрипция и обрабатываем как обычное сообщение
+                                            text = transcribed_text
+                                            logger.info(f"✅ Voice транскрибирован: {transcribed_text[:100]}... → обрабатываем как текст")
                                             
-                                            start_time = datetime.now().timestamp()
-                                            ai_response = await agent.generate_response(transcribed_text, session_id, user_name)
-                                            response_time = datetime.now().timestamp() - start_time
-                                            
-                                            response = ai_response
-                                            
-                                            # Structured logging для voice to AI response
-                                            if STRUCTURED_LOGGING:
-                                                try:
-                                                    log_ai_response(
-                                                        user_id=str(user_id),
-                                                        user_name=user_name,
-                                                        input_text=transcribed_text,
-                                                        response_text=ai_response,
-                                                        ai_enabled=True,
-                                                        response_time=response_time,
-                                                        session_id=session_id
-                                                    )
-                                                except Exception as struct_error:
-                                                    logger.warning(f"⚠️ Structured logging error: {struct_error}")
-                                            
-                                            logger.info(f"✅ Voice message обработано успешно для {user_name}")
+                                            # Продолжаем обработку как текстовое сообщение (ниже в блоке elif text and AI_ENABLED)
                                         else:
                                             response = f"🎤 Не удалось распознать речь в вашем сообщении, {user_name}. Попробуйте говорить четче или напишите текстом."
                                     else:
@@ -726,8 +700,8 @@ async def process_webhook(request: Request):
                         logger.error(f"Traceback:\n{traceback.format_exc()}")
                         response = f"Извините, {user_name}, произошла ошибка при обработке голосового сообщения. Попробуйте написать текстом."
                 
-                # Если есть текст - обрабатываем через AI
-                elif text and AI_ENABLED:
+                # Если есть текст (включая транскрибированный голос) - обрабатываем через AI
+                if text and AI_ENABLED:
                     try:
                         session_id = f"user_{user_id}"
                         # Создаем пользователя в Zep если нужно
