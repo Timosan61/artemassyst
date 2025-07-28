@@ -6541,3 +6541,1253 @@ M  webhook.py
 
 ---
 
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 18:25:28
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+Working tree clean
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 18:25:39
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 18:25:50
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 18:26:00
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `3f5d1522-9f2e-42d9-92c3-7f61a0622ce7`
+- **Timestamp:** 2025-07-28 18:26:07
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean-clones-artemmyassyst/3f5d1522-9f2e-42d9-92c3-7f61a0622ce7.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+- Отлично, `os` уже импортирован. Теперь зафиксируем изменения и задеплоим:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:34:52
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ D railway-simple.json
+ D test_zep_improved.py
+ D test_zep_memory.py
+ D test_zep_simple.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:34:56
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+ D diagnose_autodeploy.py
+ D railway-simple.json
+ D test_zep_improved.py
+ D test_zep_memory.py
+ D test_zep_simple.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:02
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D Dockerfile.complete
+ D Dockerfile.digitalocean
+ D Dockerfile.final
+ M debug-history.md
+ D diagnose_autodeploy.py
+ D railway-simple.json
+ D test_zep_improved.py
+ D test_zep_memory.py
+ D test_zep_simple.py
+?? archive/
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:07
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D Dockerfile.complete
+ D Dockerfile.digitalocean
+ D Dockerfile.final
+ M debug-history.md
+ D diagnose_autodeploy.py
+ D railway-simple.json
+ D test_zep_improved.py
+ D test_zep_memory.py
+ D test_zep_simple.py
+?? archive/
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:11
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D Dockerfile.complete
+ D Dockerfile.digitalocean
+ D Dockerfile.final
+ M debug-history.md
+ D diagnose_autodeploy.py
+ D railway-simple.json
+ D test_zep_improved.py
+ D test_zep_memory.py
+ D test_zep_simple.py
+?? archive/
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:16
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D Dockerfile.complete
+ D Dockerfile.digitalocean
+ D Dockerfile.final
+ M debug-history.md
+ D diagnose_autodeploy.py
+ D railway-simple.json
+ D test_autodeploy.py
+ D test_business_api.py
+ D test_business_webhook.py
+ D test_memory.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:20
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D Dockerfile.complete
+ D Dockerfile.digitalocean
+ D Dockerfile.final
+ M debug-history.md
+ D diagnose_autodeploy.py
+ D diagnose_autodeploy_simple.py
+ D railway-simple.json
+ D test_autodeploy.py
+ D test_business_api.py
+ D test_business_webhook.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:24
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D Dockerfile.complete
+ D Dockerfile.digitalocean
+ D Dockerfile.final
+ M debug-history.md
+ D diagnose_autodeploy.py
+ D diagnose_autodeploy_simple.py
+ D railway-simple.json
+ D test_autodeploy.py
+ D test_business_api.py
+ D test_business_webhook.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:27
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D Dockerfile.complete
+ D Dockerfile.digitalocean
+ D Dockerfile.final
+ M debug-history.md
+ D diagnose_autodeploy.py
+ D diagnose_autodeploy_simple.py
+ D railway-simple.json
+ D test_autodeploy.py
+ D test_business_api.py
+ D test_business_webhook.py
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:36
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+- ### Phase 5: Documentation Cleanup
+- Let me check for redundant documentation files:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:40
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:44
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+- Move documentation files to organized structure:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:48
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:51
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:55
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:35:59
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:36:10
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:36:17
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:36:59
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:37:04
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:37:10
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:37:14
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:37:17
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:37:22
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:37:26
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:37:38
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:38:10
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:38:27
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:38:46
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:38:56
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:39:02
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:39:07
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:39:15
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:39:26
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:40:00
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:40:15
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:40:19
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:40:22
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:40:27
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:40:33
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:40:43
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:40:47
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:40:56
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:41:24
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:41:31
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:44:24
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `081d6280-8f86-401d-a8c5-0f6de2a0e67d`
+- **Timestamp:** 2025-07-28 18:44:28
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_digital_ocean/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/081d6280-8f86-401d-a8c5-0f6de2a0e67d.jsonl`
+
+### Git Status:
+```
+ D ADMIN_GUIDE.md
+ D AUTODEPLOY_FIX_GUIDE.md
+ D BUSINESS_API_GUIDE.md
+ D BUSINESS_OWNER_FILTER_GUIDE.md
+ D DEPLOYMENT_GUIDE.md
+ D DEPLOYMENT_STATUS.md
+ D DEPLOYMENT_SUCCESS.md
+ D DEPLOY_GUIDE.md
+ D DIGITALOCEAN_DEPLOY.md
+ D Dockerfile.complete
+```
+
+### Recent Events:
+
+---
+

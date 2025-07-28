@@ -144,6 +144,8 @@ app = FastAPI(
 
 # Хранилище последних updates для отладки
 from collections import deque
+
+# Список последних обновлений для мониторинга
 last_updates = deque(maxlen=10)
 update_counter = 0
 
