@@ -706,11 +706,11 @@ async def process_webhook(request: Request):
                         session_id = f"user_{user_id}"
                         # Создаем пользователя в Zep если нужно
                         if agent.zep_client:
-                            await agent.ensure_user_exists(f"user_{user_id}", {
+                            await agent.ensure_user_exists(str(user_id), {
                                 'first_name': user_name,
                                 'email': f'{user_id}@telegram.user'
                             })
-                            await agent.ensure_session_exists(session_id, f"user_{user_id}")
+                            await agent.ensure_session_exists(session_id, str(user_id))
                         start_time = datetime.now().timestamp()
                         response = await agent.generate_response(text, session_id, user_name)
                         response_time = datetime.now().timestamp() - start_time
@@ -795,11 +795,11 @@ async def process_webhook(request: Request):
                         session_id = f"business_{user_id}"
                         # Создаем пользователя в Zep если нужно
                         if agent.zep_client:
-                            await agent.ensure_user_exists(f"business_{user_id}", {
+                            await agent.ensure_user_exists(str(user_id), {
                                 'first_name': user_name,
                                 'email': f'{user_id}@business.telegram.user'
                             })
-                            await agent.ensure_session_exists(session_id, f"business_{user_id}")
+                            await agent.ensure_session_exists(session_id, str(user_id))
                         response = await agent.generate_response(text, session_id, user_name)
                         logger.info(f"✅ AI ответ сгенерирован: {response[:100]}...")
                     else:
