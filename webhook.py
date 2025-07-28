@@ -28,6 +28,15 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 print("🚀 Загрузка artemmyassyst Bot Webhook Server...")
 
+# Импорт structured logging
+try:
+    from utils.structured_logger import log_webhook_received, log_ai_response, log_voice_message, log_error, log_business_connection, log_api_key_issue, log_performance_metric
+    print("✅ Structured logging загружен")
+    STRUCTURED_LOGGING = True
+except ImportError:
+    print("⚠️ Structured logging недоступен")
+    STRUCTURED_LOGGING = False
+
 # Пытаемся импортировать AI agent
 try:
     import bot
@@ -144,6 +153,16 @@ async def health_check():
     """Health check endpoint"""
     try:
         bot_info = bot.get_me()
+        
+        # Детальная информация об AI статусе
+        ai_details = {
+            "ai_enabled_in_code": AI_ENABLED,
+            "openai_key_configured": bool(os.getenv('OPENAI_API_KEY')),
+            "openai_key_length": len(os.getenv('OPENAI_API_KEY', '')),
+            "agent_loaded": 'agent' in globals(),
+            "openai_client_status": "configured" if (AI_ENABLED and agent and agent.openai_client) else "missing"
+        }
+        
         return {
             "status": "🟢 ONLINE", 
             "service": "artemmyassyst Bot Webhook",
@@ -152,12 +171,24 @@ async def health_check():
             "mode": "WEBHOOK_ONLY",
             "ai_status": "✅ ENABLED" if AI_ENABLED else "❌ DISABLED",
             "openai_configured": bool(os.getenv('OPENAI_API_KEY')),
+            "ai_details": ai_details,
+            "debug_info": {
+                "total_updates_processed": update_counter,
+                "business_connections": len(business_owners),
+                "last_update_time": last_updates[-1]['timestamp'] if last_updates else None
+            },
             "endpoints": {
                 "webhook_info": "/webhook/info",
                 "set_webhook": "/webhook/set",
                 "delete_webhook": "/webhook (DELETE method)",
+                "debug_logs": "/debug/logs",
+                "debug_config": "/debug/config", 
+                "debug_ai_status": "/debug/ai-status",
                 "business_owners": "/debug/business-owners",
-                "last_updates": "/debug/last-updates"
+                "last_updates": "/debug/last-updates",
+                "structured_logs": "/debug/structured-logs",
+                "recent_errors": "/debug/errors",
+                "voice_stats": "/debug/voice-messages"
             },
             "hint": "Используйте /webhook/set в браузере для установки webhook"
         }
@@ -201,6 +232,213 @@ async def set_webhook():
     except Exception as e:
         logger.error(f"❌ Ошибка установки webhook: {e}")
         return {"status": "❌ ERROR", "error": str(e)}
+
+# === DEBUG ENDPOINTS ===
+@app.get("/debug/logs")
+async def get_debug_logs():
+    """Получить последние логи для диагностики"""
+    try:
+        log_file = "logs/bot.log"
+        if not os.path.exists(log_file):
+            return {"error": "Log file not found", "file_path": log_file}
+        
+        # Читаем последние 100 строк
+        with open(log_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            last_lines = lines[-100:] if len(lines) > 100 else lines
+        
+        return {
+            "status": "success",
+            "log_file": log_file,
+            "total_lines": len(lines),
+            "returned_lines": len(last_lines),
+            "logs": [line.strip() for line in last_lines]
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/debug/config")
+async def get_debug_config():
+    """Получить конфигурацию бота (без секретных данных)"""
+    try:
+        config_info = {
+            "ai_enabled": AI_ENABLED,
+            "environment_variables": {
+                "TELEGRAM_BOT_TOKEN": "***" + os.getenv('TELEGRAM_BOT_TOKEN', '')[-4:] if os.getenv('TELEGRAM_BOT_TOKEN') else "NOT_SET",
+                "OPENAI_API_KEY": "***" + os.getenv('OPENAI_API_KEY', '')[-4:] if os.getenv('OPENAI_API_KEY') else "NOT_SET",
+                "ANTHROPIC_API_KEY": "***" + os.getenv('ANTHROPIC_API_KEY', '')[-4:] if os.getenv('ANTHROPIC_API_KEY') else "NOT_SET",
+                "ZEP_API_KEY": "***" + os.getenv('ZEP_API_KEY', '')[-4:] if os.getenv('ZEP_API_KEY') else "NOT_SET",
+                "WEBHOOK_SECRET_TOKEN": "CONFIGURED" if WEBHOOK_SECRET_TOKEN else "NOT_SET"
+            },
+            "key_lengths": {
+                "telegram_token": len(os.getenv('TELEGRAM_BOT_TOKEN', '')),
+                "openai_key": len(os.getenv('OPENAI_API_KEY', '')),
+                "anthropic_key": len(os.getenv('ANTHROPIC_API_KEY', '')),
+                "zep_key": len(os.getenv('ZEP_API_KEY', ''))
+            },
+            "agent_status": {
+                "agent_loaded": 'agent' in globals(),
+                "openai_client": "configured" if (AI_ENABLED and 'agent' in globals() and agent.openai_client) else "missing",
+                "zep_client": "configured" if (AI_ENABLED and 'agent' in globals() and agent.zep_client) else "missing"
+            }
+        }
+        
+        return {"status": "success", "config": config_info}
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/debug/ai-status")
+async def get_ai_status():
+    """Детальный статус AI компонентов"""
+    try:
+        ai_status = {
+            "ai_enabled_flag": AI_ENABLED,
+            "agent_imported": 'agent' in globals()
+        }
+        
+        if AI_ENABLED and 'agent' in globals():
+            ai_status.update({
+                "openai_client_exists": agent.openai_client is not None,
+                "zep_client_exists": agent.zep_client is not None,
+                "instruction_loaded": bool(agent.instruction),
+                "user_sessions_count": len(agent.user_sessions) if hasattr(agent, 'user_sessions') else 0
+            })
+            
+            # Проверка API ключей
+            openai_key = os.getenv('OPENAI_API_KEY', '')
+            if openai_key:
+                ai_status["openai_key_format_valid"] = openai_key.startswith('sk-') and len(openai_key) > 40
+                ai_status["openai_key_length"] = len(openai_key)
+            else:
+                ai_status["openai_key_missing"] = True
+                
+        return {"status": "success", "ai_status": ai_status}
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/debug/business-owners")
+async def get_business_owners():
+    """Получить информацию о Business Connection владельцах"""
+    try:
+        return {
+            "status": "success",
+            "business_owners_count": len(business_owners),
+            "business_owners": {conn_id: f"user_{user_id}" for conn_id, user_id in business_owners.items()}
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/debug/last-updates")
+async def get_last_updates():
+    """Получить последние webhook updates для анализа"""
+    try:
+        return {
+            "status": "success",
+            "total_updates_processed": update_counter,
+            "last_updates_count": len(last_updates),
+            "last_updates": list(last_updates)
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/debug/structured-logs")
+async def get_structured_logs():
+    """Получить structured logs в JSON формате"""
+    try:
+        log_file = "logs/structured.log"
+        if not os.path.exists(log_file):
+            return {"error": "Structured log file not found", "file_path": log_file}
+        
+        # Читаем последние 50 структурированных записей
+        with open(log_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            last_lines = lines[-50:] if len(lines) > 50 else lines
+        
+        # Парсим JSON записи
+        structured_logs = []
+        for line in last_lines:
+            try:
+                log_entry = json.loads(line.strip())
+                structured_logs.append(log_entry)
+            except json.JSONDecodeError:
+                # Пропускаем некорректные JSON строки
+                pass
+        
+        return {
+            "status": "success",
+            "log_file": log_file,
+            "total_lines": len(lines),
+            "parsed_entries": len(structured_logs),
+            "logs": structured_logs
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/debug/errors")
+async def get_recent_errors():
+    """Получить последние ошибки из structured logs"""
+    try:
+        log_file = "logs/structured.log"
+        if not os.path.exists(log_file):
+            return {"error": "Structured log file not found"}
+        
+        errors = []
+        with open(log_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            
+            # Ищем ошибки в последних 100 строках
+            for line in lines[-100:]:
+                try:
+                    log_entry = json.loads(line.strip())
+                    if log_entry.get('level') in ['ERROR', 'CRITICAL'] or log_entry.get('event_type') == 'error':
+                        errors.append(log_entry)
+                except json.JSONDecodeError:
+                    pass
+        
+        # Сортируем по времени (новые сверху)
+        errors.sort(key=lambda x: x.get('timestamp', ''), reverse=True)
+        
+        return {
+            "status": "success",
+            "error_count": len(errors),
+            "errors": errors[:20]  # Последние 20 ошибок
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/debug/voice-messages")
+async def get_voice_messages_stats():
+    """Статистика по голосовым сообщениям"""
+    try:
+        log_file = "logs/structured.log"
+        if not os.path.exists(log_file):
+            return {"error": "Structured log file not found"}
+        
+        voice_messages = []
+        with open(log_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            
+            for line in lines:
+                try:
+                    log_entry = json.loads(line.strip())
+                    if log_entry.get('event_type') == 'voice_message':
+                        voice_messages.append(log_entry)
+                except json.JSONDecodeError:
+                    pass
+        
+        # Статистика
+        total_voice = len(voice_messages)
+        processed_count = sum(1 for vm in voice_messages if vm.get('metadata', {}).get('processed', False))
+        
+        return {
+            "status": "success",
+            "total_voice_messages": total_voice,
+            "processed_count": processed_count,
+            "unprocessed_count": total_voice - processed_count,
+            "recent_voice_messages": voice_messages[-10:] if voice_messages else []
+        }
+    except Exception as e:
+        return {"error": str(e)}
 
 @app.post("/webhook")
 async def process_webhook(request: Request):
@@ -247,6 +485,19 @@ async def process_webhook(request: Request):
         last_updates.append(debug_update)
         logger.info(f"📊 Update #{update_counter} тип: {debug_update['type']}")
         
+        # Structured logging для webhook
+        if STRUCTURED_LOGGING:
+            try:
+                log_webhook_received(
+                    update_type=debug_update["type"],
+                    user_id="system",
+                    user_name="webhook",
+                    message_type=debug_update["type"],
+                    update_counter=update_counter
+                )
+            except Exception as struct_log_error:
+                logger.warning(f"⚠️ Structured logging error: {struct_log_error}")
+        
         # === ОБЫЧНЫЕ СООБЩЕНИЯ ===
         if "message" in update_dict:
             msg = update_dict["message"]
@@ -254,6 +505,53 @@ async def process_webhook(request: Request):
             text = msg.get("text", "") or msg.get("caption", "")
             user_id = msg.get("from", {}).get("id", "unknown")
             user_name = msg.get("from", {}).get("first_name", "Пользователь")
+            
+            # 🎤 РАСШИРЕННОЕ ЛОГИРОВАНИЕ ДЛЯ VOICE MESSAGES
+            message_type = "text"
+            if "voice" in msg:
+                message_type = "voice"
+                voice_info = msg["voice"]
+                duration = voice_info.get('duration', 0)
+                file_size = voice_info.get('file_size', 0)
+                file_id = voice_info.get('file_id', 'unknown')
+                
+                logger.info(f"🎤 VOICE MESSAGE получено от {user_name} (ID: {user_id})")
+                logger.info(f"   Длительность: {duration}s")
+                logger.info(f"   Размер файла: {file_size} bytes")
+                logger.info(f"   File ID: {file_id}")
+                
+                # Structured logging для voice message
+                if STRUCTURED_LOGGING:
+                    try:
+                        log_voice_message(
+                            user_id=str(user_id),
+                            user_name=user_name,
+                            duration=duration,
+                            file_size=file_size,
+                            processed=AI_ENABLED,
+                            file_id=file_id
+                        )
+                    except Exception as struct_error:
+                        logger.warning(f"⚠️ Structured logging error for voice: {struct_error}")
+                
+                if not AI_ENABLED:
+                    logger.warning(f"⚠️ AI отключен - voice message НЕ БУДЕТ ОБРАБОТАНО!")
+            elif "audio" in msg:
+                message_type = "audio"
+                audio_info = msg["audio"]
+                logger.info(f"🎵 AUDIO MESSAGE получено от {user_name}")
+                logger.info(f"   Длительность: {audio_info.get('duration', 'unknown')}s")
+            elif "video_note" in msg:
+                message_type = "video_note"
+                logger.info(f"🎥 VIDEO NOTE получено от {user_name}")
+            elif "photo" in msg:
+                message_type = "photo"
+                logger.info(f"📷 PHOTO получено от {user_name}")
+            elif "document" in msg:
+                message_type = "document"
+                logger.info(f"📄 DOCUMENT получено от {user_name}")
+            elif text:
+                logger.info(f"💬 TEXT MESSAGE от {user_name}: {text[:50]}...")
             
             try:
                 # Пытаемся отправить индикатор набора текста
@@ -276,6 +574,18 @@ async def process_webhook(request: Request):
 
 Просто напишите ваш вопрос, и я помогу!"""
                 
+                # Обработка voice messages
+                elif message_type == "voice" and AI_ENABLED:
+                    try:
+                        logger.info(f"🎤 Начинаю обработку voice message от {user_name}")
+                        # TODO: Здесь должна быть обработка голосового сообщения
+                        # Пока что отправляем информативный ответ
+                        response = f"🎤 Получил ваше голосовое сообщение, {user_name}!\n\nК сожалению, обработка голосовых сообщений временно недоступна из-за проблем с AI конфигурацией.\n\nПожалуйста, напишите ваш вопрос текстом."
+                        logger.info(f"🎤 Voice message response prepared for {user_name}")
+                    except Exception as voice_error:
+                        logger.error(f"❌ Ошибка обработки voice message: {voice_error}")
+                        response = f"Извините, {user_name}, не удалось обработать голосовое сообщение. Попробуйте написать текстом."
+                
                 # Если есть текст - обрабатываем через AI
                 elif text and AI_ENABLED:
                     try:
@@ -287,16 +597,52 @@ async def process_webhook(request: Request):
                                 'email': f'{user_id}@telegram.user'
                             })
                             await agent.ensure_session_exists(session_id, f"user_{user_id}")
+                        start_time = time.time()
                         response = await agent.generate_response(text, session_id, user_name)
+                        response_time = time.time() - start_time
+                        
+                        # Structured logging для AI response
+                        if STRUCTURED_LOGGING:
+                            try:
+                                log_ai_response(
+                                    user_id=str(user_id),
+                                    user_name=user_name,
+                                    input_text=text,
+                                    response_text=response,
+                                    ai_enabled=True,
+                                    response_time=response_time,
+                                    session_id=session_id
+                                )
+                            except Exception as struct_error:
+                                logger.warning(f"⚠️ Structured logging error for AI: {struct_error}")
                         
                     except Exception as ai_error:
                         logger.error(f"Ошибка AI генерации: {ai_error}")
+                        
+                        # Structured logging для ошибки
+                        if STRUCTURED_LOGGING:
+                            try:
+                                log_error(
+                                    error_type="ai_generation_error",
+                                    error_message=str(ai_error),
+                                    user_id=str(user_id),
+                                    user_name=user_name,
+                                    input_text=text
+                                )
+                            except Exception:
+                                pass
+                        
                         response = f"Извините, произошла техническая ошибка. Попробуйте позже или напишите вопрос снова."
                     
                 elif text:
                     # Fallback если AI не доступен
-                    response = f"👋 {user_name}, получил ваш вопрос! Подготовлю ответ. Минуточку!"
+                    response = f"👋 {user_name}, получил ваш вопрос! Подготовлю ответ. Минуточку!\n\n⚠️ Внимание: AI временно недоступен, работаю в упрощенном режиме."
+                elif message_type == "voice":
+                    # Voice message без AI
+                    response = f"🎤 {user_name}, получил ваше голосовое сообщение!\n\n⚠️ К сожалению, обработка голосовых сообщений недоступна из-за проблем с AI.\n\nПожалуйста, напишите ваш вопрос текстом."
+                    logger.warning(f"⚠️ Voice message от {user_name} - AI недоступен, отправляю заглушку")
                 else:
+                    logger.info(f"ℹ️ Неподдерживаемый тип сообщения '{message_type}' от {user_name}")
                     return {"ok": True, "action": "no_action"}
                     
                 # Отправляем ответ
@@ -399,6 +745,18 @@ async def process_webhook(request: Request):
                 else:
                     business_owners.pop(connection_id, None)
                     logger.info(f"❌ Удален владелец Business Connection: {user_name} (connection_id: {connection_id})")
+                
+                # Structured logging для business connection
+                if STRUCTURED_LOGGING:
+                    try:
+                        log_business_connection(
+                            connection_id=connection_id,
+                            user_id=str(owner_user_id),
+                            user_name=user_name,
+                            is_enabled=is_enabled
+                        )
+                    except Exception as struct_error:
+                        logger.warning(f"⚠️ Structured logging error for business: {struct_error}")
             
             status = "✅ Подключен" if is_enabled else "❌ Отключен"
             logger.info(f"{status} к Business аккаунту: {user_name}")
@@ -432,7 +790,30 @@ async def startup():
         print("🔗 Режим: WEBHOOK ONLY")
         print("❌ Polling: ОТКЛЮЧЕН")
         print(f"🤖 AI: {'✅ ВКЛЮЧЕН' if AI_ENABLED else '❌ ОТКЛЮЧЕН'}")
-        print(f"🔑 OpenAI API: {'✅ Настроен' if os.getenv('OPENAI_API_KEY') else '❌ Не настроен'}")
+        openai_key = os.getenv('OPENAI_API_KEY')
+        openai_configured = bool(openai_key)
+        print(f"🔑 OpenAI API: {'✅ Настроен' if openai_configured else '❌ Не настроен'}")
+        
+        # Логируем проблему с API ключом если есть
+        if not openai_configured and STRUCTURED_LOGGING:
+            try:
+                log_api_key_issue(
+                    key_type="openai",
+                    issue="API key not configured",
+                    impact="AI responses disabled, using fallback stubs"
+                )
+            except Exception:
+                pass
+        elif openai_configured and len(openai_key) < 50 and STRUCTURED_LOGGING:
+            try:
+                log_api_key_issue(
+                    key_type="openai",
+                    issue="API key seems truncated",
+                    key_length=len(openai_key),
+                    expected_min_length=120
+                )
+            except Exception:
+                pass
         print("="*50)
         logger.info("✅ Бот инициализирован успешно")
         
