@@ -16,7 +16,6 @@ import os
 import sys
 import logging
 import traceback
-import time
 from datetime import datetime
 from fastapi import FastAPI, Request, HTTPException
 import telebot
@@ -649,7 +648,7 @@ async def process_webhook(request: Request):
                             voice_response = requests.get(file_url, timeout=30)
                             if voice_response.status_code == 200:
                                 # Сохраняем временный файл
-                                temp_voice_path = f"temp_voice_{user_id}_{int(time.time())}.ogg"
+                                temp_voice_path = f"temp_voice_{user_id}_{int(datetime.now().timestamp())}.ogg"
                                 with open(temp_voice_path, 'wb') as f:
                                     f.write(voice_response.content)
                                 
@@ -680,9 +679,9 @@ async def process_webhook(request: Request):
                                                 })
                                                 await agent.ensure_session_exists(session_id, f"user_{user_id}")
                                             
-                                            start_time = time.time()
+                                            start_time = datetime.now().timestamp()
                                             ai_response = await agent.generate_response(transcribed_text, session_id, user_name)
-                                            response_time = time.time() - start_time
+                                            response_time = datetime.now().timestamp() - start_time
                                             
                                             response = f"🎤 Ваше сообщение: \"{transcribed_text}\"\n\n{ai_response}"
                                             
@@ -738,9 +737,9 @@ async def process_webhook(request: Request):
                                 'email': f'{user_id}@telegram.user'
                             })
                             await agent.ensure_session_exists(session_id, f"user_{user_id}")
-                        start_time = time.time()
+                        start_time = datetime.now().timestamp()
                         response = await agent.generate_response(text, session_id, user_name)
-                        response_time = time.time() - start_time
+                        response_time = datetime.now().timestamp() - start_time
                         
                         # Structured logging для AI response
                         if STRUCTURED_LOGGING:
