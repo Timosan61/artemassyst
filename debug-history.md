@@ -794,3 +794,166 @@ Working tree clean
 
 ---
 
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:11:28
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+Working tree clean
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:11:33
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:11:42
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:13:54
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:14:02
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:14:07
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:14:11
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+- ## 🎉 МИССИЯ ВЫПОЛНЕНА! 
+- ## ✅ artemassyst БОТ УСПЕШНО ЗАДЕПЛОЕН НА DIGITAL OCEAN!
+- ### 🏆 **Итоговые результаты:**
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:14:30
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:14:56
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
+## 📦 Compact Trigger: `unknown`
+
+- **Session ID:** `8f0da27c-1372-4d44-a0cc-174c63a94ae2`
+- **Timestamp:** 2025-07-28 10:15:04
+- **Working Directory:** `/home/coder/Desktop/2202/bot_cloning_system/clones/artemmyassyst`
+- **Transcript:** `/home/coder/.claude/projects/-home-coder-Desktop-2202-bot-cloning-digital-ocean/8f0da27c-1372-4d44-a0cc-174c63a94ae2.jsonl`
+
+### Git Status:
+```
+ M debug-history.md
+```
+
+### Recent Events:
+
+---
+
