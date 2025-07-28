@@ -778,6 +778,14 @@ async def process_webhook(request: Request):
             business_connection_id = bus_msg.get("business_connection_id")
             user_name = bus_msg.get("from", {}).get("first_name", "Клиент")
             
+            # Проверяем голосовые и аудио сообщения
+            voice_data = bus_msg.get("voice")
+            audio_data = bus_msg.get("audio")
+            document_data = bus_msg.get("document")
+            is_voice_message = bool(voice_data)
+            is_audio_message = bool(audio_data)
+            is_audio_document = bool(document_data and document_data.get("mime_type", "").startswith("audio/"))
+            
             # 🚫 КРИТИЧНАЯ ПРОВЕРКА: Игнорируем сообщения от владельца аккаунта
             if business_connection_id and business_connection_id in business_owners:
                 owner_id = business_owners[business_connection_id]
@@ -785,7 +793,101 @@ async def process_webhook(request: Request):
                     logger.info(f"🚫 ИГНОРИРУЕМ сообщение от владельца аккаунта: {user_name} (ID: {user_id})")
                     return {"ok": True, "action": "ignored_owner_message", "reason": "message_from_business_owner"}
             
-            # Обрабатываем business сообщения с текстом
+            # === ОБРАБОТКА ГОЛОСОВЫХ И АУДИО BUSINESS СООБЩЕНИЙ ===
+            if (is_voice_message or is_audio_message or is_audio_document) and not text:
+                try:
+                    # Определяем какие данные использовать для транскрибации
+                    audio_to_process = None
+                    audio_type = ""
+                    
+                    if is_voice_message:
+                        audio_to_process = voice_data
+                        audio_type = "голосовое business"
+                    elif is_audio_message:
+                        audio_to_process = audio_data
+                        audio_type = "аудио business"
+                    elif is_audio_document:
+                        audio_to_process = document_data
+                        audio_type = "аудио документ business"
+                    
+                    logger.info(f"🎤 BUSINESS VOICE получено от {user_name} (ID: {user_id}) - {audio_type}")
+                    
+                    if STRUCTURED_LOGGING:
+                        try:
+                            log_voice_message(
+                                user_id=str(user_id),
+                                user_name=user_name,
+                                audio_type=audio_type,
+                                message_type="business_voice"
+                            )
+                        except Exception as log_error:
+                            logger.warning(f"Ошибка структурированного логирования: {log_error}")
+                    
+                    if audio_to_process and AI_ENABLED:
+                        try:
+                            logger.info(f"🎤 Транскрибируем {audio_type} сообщение от {user_name}")
+                            
+                            # Получаем файл через file_id
+                            file_id = audio_to_process.get("file_id")
+                            if not file_id:
+                                logger.error("Не найден file_id в голосовом сообщении")
+                                raise ValueError("Отсутствует file_id")
+                            
+                            # Скачиваем файл
+                            file_info = bot.get_file(file_id)
+                            file_url = f"https://api.telegram.org/file/bot{TELEGRAM_BOT_TOKEN}/{file_info.file_path}"
+                            
+                            logger.info(f"📥 Скачиваю файл: {file_url}")
+                            
+                            # Скачиваем содержимое файла
+                            response = requests.get(file_url, timeout=30)
+                            response.raise_for_status()
+                            
+                            # Сохраняем временный файл
+                            temp_voice_path = f"temp_voice_{user_id}_{int(datetime.now().timestamp())}.ogg"
+                            with open(temp_voice_path, 'wb') as f:
+                                f.write(response.content)
+                            
+                            logger.info(f"💾 Файл сохранен как {temp_voice_path}")
+                            
+                            # Транскрибируем через OpenAI Whisper
+                            with open(temp_voice_path, "rb") as audio_file:
+                                if agent and agent.openai_client:
+                                    transcription = await agent.openai_client.audio.transcriptions.create(
+                                        model="whisper-1",
+                                        file=audio_file,
+                                        language="ru"
+                                    )
+                                    transcribed_text = transcription.text.strip()
+                                    logger.info(f"✅ Business транскрипция: {transcribed_text}")
+                                    
+                                    # Устанавливаем транскрибированный текст как основной текст для обработки
+                                    text = transcribed_text
+                                else:
+                                    logger.error("OpenAI клиент недоступен для транскрипции")
+                                    text = ""
+                            
+                            # Удаляем временный файл
+                            try:
+                                os.remove(temp_voice_path)
+                                logger.info(f"🗑️ Временный файл {temp_voice_path} удален")
+                            except:
+                                pass
+                                
+                        except Exception as voice_error:
+                            logger.error(f"❌ Ошибка обработки business голосового сообщения: {voice_error}")
+                            logger.error(f"Traceback:\n{traceback.format_exc()}")
+                            text = ""
+                    else:
+                        logger.info("⚠️ AI отключен или данные недоступны для транскрипции")
+                        text = ""
+                        
+                except Exception as e:
+                    logger.error(f"❌ Критическая ошибка обработки business голосового: {e}")
+                    logger.error(f"Traceback:\n{traceback.format_exc()}")
+                    text = ""
+            
+            # Обрабатываем business сообщения с текстом (включая транскрибированный голос)
             if text:
                 try:
                     logger.info(f"🔄 Начинаю обработку business message: text='{text}', chat_id={chat_id}")
