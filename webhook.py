@@ -579,13 +579,101 @@ async def process_webhook(request: Request):
                 elif message_type == "voice" and AI_ENABLED:
                     try:
                         logger.info(f"🎤 Начинаю обработку voice message от {user_name}")
-                        # TODO: Здесь должна быть обработка голосового сообщения
-                        # Пока что отправляем информативный ответ
-                        response = f"🎤 Получил ваше голосовое сообщение, {user_name}!\n\nК сожалению, обработка голосовых сообщений временно недоступна из-за проблем с AI конфигурацией.\n\nПожалуйста, напишите ваш вопрос текстом."
-                        logger.info(f"🎤 Voice message response prepared for {user_name}")
+                        
+                        # Получаем файл голосового сообщения
+                        voice_file_id = voice_info.get('file_id')
+                        if not voice_file_id:
+                            logger.error("❌ Не удалось получить file_id голосового сообщения")
+                            response = f"Извините, {user_name}, не удалось получить голосовое сообщение."
+                        else:
+                            # Получаем информацию о файле
+                            file_info = bot.get_file(voice_file_id)
+                            file_path = file_info.file_path
+                            
+                            # Скачиваем файл
+                            file_url = f"https://api.telegram.org/file/bot{TELEGRAM_BOT_TOKEN}/{file_path}"
+                            logger.info(f"🎤 Скачиваю голосовое сообщение: {file_url}")
+                            
+                            voice_response = requests.get(file_url, timeout=30)
+                            if voice_response.status_code == 200:
+                                # Сохраняем временный файл
+                                temp_voice_path = f"temp_voice_{user_id}_{int(time.time())}.ogg"
+                                with open(temp_voice_path, 'wb') as f:
+                                    f.write(voice_response.content)
+                                
+                                logger.info(f"🎤 Файл сохранен: {temp_voice_path}")
+                                
+                                try:
+                                    # Преобразуем голос в текст через OpenAI Whisper
+                                    if agent.openai_client:
+                                        logger.info("🎤 Преобразование голоса в текст через Whisper...")
+                                        
+                                        with open(temp_voice_path, 'rb') as audio_file:
+                                            transcript = await agent.openai_client.audio.transcriptions.create(
+                                                model="whisper-1",
+                                                file=audio_file,
+                                                language="ru"
+                                            )
+                                        
+                                        transcribed_text = transcript.text
+                                        logger.info(f"🎤 Текст распознан: {transcribed_text[:100]}...")
+                                        
+                                        if transcribed_text.strip():
+                                            # Обрабатываем распознанный текст через AI
+                                            session_id = f"user_{user_id}"
+                                            if agent.zep_client:
+                                                await agent.ensure_user_exists(f"user_{user_id}", {
+                                                    'first_name': user_name,
+                                                    'email': f'{user_id}@telegram.user'
+                                                })
+                                                await agent.ensure_session_exists(session_id, f"user_{user_id}")
+                                            
+                                            start_time = time.time()
+                                            ai_response = await agent.generate_response(transcribed_text, session_id, user_name)
+                                            response_time = time.time() - start_time
+                                            
+                                            response = f"🎤 Ваше сообщение: \"{transcribed_text}\"\n\n{ai_response}"
+                                            
+                                            # Structured logging для voice to AI response
+                                            if STRUCTURED_LOGGING:
+                                                try:
+                                                    log_ai_response(
+                                                        user_id=str(user_id),
+                                                        user_name=user_name,
+                                                        input_text=f"[VOICE] {transcribed_text}",
+                                                        response_text=ai_response,
+                                                        ai_enabled=True,
+                                                        response_time=response_time,
+                                                        session_id=session_id
+                                                    )
+                                                except Exception as struct_error:
+                                                    logger.warning(f"⚠️ Structured logging error: {struct_error}")
+                                            
+                                            logger.info(f"✅ Voice message обработано успешно для {user_name}")
+                                        else:
+                                            response = f"🎤 Не удалось распознать речь в вашем сообщении, {user_name}. Попробуйте говорить четче или напишите текстом."
+                                    else:
+                                        response = f"🎤 {user_name}, обработка голосовых сообщений недоступна - не настроен OpenAI API ключ."
+                                        
+                                except Exception as whisper_error:
+                                    logger.error(f"❌ Ошибка Whisper: {whisper_error}")
+                                    response = f"Извините, {user_name}, не удалось распознать голосовое сообщение. Попробуйте написать текстом."
+                                
+                                finally:
+                                    # Удаляем временный файл
+                                    try:
+                                        os.remove(temp_voice_path)
+                                        logger.info(f"🗑️ Временный файл удален: {temp_voice_path}")
+                                    except:
+                                        pass
+                            else:
+                                logger.error(f"❌ Не удалось скачать голосовое сообщение: {voice_response.status_code}")
+                                response = f"Извините, {user_name}, не удалось загрузить голосовое сообщение."
+                                
                     except Exception as voice_error:
                         logger.error(f"❌ Ошибка обработки voice message: {voice_error}")
-                        response = f"Извините, {user_name}, не удалось обработать голосовое сообщение. Попробуйте написать текстом."
+                        logger.error(f"Traceback:\n{traceback.format_exc()}")
+                        response = f"Извините, {user_name}, произошла ошибка при обработке голосового сообщения. Попробуйте написать текстом."
                 
                 # Если есть текст - обрабатываем через AI
                 elif text and AI_ENABLED:
