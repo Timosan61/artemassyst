@@ -26,7 +26,7 @@ import requests
 # Добавляем путь для импорта модулей бота
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-print("🚀 Загрузка artemmyassyst Bot Webhook Server...")
+print("🚀 Загрузка artemmyassyst Bot Webhook Server v2.0...")
 
 # Импорт structured logging
 try:
