@@ -15,6 +15,18 @@ INSTRUCTION_FILE = os.path.join(BASE_DIR, 'data', 'instruction.json')
 OPENAI_MODEL = 'gpt-4o'
 ANTHROPIC_MODEL = 'claude-3-5-sonnet-20241022'
 
+# === LLM ПАРАМЕТРЫ ДЛЯ ЖИВОГО ОБЩЕНИЯ ===
+# Параметры OpenAI для имитации естественного диалога
+OPENAI_TEMPERATURE = float(os.getenv('OPENAI_TEMPERATURE', '0.8'))  # Было 0.7, увеличиваем для спонтанности
+OPENAI_MAX_TOKENS = int(os.getenv('OPENAI_MAX_TOKENS', '1000'))
+OPENAI_PRESENCE_PENALTY = float(os.getenv('OPENAI_PRESENCE_PENALTY', '0.6'))  # Поощряет новые темы
+OPENAI_FREQUENCY_PENALTY = float(os.getenv('OPENAI_FREQUENCY_PENALTY', '0.2'))  # Снижает повторы
+OPENAI_TOP_P = float(os.getenv('OPENAI_TOP_P', '0.9'))  # Контроль креативности
+
+# Параметры Anthropic для совместимости
+ANTHROPIC_TEMPERATURE = float(os.getenv('ANTHROPIC_TEMPERATURE', '0.8'))
+ANTHROPIC_MAX_TOKENS = int(os.getenv('ANTHROPIC_MAX_TOKENS', '1000'))
+
 if not TELEGRAM_BOT_TOKEN:
     raise ValueError("TELEGRAM_BOT_TOKEN не найден в переменных окружения")
 # Проверки API ключей (не критичные для запуска)

@@ -136,6 +136,145 @@ def send_business_message(chat_id, text, business_connection_id):
         logger.error(f"❌ Business API HTTP ошибка: {e}")
         return None
 
+
+# === ФУНКЦИИ ИМИТАЦИИ ЧЕЛОВЕЧЕСКОГО ПОВЕДЕНИЯ ===
+import random
+
+def send_typing_action(chat_id, business_connection_id=None):
+    """Отправка индикатора 'печатает...'"""
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendChatAction"
+    data = {
+        "chat_id": chat_id,
+        "action": "typing"
+    }
+    
+    if business_connection_id:
+        data["business_connection_id"] = business_connection_id
+    
+    try:
+        response = requests.post(url, json=data, timeout=5)
+        result = response.json()
+        return result.get("ok", False)
+    except Exception as e:
+        logger.warning(f"⚠️ Не удалось отправить typing action: {e}")
+        return False
+
+async def show_typing_continuously(chat_id, business_connection_id=None, duration_seconds=0):
+    """Показывает 'печатает...' непрерывно в течение указанного времени"""
+    if duration_seconds <= 0:
+        return
+    
+    end_time = asyncio.get_event_loop().time() + duration_seconds
+    
+    while asyncio.get_event_loop().time() < end_time:
+        send_typing_action(chat_id, business_connection_id)
+        await asyncio.sleep(min(4, duration_seconds))  # Telegram typing действует 5 сек, обновляем каждые 4
+
+def calculate_typing_delay(text_length):
+    """Вычисляет реалистичную задержку для набора сообщения"""
+    # Базовая задержка 1-3 секунды
+    base_delay = random.uniform(1.0, 3.0)
+    
+    # Дополнительная задержка пропорционально длине текста
+    # ~1 секунда на каждые 100 символов
+    length_delay = min(text_length / 100.0, 5.0)  # Максимум 5 сек за длину
+    
+    total_delay = base_delay + length_delay
+    return min(total_delay, 15.0)  # Максимум 15 секунд общей задержки
+
+def split_long_message(text, max_length=1000):
+    """Разбивает длинное сообщение на части для отправки"""
+    if len(text) <= max_length:
+        return [text]
+    
+    parts = []
+    current_part = ""
+    
+    # Разбиваем по абзацам
+    paragraphs = text.split('\n\n')
+    
+    for paragraph in paragraphs:
+        if len(current_part + paragraph) <= max_length:
+            if current_part:
+                current_part += '\n\n' + paragraph
+            else:
+                current_part = paragraph
+        else:
+            if current_part:
+                parts.append(current_part)
+                current_part = paragraph
+            else:
+                # Если даже один абзац слишком длинный, разбиваем по предложениям
+                sentences = paragraph.split('. ')
+                for sentence in sentences:
+                    if len(current_part + sentence) <= max_length:
+                        if current_part:
+                            current_part += '. ' + sentence
+                        else:
+                            current_part = sentence
+                    else:
+                        if current_part:
+                            parts.append(current_part)
+                        current_part = sentence
+    
+    if current_part:
+        parts.append(current_part)
+    
+    return parts
+
+async def send_human_like_response(chat_id, text, business_connection_id=None, user_name=""):
+    """Отправляет ответ с имитацией человеческого поведения"""
+    try:
+        # 1. Показываем "печатает..." и делаем паузу
+        typing_delay = calculate_typing_delay(len(text))
+        logger.info(f"🤖 Имитация печати для {user_name}: {typing_delay:.1f} сек")
+        
+        # Начинаем показывать typing
+        typing_task = asyncio.create_task(
+            show_typing_continuously(chat_id, business_connection_id, typing_delay)
+        )
+        
+        # Ждем "время набора"
+        await asyncio.sleep(typing_delay)
+        
+        # Останавливаем typing
+        typing_task.cancel()
+        
+        # 2. Разбиваем длинное сообщение на части
+        message_parts = split_long_message(text)
+        
+        # 3. Отправляем части с паузами между ними
+        for i, part in enumerate(message_parts):
+            if i > 0:
+                # Между частями показываем typing и делаем паузу
+                send_typing_action(chat_id, business_connection_id)
+                pause = random.uniform(0.5, 2.0)
+                await asyncio.sleep(pause)
+            
+            # Отправляем часть сообщения
+            if business_connection_id:
+                result = send_business_message(chat_id, part, business_connection_id)
+                if not result:
+                    logger.error(f"❌ Не удалось отправить часть {i+1}/{len(message_parts)} через Business API")
+                    # Fallback на обычное сообщение
+                    bot.send_message(chat_id, part)
+                    logger.warning(f"⚠️ Отправлена часть {i+1} как обычное сообщение")
+            else:
+                bot.send_message(chat_id, part)
+            
+            logger.info(f"✅ Отправлена часть {i+1}/{len(message_parts)} пользователю {user_name}")
+        
+        return True
+        
+    except Exception as e:
+        logger.error(f"❌ Ошибка при отправке human-like ответа: {e}")
+        # Fallback - отправляем как обычно
+        if business_connection_id:
+            send_business_message(chat_id, text, business_connection_id)
+        else:
+            bot.send_message(chat_id, text)
+        return False
+
 # === FASTAPI ПРИЛОЖЕНИЕ ===
 app = FastAPI(
     title="🤖 artemmyassyst Bot", 
@@ -761,10 +900,9 @@ async def process_webhook(request: Request):
                     logger.info(f"ℹ️ Неподдерживаемый тип сообщения '{message_type}' от {user_name}")
                     return {"ok": True, "action": "no_action"}
                     
-                # Отправляем ответ
-                bot.send_message(chat_id, response)
-                logger.info(f"✅ Ответ отправлен в чат {chat_id}")
-                print(f"✅ Отправлен ответ пользователю {user_name}")
+                # Отправляем ответ с имитацией человеческого поведения
+                await send_human_like_response(chat_id, response, user_name=user_name)
+                print(f"✅ Human-like ответ отправлен пользователю {user_name}")
                 
             except Exception as e:
                 logger.error(f"Ошибка обработки сообщения: {e}")
@@ -910,19 +1048,14 @@ async def process_webhook(request: Request):
                         logger.info(f"🤖 AI отключен, использую стандартный ответ")
                         response = f"👋 Здравствуйте, {user_name}! Получил ваш вопрос. Подготовлю ответ!"
                     
-                    # Для business_message используем специальную функцию
-                    logger.info(f"📤 Пытаюсь отправить ответ клиенту {user_name}...")
-                    if business_connection_id:
-                        result = send_business_message(chat_id, response, business_connection_id)
-                        if result:
-                            logger.info(f"✅ Business ответ отправлен клиенту в чат {chat_id}")
-                        else:
-                            logger.error(f"❌ Не удалось отправить через Business API")
-                    else:
-                        bot.send_message(chat_id, response)
-                        logger.warning(f"⚠️ Отправлено как обычное сообщение (fallback)")
-                    
-                    print(f"✅ Business ответ отправлен клиенту {user_name}")
+                    # Отправляем business ответ с имитацией человеческого поведения
+                    logger.info(f"📤 Отправляю human-like ответ клиенту {user_name}...")
+                    await send_human_like_response(
+                        chat_id, response, 
+                        business_connection_id=business_connection_id, 
+                        user_name=user_name
+                    )
+                    print(f"✅ Human-like business ответ отправлен клиенту {user_name}")
                     
                 except Exception as e:
                     logger.error(f"❌ Ошибка обработки business сообщения: {e}")

@@ -9,7 +9,11 @@ import anthropic
 from zep_cloud.client import AsyncZep
 from zep_cloud.types import Message
 
-from .config import INSTRUCTION_FILE, OPENAI_API_KEY, OPENAI_MODEL, ZEP_API_KEY, ANTHROPIC_API_KEY, ANTHROPIC_MODEL
+from .config import (
+    INSTRUCTION_FILE, OPENAI_API_KEY, OPENAI_MODEL, ZEP_API_KEY, ANTHROPIC_API_KEY, ANTHROPIC_MODEL,
+    OPENAI_TEMPERATURE, OPENAI_MAX_TOKENS, OPENAI_PRESENCE_PENALTY, OPENAI_FREQUENCY_PENALTY, OPENAI_TOP_P,
+    ANTHROPIC_TEMPERATURE, ANTHROPIC_MAX_TOKENS
+)
 
 # Настройка логирования
 logger = logging.getLogger(__name__)
@@ -198,21 +202,28 @@ class TextilProAgent:
         
         return "\n".join(history) if history else ""
     
-    async def call_llm(self, messages: list, max_tokens: int = 1000, temperature: float = 0.7) -> str:
-        """Роутер LLM запросов с fallback между OpenAI и Anthropic"""
+    async def call_llm(self, messages: list, max_tokens: int = None, temperature: float = None) -> str:
+        """Роутер LLM запросов с fallback между OpenAI и Anthropic (с параметрами для живого общения)"""
+        
+        # Используем конфигурационные значения если не переданы
+        max_tokens = max_tokens or OPENAI_MAX_TOKENS
+        temperature = temperature or OPENAI_TEMPERATURE
         
         # Сначала пробуем OpenAI
         if self.openai_client:
             try:
-                logger.info("🤖 Пытаемся использовать OpenAI")
+                logger.info(f"🤖 OpenAI запрос: temp={temperature}, tokens={max_tokens}, presence={OPENAI_PRESENCE_PENALTY}, frequency={OPENAI_FREQUENCY_PENALTY}")
                 response = await self.openai_client.chat.completions.create(
                     model=OPENAI_MODEL,
                     messages=messages,
                     max_tokens=max_tokens,
-                    temperature=temperature
+                    temperature=temperature,
+                    presence_penalty=OPENAI_PRESENCE_PENALTY,
+                    frequency_penalty=OPENAI_FREQUENCY_PENALTY,
+                    top_p=OPENAI_TOP_P
                 )
                 result = response.choices[0].message.content
-                logger.info("✅ OpenAI ответ получен")
+                logger.info("✅ OpenAI ответ получен с расширенными параметрами")
                 return result
                 
             except Exception as e:
@@ -222,7 +233,11 @@ class TextilProAgent:
         # Fallback на Anthropic
         if self.anthropic_client:
             try:
-                logger.info("🤖 Fallback на Anthropic Claude")
+                # Используем параметры Anthropic если OpenAI недоступен
+                anthropic_max_tokens = max_tokens or ANTHROPIC_MAX_TOKENS
+                anthropic_temperature = temperature or ANTHROPIC_TEMPERATURE
+                
+                logger.info(f"🤖 Fallback на Anthropic: temp={anthropic_temperature}, tokens={anthropic_max_tokens}")
                 
                 # Конвертируем сообщения для Anthropic API
                 system_message = ""
@@ -236,8 +251,8 @@ class TextilProAgent:
                 
                 response = await self.anthropic_client.messages.create(
                     model=ANTHROPIC_MODEL,
-                    max_tokens=max_tokens,
-                    temperature=temperature,
+                    max_tokens=anthropic_max_tokens,
+                    temperature=anthropic_temperature,
                     system=system_message,
                     messages=user_messages
                 )
@@ -300,7 +315,7 @@ class TextilProAgent:
             # Используем LLM роутер
             if self.openai_client or self.anthropic_client:
                 try:
-                    bot_response = await self.call_llm(messages, max_tokens=1000, temperature=0.7)
+                    bot_response = await self.call_llm(messages)  # Используем параметры по умолчанию из конфига
                 except Exception as llm_error:
                     logger.error(f"❌ Ошибка LLM роутера: {llm_error}")
                     bot_response = self._fallback_response(user_message)
