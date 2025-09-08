@@ -12,7 +12,7 @@ from zep_cloud.types import Message
 from .config import (
     INSTRUCTION_FILE, OPENAI_API_KEY, OPENAI_MODEL, ZEP_API_KEY, ANTHROPIC_API_KEY, ANTHROPIC_MODEL,
     OPENAI_TEMPERATURE, OPENAI_MAX_TOKENS, OPENAI_PRESENCE_PENALTY, OPENAI_FREQUENCY_PENALTY, OPENAI_TOP_P,
-    ANTHROPIC_TEMPERATURE, ANTHROPIC_MAX_TOKENS
+    ANTHROPIC_TEMPERATURE, ANTHROPIC_MAX_TOKENS, GOOGLE_SHEETS_ENABLED, GOOGLE_SHEETS_SYNC_INTERVAL
 )
 from .memory import MemoryService, DialogState, ClientType
 
@@ -60,6 +60,22 @@ class AlenaAgent:
         
         # Инициализируем Zep клиент для совместимости
         self.zep_client = self.memory_service.zep_client
+        
+        # Инициализируем Google Sheets интеграцию
+        self.sheets_service = None
+        if GOOGLE_SHEETS_ENABLED and enable_memory:
+            try:
+                from .integrations.google_sheets_service import GoogleSheetsService
+                self.sheets_service = GoogleSheetsService(
+                    self.memory_service, 
+                    self.memory_service.analytics_service
+                )
+                print("✅ Google Sheets интеграция инициализирована")
+            except Exception as e:
+                print(f"⚠️ Ошибка инициализации Google Sheets: {e}")
+                self.sheets_service = None
+        elif GOOGLE_SHEETS_ENABLED:
+            print("⚠️ Google Sheets требует активной системы памяти ZEP")
         
         self.instruction = self._load_instruction()
         self.user_sessions = {}  # Резервное хранение сессий в памяти
@@ -351,6 +367,24 @@ class AlenaAgent:
             # Совместимость: сохраняем также в старую систему памяти
             await self.add_to_zep_memory(session_id, user_message, bot_response, user_name)
             
+            # Синхронизация с Google Sheets при значимых изменениях
+            if self.sheets_service and lead_data:
+                try:
+                    # Проверяем, есть ли значимые изменения в данных лида
+                    significant_changes = (
+                        should_escalate or 
+                        qualification_status in [ClientType.WARM, ClientType.HOT] or
+                        current_state in [DialogState.S3_PAYMENT, DialogState.S5_BUDGET, DialogState.S8_ACTION]
+                    )
+                    
+                    if significant_changes:
+                        # Асинхронная синхронизация без блокировки ответа
+                        asyncio.create_task(self._sync_to_sheets_async(session_id))
+                        logger.debug(f"📊 Запущена синхронизация с Google Sheets для {session_id}")
+                        
+                except Exception as sheets_error:
+                    logger.error(f"❌ Ошибка синхронизации Google Sheets: {sheets_error}")
+            
             return bot_response
             
         except Exception as e:
@@ -595,6 +629,93 @@ class AlenaAgent:
             print(f"ℹ️ Сессия {session_id} возможно уже существует или будет создана автоматически")
             return True
     
+    async def _sync_to_sheets_async(self, session_id: str):
+        """Асинхронная синхронизация данных с Google Sheets"""
+        if not self.sheets_service:
+            return
+            
+        try:
+            logger.debug(f"📊 Начинаю синхронизацию Google Sheets для сессии {session_id}")
+            
+            # Аутентификация если нужно
+            if not self.sheets_service._authenticated:
+                auth_success = await self.sheets_service.authenticate()
+                if not auth_success:
+                    logger.error("❌ Не удалось аутентифицироваться в Google Sheets")
+                    return
+            
+            # Создание таблицы если не создана
+            if not self.sheets_service.spreadsheet_id:
+                spreadsheet_id = await self.sheets_service.create_spreadsheet()
+                if not spreadsheet_id:
+                    logger.error("❌ Не удалось создать Google таблицу")
+                    return
+                logger.info(f"📊 Создана новая Google таблица: {spreadsheet_id}")
+            
+            # Синхронизация данных лидов
+            leads_success = await self.sheets_service.sync_leads_data(days=30)
+            if leads_success:
+                logger.debug(f"✅ Данные лидов синхронизированы для {session_id}")
+            
+            # Синхронизация аналитики
+            analytics_success = await self.sheets_service.sync_analytics_data(days=30)
+            if analytics_success:
+                logger.debug(f"✅ Аналитика синхронизирована для {session_id}")
+                
+        except Exception as e:
+            logger.error(f"❌ Ошибка асинхронной синхронизации Google Sheets: {e}")
+    
+    async def setup_google_sheets_periodic_sync(self):
+        """Запускает периодическую синхронизацию Google Sheets"""
+        if not self.sheets_service or not GOOGLE_SHEETS_ENABLED:
+            return
+            
+        try:
+            logger.info("🔄 Запуск периодической синхронизации Google Sheets")
+            await self.sheets_service.setup_periodic_sync(GOOGLE_SHEETS_SYNC_INTERVAL)
+        except Exception as e:
+            logger.error(f"❌ Ошибка периодической синхронизации Google Sheets: {e}")
+    
+    async def get_sheets_url(self) -> Optional[str]:
+        """Возвращает URL Google таблицы если она создана"""
+        if self.sheets_service:
+            return await self.sheets_service.get_spreadsheet_url()
+        return None
+    
+    async def manual_sheets_sync(self) -> bool:
+        """Ручная синхронизация данных с Google Sheets"""
+        if not self.sheets_service:
+            logger.warning("⚠️ Google Sheets сервис не инициализирован")
+            return False
+            
+        try:
+            # Аутентификация
+            if not self.sheets_service._authenticated:
+                auth_success = await self.sheets_service.authenticate()
+                if not auth_success:
+                    return False
+            
+            # Создание таблицы если нужно
+            if not self.sheets_service.spreadsheet_id:
+                spreadsheet_id = await self.sheets_service.create_spreadsheet()
+                if not spreadsheet_id:
+                    return False
+            
+            # Синхронизация
+            leads_success = await self.sheets_service.sync_leads_data(days=30)
+            analytics_success = await self.sheets_service.sync_analytics_data(days=30)
+            
+            if leads_success and analytics_success:
+                logger.info("✅ Ручная синхронизация Google Sheets завершена успешно")
+                return True
+            else:
+                logger.warning("⚠️ Ручная синхронизация Google Sheets завершена с ошибками")
+                return False
+                
+        except Exception as e:
+            logger.error(f"❌ Ошибка ручной синхронизации Google Sheets: {e}")
+            return False
+
     def get_welcome_message(self) -> str:
         return self.instruction.get("welcome_message", "Добро пожаловать!")
 

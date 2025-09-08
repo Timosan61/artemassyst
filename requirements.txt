@@ -27,3 +27,9 @@ aiofiles==24.1.0
 streamlit==1.28.1
 streamlit-ace==0.1.1
 gitpython==3.1.40
+
+# === GOOGLE INTEGRATIONS ===
+# Google Sheets API интеграция
+google-api-python-client==2.133.0
+google-auth-httplib2==0.2.0
+google-auth-oauthlib==1.2.1

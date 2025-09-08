@@ -9,6 +9,10 @@ ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
 ZEP_API_KEY = os.getenv('ZEP_API_KEY', '')
 BOT_USERNAME = os.getenv('BOT_USERNAME')
 
+# Google Sheets Integration
+GOOGLE_SHEETS_ENABLED = os.getenv('GOOGLE_SHEETS_ENABLED', 'false').lower() == 'true'
+GOOGLE_SHEETS_SYNC_INTERVAL = int(os.getenv('GOOGLE_SHEETS_SYNC_INTERVAL', '3600'))  # 1 час по умолчанию
+
 # Абсолютный путь к файлу инструкций
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INSTRUCTION_FILE = os.path.join(BASE_DIR, 'data', 'instruction.json')

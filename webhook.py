@@ -329,6 +329,9 @@ async def health_check():
                 "debug_ai_status": "/debug/ai-status",
                 "debug_prompt": "/debug/prompt",
                 "admin_reload": "/admin/reload-prompt",
+                "admin_sheets_status": "/admin/sheets/status",
+                "admin_sheets_sync": "/admin/sheets/sync",
+                "admin_sheets_create": "/admin/sheets/create",
                 "business_owners": "/debug/business-owners",
                 "last_updates": "/debug/last-updates",
                 "structured_logs": "/debug/structured-logs",
@@ -628,6 +631,86 @@ async def reload_prompt():
                 "new_updated": new_updated,
                 "instruction_length": len(agent.instruction.get("system_instruction", ""))
             }
+        else:
+            return {"error": "AI agent не загружен"}
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.post("/admin/sheets/sync")
+async def sync_google_sheets():
+    """Ручная синхронизация данных с Google Sheets"""
+    try:
+        if AI_ENABLED and agent is not None:
+            sync_success = await agent.manual_sheets_sync()
+            sheets_url = await agent.get_sheets_url()
+            
+            return {
+                "status": "success" if sync_success else "partial",
+                "sync_completed": sync_success,
+                "sheets_url": sheets_url,
+                "sheets_enabled": hasattr(agent, 'sheets_service') and agent.sheets_service is not None
+            }
+        else:
+            return {"error": "AI agent не загружен"}
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/admin/sheets/status")
+async def get_sheets_status():
+    """Получить статус Google Sheets интеграции"""
+    try:
+        if AI_ENABLED and agent is not None:
+            sheets_service = getattr(agent, 'sheets_service', None)
+            
+            if sheets_service:
+                health_check = await sheets_service.health_check()
+                sheets_url = await agent.get_sheets_url()
+                
+                return {
+                    "sheets_enabled": True,
+                    "authenticated": sheets_service._authenticated,
+                    "spreadsheet_created": sheets_service.spreadsheet_id is not None,
+                    "spreadsheet_id": sheets_service.spreadsheet_id,
+                    "sheets_url": sheets_url,
+                    "health_check": health_check
+                }
+            else:
+                return {
+                    "sheets_enabled": False,
+                    "error": "Google Sheets сервис не инициализирован"
+                }
+        else:
+            return {"error": "AI agent не загружен"}
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.post("/admin/sheets/create")
+async def create_google_sheets():
+    """Создать новую Google таблицу"""
+    try:
+        if AI_ENABLED and agent is not None:
+            sheets_service = getattr(agent, 'sheets_service', None)
+            
+            if not sheets_service:
+                return {"error": "Google Sheets сервис не инициализирован"}
+            
+            # Аутентификация
+            if not sheets_service._authenticated:
+                auth_success = await sheets_service.authenticate()
+                if not auth_success:
+                    return {"error": "Не удалось аутентифицироваться в Google Sheets"}
+            
+            # Создание таблицы
+            spreadsheet_id = await sheets_service.create_spreadsheet()
+            if spreadsheet_id:
+                sheets_url = await agent.get_sheets_url()
+                return {
+                    "status": "success",
+                    "spreadsheet_id": spreadsheet_id,
+                    "sheets_url": sheets_url
+                }
+            else:
+                return {"error": "Не удалось создать Google таблицу"}
         else:
             return {"error": "AI agent не загружен"}
     except Exception as e:

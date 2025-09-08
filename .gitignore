@@ -2,6 +2,9 @@
 .env
 *.env
 
+# Google Sheets credentials (contains sensitive OAuth2 data)
+credentials/token.json
+
 # Python
 __pycache__/
 *.py[cod]
