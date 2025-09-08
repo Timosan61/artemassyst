@@ -4,6 +4,7 @@
 
 # Google Sheets credentials (contains sensitive OAuth2 data)
 credentials/token.json
+credentials/client_secret.json
 
 # Python
 __pycache__/
@@ -32,6 +33,7 @@ MANIFEST
 
 # Virtual environments
 venv/
+venv_*/
 env/
 ENV/
 
