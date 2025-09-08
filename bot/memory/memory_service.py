@@ -265,15 +265,15 @@ class MemoryService:
             # Рекомендации в зависимости от состояния
             if current_state == DialogState.S0_GREETING:
                 recommendations['next_questions'] = [
-                    "Расскажите о вашем бизнесе - в какой сфере работаете?",
-                    "Какие процессы хотите автоматизировать?"
+                    "Для себя ищете недвижимость или как инвестицию?",
+                    "Вы сейчас в Сочи? Если нет — из какого города?"
                 ]
             
             elif current_state == DialogState.S1_BUSINESS:
                 if not lead_data.automation_goal:
                     recommendations['next_questions'] = [
-                        "Главная цель — экономия времени или увеличение продаж?",
-                        "Что важнее — автоматизация общения или процессов продаж?"
+                        "Для себя ищете жилье или как инвестицию?",
+                        "Цель покупки: ПМЖ, сдача в аренду или сбережения?"
                     ]
             
             elif current_state == DialogState.S2_GOAL:

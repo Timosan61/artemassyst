@@ -93,7 +93,7 @@ class LeadDataExtractor:
         # Извлечение бизнес-информации
         cls._extract_business_info(message_lower, lead)
         
-        # Извлечение целей автоматизации
+        # Извлечение целей покупки недвижимости
         cls._extract_automation_goals(message_lower, lead)
         
         # Извлечение информации об оплате
@@ -156,7 +156,7 @@ class LeadDataExtractor:
     
     @classmethod 
     def _extract_automation_goals(cls, message_lower: str, lead: LeadData):
-        """Извлечение целей автоматизации"""
+        """Извлечение целей покупки недвижимости"""
         if not lead.automation_goal:
             for keyword, goal in cls.AUTOMATION_GOALS.items():
                 if keyword in message_lower:

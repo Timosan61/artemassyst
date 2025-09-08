@@ -9,15 +9,15 @@ from enum import Enum
 
 class DialogState(Enum):
     """Состояния диалога"""
-    S0_GREETING = "s0_greeting"           # Приветствие + мини-ценность
-    S1_BUSINESS = "s1_business"           # Сфера + местонахождение
-    S2_GOAL = "s2_goal"                   # Цель автоматизации
+    S0_GREETING = "s0_greeting"           # Приветствие + выяснение цели
+    S1_BUSINESS = "s1_business"           # Местоположение + город
+    S2_GOAL = "s2_goal"                   # Цель покупки недвижимости
     S3_PAYMENT = "s3_payment"             # Форма оплаты и бюджет
-    S4_REQUIREMENTS = "s4_requirements"   # Технические требования
+    S4_REQUIREMENTS = "s4_requirements"   # Требования к объекту
     S5_BUDGET = "s5_budget"               # Уточнение бюджета
-    S6_URGENCY = "s6_urgency"             # Срочность
-    S7_EXPERIENCE = "s7_experience"       # Опыт автоматизации
-    S8_ACTION = "s8_action"               # Следующее действие
+    S6_URGENCY = "s6_urgency"             # Срочность покупки
+    S7_EXPERIENCE = "s7_experience"       # Опыт покупки в Сочи
+    S8_ACTION = "s8_action"               # Онлайн-показ или встреча
 
 
 class ClientType(Enum):
@@ -28,12 +28,12 @@ class ClientType(Enum):
 
 
 class AutomationGoal(Enum):
-    """Цели автоматизации"""
-    TIME_SAVING = "time_saving"           # Экономия времени
-    SALES_INCREASE = "sales_increase"     # Увеличение продаж
-    COST_REDUCTION = "cost_reduction"     # Снижение затрат
-    QUALITY_IMPROVEMENT = "quality_improvement"  # Улучшение качества
-    SCALING = "scaling"                   # Масштабирование
+    """Цели покупки недвижимости"""
+    SHORT_INVESTMENT = "short_investment"     # Короткие инвестиции (до 12 мес)
+    LONG_INVESTMENT = "long_investment"       # Длинные инвестиции (12+ мес)
+    RESIDENCE = "residence"                   # ПМЖ (переезд/сезонно)
+    SAVINGS = "savings"                       # Сбережения (сохранение капитала)
+    RENTAL_BUSINESS = "rental_business"       # Арендный бизнес
 
 
 class PaymentType(Enum):
