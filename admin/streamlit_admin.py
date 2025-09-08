@@ -53,11 +53,30 @@ def main():
     
     instruction_data = load_instruction()
     
+    # Кнопки для управления системной инструкцией
+    col1, col2, col3 = st.columns([2, 1, 1])
+    with col1:
+        st.write("**Системная инструкция:**")
+    with col2:
+        if st.button("🔄 Перезагрузить", key="reload_instruction"):
+            if "system_instruction" in st.session_state:
+                del st.session_state["system_instruction"]
+            st.rerun()
+    with col3:
+        if st.button("🗑️ Очистить", key="clear_instruction"):
+            st.session_state["system_instruction"] = ""
+            st.rerun()
+    
     system_instruction = st.text_area(
         "Системная инструкция:",
-        value=instruction_data.get("system_instruction", ""),
-        height=400
+        value=st.session_state.get("system_instruction", instruction_data.get("system_instruction", "")),
+        height=400,
+        key="instruction_input"
     )
+    
+    # Синхронизируем с session_state
+    if system_instruction != st.session_state.get("system_instruction"):
+        st.session_state["system_instruction"] = system_instruction
     
     welcome_message = st.text_area(
         "Приветственное сообщение:",
