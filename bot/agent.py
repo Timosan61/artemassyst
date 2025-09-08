@@ -14,12 +14,15 @@ from .config import (
     OPENAI_TEMPERATURE, OPENAI_MAX_TOKENS, OPENAI_PRESENCE_PENALTY, OPENAI_FREQUENCY_PENALTY, OPENAI_TOP_P,
     ANTHROPIC_TEMPERATURE, ANTHROPIC_MAX_TOKENS
 )
+from .memory import MemoryService, DialogState, ClientType
 
 # Настройка логирования
 logger = logging.getLogger(__name__)
 
 
-class TextilProAgent:
+class AlenaAgent:
+    """AI-ассистент Алёна с интеллектуальной системой памяти"""
+    
     def __init__(self):
         # Инициализируем OpenAI клиент если API ключ доступен
         if OPENAI_API_KEY:
@@ -45,21 +48,19 @@ class TextilProAgent:
         if not self.openai_client and not self.anthropic_client:
             print("⚠️ Ни один LLM не доступен, используется упрощенный режим")
         
-        # Инициализируем Zep клиент если API ключ доступен
-        if ZEP_API_KEY and ZEP_API_KEY != "test_key":
-            try:
-                self.zep_client = AsyncZep(api_key=ZEP_API_KEY)
-                print(f"✅ Zep клиент инициализирован с ключом длиной {len(ZEP_API_KEY)} символов")
-                print(f"🔑 Zep API Key начинается с: {ZEP_API_KEY[:8]}...")
-            except Exception as e:
-                print(f"❌ Ошибка инициализации Zep клиента: {e}")
-                self.zep_client = None
+        # Инициализируем интеллектуальную систему памяти
+        enable_memory = bool(ZEP_API_KEY and ZEP_API_KEY != "test_key")
+        self.memory_service = MemoryService(ZEP_API_KEY or "", enable_memory=enable_memory)
+        
+        if enable_memory:
+            print(f"✅ Интеллектуальная система памяти активирована")
+            print(f"🧠 ZEP API Key: {ZEP_API_KEY[:8]}...{ZEP_API_KEY[-4:]}")
         else:
-            self.zep_client = None
-            if not ZEP_API_KEY:
-                print("⚠️ ZEP_API_KEY не установлен, используется локальная память")
-            else:
-                print(f"⚠️ ZEP_API_KEY имеет значение 'test_key', используется локальная память")
+            print("⚠️ Система памяти работает в базовом режиме (без ZEP)")
+        
+        # Инициализируем Zep клиент для совместимости
+        self.zep_client = self.memory_service.zep_client
+        
         self.instruction = self._load_instruction()
         self.user_sessions = {}  # Резервное хранение сессий в памяти
     
@@ -290,47 +291,252 @@ class TextilProAgent:
     
     async def generate_response(self, user_message: str, session_id: str, user_name: str = None) -> str:
         try:
-            system_prompt = self.instruction.get("system_instruction", "")
+            # 🧠 ИНТЕЛЛЕКТУАЛЬНАЯ ОБРАБОТКА СООБЩЕНИЯ
+            memory_result = await self.memory_service.process_message(
+                user_id=session_id, 
+                message_text=user_message
+            )
             
-            # Пытаемся получить контекст из Zep Memory
-            zep_context = await self.get_zep_memory_context(session_id)
-            zep_history = await self.get_zep_recent_messages(session_id)
+            if not memory_result.get('success', False):
+                logger.error(f"❌ Ошибка системы памяти: {memory_result.get('error')}")
+                # Продолжаем с базовой логикой
             
-            # Добавляем контекст и историю в системный промпт
-            if zep_context:
-                system_prompt += f"\n\nКонтекст предыдущих разговоров:\n{zep_context}"
+            # Получаем данные о клиенте и состоянии диалога
+            lead_data = memory_result.get('lead_data')
+            current_state = memory_result.get('current_state', DialogState.S0_GREETING)
+            qualification_status = memory_result.get('qualification_status', ClientType.COLD)
+            recommendations = memory_result.get('recommendations', {})
+            should_escalate = memory_result.get('should_escalate', False)
             
-            if zep_history:
-                system_prompt += f"\n\nПоследние сообщения:\n{zep_history}"
+            # Формируем улучшенный системный промпт с контекстом
+            system_prompt = self._build_contextual_system_prompt(
+                lead_data, current_state, qualification_status, recommendations
+            )
             
-            # Дополнительное напоминание о форматировании и приветствии
-            system_prompt += "\n\n⚠️ КРИТИЧЕСКИ ВАЖНО: Форматируй ответы с абзацами! Используй двойные переносы строк между смысловыми блоками. НЕ пиши сплошным текстом!"
-            system_prompt += "\n\n⚠️ ПРАВИЛО ПРИВЕТСТВИЯ: НЕ начинай каждый ответ с 'Здравствуйте!' Приветствуй только при первом сообщении или /start. В продолжении диалога сразу переходи к сути!"
+            # Получаем историю диалога
+            dialog_history = await self.memory_service.get_dialog_history(session_id, limit=5)
             
-            messages = [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_message}
-            ]
+            # Формируем сообщения для LLM
+            messages = self._build_llm_messages(
+                system_prompt, user_message, dialog_history, recommendations
+            )
             
-            # Используем LLM роутер
+            # Генерируем ответ через LLM
             if self.openai_client or self.anthropic_client:
                 try:
-                    bot_response = await self.call_llm(messages)  # Используем параметры по умолчанию из конфига
+                    bot_response = await self.call_llm(messages)
                 except Exception as llm_error:
                     logger.error(f"❌ Ошибка LLM роутера: {llm_error}")
-                    bot_response = self._fallback_response(user_message)
+                    bot_response = self._fallback_response_with_context(
+                        user_message, current_state, recommendations
+                    )
             else:
-                # Если нет LLM - используем fallback
-                bot_response = self._fallback_response(user_message)
+                bot_response = self._fallback_response_with_context(
+                    user_message, current_state, recommendations
+                )
             
-            # Сохраняем в Zep Memory (с fallback на локальное хранилище)
+            # 🚨 ПРОВЕРКА НА ЭСКАЛАЦИЮ
+            if should_escalate:
+                escalation_note = self._generate_escalation_summary(lead_data)
+                logger.info(f"🔥 ЭСКАЛАЦИЯ для {session_id}: {escalation_note}")
+                print(f"🔥 ГОРЯЧИЙ ЛИД: {session_id} - {escalation_note}")
+            
+            # Сохраняем ответ в память
+            await self.memory_service.process_message(
+                user_id=session_id,
+                message_text=bot_response,
+                message_type="assistant"
+            )
+            
+            # Совместимость: сохраняем также в старую систему памяти
             await self.add_to_zep_memory(session_id, user_message, bot_response, user_name)
             
             return bot_response
             
         except Exception as e:
-            print(f"Ошибка при генерации ответа: {e}")
-            return "Извините, произошла техническая ошибка. Попробуйте написать снова или обратитесь ко мне напрямую.\n\nАнастасия, Textil PRO"
+            logger.error(f"❌ Критическая ошибка генерации ответа для {session_id}: {e}")
+            return self._emergency_fallback_response(user_message)
+    
+    def _build_contextual_system_prompt(self, lead_data, current_state: DialogState, 
+                                      qualification_status: ClientType, 
+                                      recommendations: Dict[str, Any]) -> str:
+        """Строит контекстуальный системный промпт"""
+        base_prompt = self.instruction.get("system_instruction", "")
+        
+        # Добавляем контекст о клиенте
+        context_parts = []
+        
+        if lead_data:
+            client_info = []
+            if lead_data.name:
+                client_info.append(f"Имя: {lead_data.name}")
+            if lead_data.business_sphere:
+                client_info.append(f"Сфера: {lead_data.business_sphere}")
+            if lead_data.automation_goal:
+                client_info.append(f"Цель: {lead_data.automation_goal.value}")
+            if lead_data.budget_min or lead_data.budget_max:
+                budget = f"Бюджет: ${lead_data.budget_min or 0}-{lead_data.budget_max or '∞'}"
+                client_info.append(budget)
+            
+            if client_info:
+                context_parts.append(f"ДАННЫЕ КЛИЕНТА: {' | '.join(client_info)}")
+        
+        # Добавляем состояние диалога
+        state_descriptions = {
+            DialogState.S0_GREETING: "Первое знакомство - выясните потребности",
+            DialogState.S1_BUSINESS: "Узнайте сферу бизнеса и размер компании", 
+            DialogState.S2_GOAL: "Определите цель автоматизации",
+            DialogState.S3_PAYMENT: "Обсудите форму оплаты и бюджет",
+            DialogState.S4_REQUIREMENTS: "Выясните технические требования",
+            DialogState.S5_BUDGET: "Уточните бюджет через примеры",
+            DialogState.S6_URGENCY: "Определите срочность проекта",
+            DialogState.S7_EXPERIENCE: "Узнайте опыт автоматизации",
+            DialogState.S8_ACTION: "Предложите демо или звонок"
+        }
+        
+        state_desc = state_descriptions.get(current_state, "")
+        context_parts.append(f"ЭТАП ДИАЛОГА: {current_state.value} - {state_desc}")
+        
+        # Добавляем статус квалификации
+        status_descriptions = {
+            ClientType.COLD: "ХОЛОДНЫЙ - нужна базовая информация",
+            ClientType.WARM: "ТЁПЛЫЙ - есть интерес, развивайте диалог", 
+            ClientType.HOT: "ГОРЯЧИЙ - готов к покупке, предлагайте демо!"
+        }
+        
+        status_desc = status_descriptions.get(qualification_status, "")
+        context_parts.append(f"СТАТУС КЛИЕНТА: {status_desc}")
+        
+        # Добавляем рекомендации
+        if recommendations.get('next_questions'):
+            questions = recommendations['next_questions'][:2]  # Максимум 2 вопроса
+            context_parts.append(f"РЕКОМЕНДУЕМЫЕ ВОПРОСЫ: {' | '.join(questions)}")
+        
+        if recommendations.get('demo_ready'):
+            context_parts.append("🎯 ГОТОВ К ДЕМО: Предложите конкретные слоты времени!")
+        
+        # Объединяем все части
+        if context_parts:
+            base_prompt += f"\n\n{'='*50}\n" + "\n".join(context_parts) + f"\n{'='*50}"
+        
+        return base_prompt
+    
+    def _build_llm_messages(self, system_prompt: str, user_message: str, 
+                           dialog_history: list, recommendations: Dict[str, Any]) -> list:
+        """Строит сообщения для LLM с учетом истории"""
+        messages = [{"role": "system", "content": system_prompt}]
+        
+        # Добавляем краткую историю если есть
+        if dialog_history:
+            history_text = "НЕДАВНИЕ СООБЩЕНИЯ:\n"
+            for msg in dialog_history[-3:]:  # Последние 3 сообщения
+                role = "👤 Клиент" if msg['role'] == 'user' else "🤖 Алёна"
+                history_text += f"{role}: {msg['content'][:100]}...\n"
+            
+            messages.append({"role": "system", "content": history_text})
+        
+        # Текущее сообщение пользователя
+        messages.append({"role": "user", "content": user_message})
+        
+        return messages
+    
+    def _fallback_response_with_context(self, user_message: str, current_state: DialogState, 
+                                      recommendations: Dict[str, Any]) -> str:
+        """Fallback ответ с учетом контекста диалога"""
+        # Базовые ответы по состояниям
+        state_responses = {
+            DialogState.S0_GREETING: "Добрый день! Алёна на связи. Помогу подобрать решение для автоматизации. Расскажите о вашем бизнесе?",
+            DialogState.S1_BUSINESS: "Интересно! А какая главная цель — экономия времени или увеличение продаж?",
+            DialogState.S2_GOAL: "Понятно! На какой бюджет мне ориентироваться для подбора решения?",
+            DialogState.S3_PAYMENT: "От бюджета зависит тип решения. Есть варианты от $350 до $1500. Что ближе?",
+            DialogState.S8_ACTION: "Готовы на демо-показ? Могу предложить сегодня в 18:00 или завтра в 10:00?"
+        }
+        
+        base_response = state_responses.get(current_state, 
+            "Спасибо за сообщение! Помогу с автоматизацией бизнес-процессов. Уточните ваши потребности?"
+        )
+        
+        # Добавляем рекомендуемые вопросы если есть
+        if recommendations.get('next_questions'):
+            question = recommendations['next_questions'][0]
+            base_response += f"\n\n{question}"
+        
+        return base_response
+    
+    def _emergency_fallback_response(self, user_message: str) -> str:
+        """Аварийный ответ при полном отказе систем"""
+        return ("Добрый день! Алёна на связи.\n\n"
+                "Помогу подобрать решение для автоматизации бизнес-процессов. "
+                "Telegram AI-ассистент от $350 под ключ.\n\n"
+                "Расскажите о вашем бизнесе - что хотите автоматизировать?")
+    
+    def _generate_escalation_summary(self, lead_data) -> str:
+        """Генерирует сводку для эскалации"""
+        if not lead_data:
+            return "Горячий лид без данных"
+        
+        summary_parts = []
+        
+        if lead_data.name:
+            summary_parts.append(f"Имя: {lead_data.name}")
+        if lead_data.phone:
+            summary_parts.append(f"Телефон: {lead_data.phone}")
+        if lead_data.business_sphere:
+            summary_parts.append(f"Сфера: {lead_data.business_sphere}")
+        if lead_data.budget_max:
+            summary_parts.append(f"Бюджет: до ${lead_data.budget_max}")
+        if lead_data.automation_goal:
+            summary_parts.append(f"Цель: {lead_data.automation_goal.value}")
+        
+        return " | ".join(summary_parts) if summary_parts else "Горячий лид - требует внимания"
+    
+    # Новые методы для работы с системой памяти
+    async def get_lead_analytics(self, session_id: str) -> Dict[str, Any]:
+        """Получает аналитику по лиду"""
+        return await self.memory_service.get_analytics_summary(session_id)
+    
+    async def get_memory_insights(self, session_id: str) -> Dict[str, Any]:
+        """Получает инсайты из системы памяти"""
+        try:
+            lead_data = await self.memory_service.get_lead_data(session_id)
+            dialog_history = await self.memory_service.get_dialog_history(session_id, limit=20)
+            
+            return {
+                'lead_data': lead_data.to_dict() if lead_data else {},
+                'dialog_history': dialog_history,
+                'current_state': lead_data.current_dialog_state.value if lead_data else 's0_greeting',
+                'qualification_status': lead_data.qualification_status.value if lead_data and lead_data.qualification_status else 'cold',
+                'should_escalate': self.memory_service._should_escalate(lead_data) if lead_data else False
+            }
+        except Exception as e:
+            logger.error(f"❌ Ошибка получения инсайтов памяти для {session_id}: {e}")
+            return {}
+    
+    async def process_reminder_due(self, session_id: str) -> Optional[str]:
+        """Обрабатывает готовые напоминания"""
+        try:
+            due_reminders = await self.memory_service.reminders.get_due_reminders()
+            session_reminders = [r for r in due_reminders if r.session_id == session_id]
+            
+            if session_reminders:
+                reminder = session_reminders[0]  # Берем первое
+                lead_data = await self.memory_service.get_lead_data(session_id)
+                
+                # Генерируем сообщение напоминания
+                message = await self.memory_service.reminders.generate_reminder_message(
+                    reminder, lead_data.to_dict() if lead_data else None
+                )
+                
+                # Помечаем как выполненное
+                await self.memory_service.reminders.mark_reminder_completed(reminder)
+                
+                return message
+            
+            return None
+            
+        except Exception as e:
+            logger.error(f"❌ Ошибка обработки напоминания для {session_id}: {e}")
+            return None
     
     async def ensure_user_exists(self, user_id: str, user_data: Dict[str, Any] = None):
         """Создает пользователя в Zep если его еще нет"""
@@ -393,4 +599,4 @@ class TextilProAgent:
         return self.instruction.get("welcome_message", "Добро пожаловать!")
 
 
-agent = TextilProAgent()
+agent = AlenaAgent()
