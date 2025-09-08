@@ -33,6 +33,9 @@ ANTHROPIC_MAX_TOKENS = int(os.getenv('ANTHROPIC_MAX_TOKENS', '1000'))
 
 if not TELEGRAM_BOT_TOKEN:
     raise ValueError("TELEGRAM_BOT_TOKEN не найден в переменных окружения")
+# === AI AGENT SETTINGS ===
+AI_ENABLED = bool(OPENAI_API_KEY or ANTHROPIC_API_KEY)  # AI включен если есть хоть один ключ
+
 # Проверки API ключей (не критичные для запуска)
 if not OPENAI_API_KEY:
     print("⚠️ OPENAI_API_KEY не найден в переменных окружения")
