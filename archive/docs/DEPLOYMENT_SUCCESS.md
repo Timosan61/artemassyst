@@ -66,7 +66,7 @@ curl https://artemassyst-bot-tt5dt.ondigitalocean.app/
 ### **Использованные токены:**
 - **TELEGRAM_BOT_TOKEN:** `6658269281:AAETA0vTXiRCMPcL1y_DzEeU_Fc6DiqdpFk`
 - **ANTHROPIC_API_KEY:** Из artem.integrator (sk-ant-api03-...)
-- **ZEP_API_KEY:** Из artem.integrator (45a05b57-...)
+- **ZEP_API_KEY:** Из artem.integrator (z_1dWlkIjo...)
 - **DIGITALOCEAN_API_TOKEN:** Предоставлен пользователем
 
 ### **Архитектура:**
