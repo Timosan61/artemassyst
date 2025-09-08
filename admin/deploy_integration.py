@@ -205,19 +205,22 @@ def show_deploy_status():
     st.sidebar.markdown("### 🤖 Статус бота")
     try:
         import requests
-        response = requests.get("https://artemassyst-bot-tt5dt.ondigitalocean.app/", timeout=5)
+        # Проверяем API статус более надежным способом
+        response = requests.get("https://artemassyst-bot-tt5dt.ondigitalocean.app/debug/prompt", timeout=10)
         if response.status_code == 200:
-            st.sidebar.success("✅ Бот онлайн")
-            
-            # Проверяем промпт
-            prompt_response = requests.get("https://artemassyst-bot-tt5dt.ondigitalocean.app/debug/prompt", timeout=5)
-            if prompt_response.status_code == 200:
-                prompt_data = prompt_response.json()
+            data = response.json()
+            if data.get('status') == 'success':
+                st.sidebar.success("✅ Бот онлайн")
+                
+                # Показываем информацию о промпте
                 st.sidebar.info(f"""
                 **Промпт:**
-                Обновлен: {prompt_data.get('last_updated', 'неизвестно')[:16]}
-                Длина: {prompt_data.get('system_instruction_length', 0)} символов
+                Обновлен: {data.get('last_updated', 'неизвестно')[:16]}
+                Длина: {data.get('instruction_length', 0)} символов
+                AI статус: {'✅ Включен' if data.get('ai_enabled') else '❌ Выключен'}
                 """)
+            else:
+                st.sidebar.error("❌ Бот не отвечает корректно")
         else:
             st.sidebar.error("❌ Бот недоступен")
     except Exception as e:
@@ -228,11 +231,20 @@ def show_deploy_status():
         git_status = deploy_manager.get_git_status()
         
         if "error" not in git_status:
-            # Показываем статус Git
-            if git_status["status"] == "clean":
+            # В облачном окружении может быть расхождение, проверяем более аккуратно
+            has_changes = git_status.get("is_dirty", False) or bool(git_status.get("untracked_files", []))
+            
+            if not has_changes:
                 st.sidebar.success("✅ Git: все изменения сохранены")
             else:
-                st.sidebar.warning("⚠️ Git: есть несохраненные изменения")
+                # Проверяем, есть ли реальные изменения (исключаем системные файлы)
+                untracked = git_status.get("untracked_files", [])
+                important_changes = [f for f in untracked if not f.startswith('.') and not f.endswith('.log')]
+                
+                if important_changes or git_status.get("is_dirty", False):
+                    st.sidebar.warning("⚠️ Git: есть несохраненные изменения")
+                else:
+                    st.sidebar.success("✅ Git: все изменения сохранены")
             
             # Информация о последнем коммите
             st.sidebar.info(f"""
@@ -246,8 +258,8 @@ def show_deploy_status():
             {git_status['last_commit_date'].strftime('%d.%m.%Y %H:%M')}
             """)
         else:
-            st.sidebar.warning("⚠️ Локальный Git недоступен (работает через GitHub API)")
-    except Exception:
-        st.sidebar.warning("⚠️ Локальный Git недоступен (работает через GitHub API)")
+            st.sidebar.info("ℹ️ Git статус недоступен (облачное окружение)")
+    except Exception as e:
+        st.sidebar.info("ℹ️ Git статус недоступен (облачное окружение)")
     
     return deploy_manager

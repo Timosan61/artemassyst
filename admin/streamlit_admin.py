@@ -140,7 +140,24 @@ def main():
             # Конвертируем данные в JSON для передачи в GitHub API
             instruction_json = json.dumps(new_instruction_data, ensure_ascii=False, indent=2)
             
-            deploy_manager.auto_deploy_changes(commit_message, instruction_json)
+            # Сохраняем в GitHub и принудительно обновляем бот
+            if deploy_manager.auto_deploy_changes(commit_message, instruction_json):
+                # Принудительная перезагрузка промпта в боте
+                st.info("🔄 Принудительно обновляю промпт в боте...")
+                try:
+                    import requests
+                    response = requests.post("https://artemassyst-bot-tt5dt.ondigitalocean.app/admin/reload-prompt", timeout=10)
+                    if response.status_code == 200:
+                        data = response.json()
+                        if data.get("changed"):
+                            st.success(f"✅ Промпт успешно обновлен: {data['old_updated']} → {data['new_updated']}")
+                        else:
+                            st.success("✅ Промпт обновлен в боте")
+                    else:
+                        st.warning(f"⚠️ Не удалось обновить промпт в боте: HTTP {response.status_code}")
+                except Exception as e:
+                    st.warning(f"⚠️ Ошибка обновления промпта в боте: {e}")
+            
             st.balloons()
 
 
