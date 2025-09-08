@@ -6,7 +6,7 @@ import logging
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 from zep_cloud.client import AsyncZep
-from zep_cloud.types import Message, User, Session, CreateSessionRequest
+from zep_cloud.types import Message
 
 from .models import DialogState, LeadData, ClientType
 from .extractors import LeadDataExtractor, DialogStateExtractor
@@ -24,7 +24,12 @@ class MemoryService:
         self.zep_api_key = zep_api_key
         self.enable_memory = enable_memory
         self.zep_client = None
-        self.analytics = AnalyticsService()
+        
+        # Инициализируем AnalyticsService с ZEP API ключом
+        if not zep_api_key:
+            raise ValueError("ZEP API key обязателен для работы системы памяти")
+        
+        self.analytics = AnalyticsService(zep_api_key)
         self.reminders = ReminderService()
         
         if self.enable_memory:
@@ -33,7 +38,7 @@ class MemoryService:
                 logger.info("✅ Инициализирован ZEP Cloud клиент")
             except Exception as e:
                 logger.error(f"❌ Ошибка инициализации ZEP Cloud: {e}")
-                self.enable_memory = False
+                raise
     
     async def process_message(self, user_id: str, message_text: str, 
                             message_type: str = "user") -> Dict[str, Any]:

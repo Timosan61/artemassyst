@@ -1,83 +1,123 @@
 """
-Сервис аналитики для системы памяти
+Сервис аналитики для системы памяти с хранением в ZEP Cloud
 """
 import asyncio
 import logging
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
 import json
-from pathlib import Path
 
+from zep_cloud.client import Zep
 from .models import AnalyticsData
 
 logger = logging.getLogger(__name__)
 
 
 class AnalyticsService:
-    """Сервис для сбора и анализа данных о работе системы памяти"""
+    """Сервис для сбора и анализа данных о работе системы памяти через ZEP Cloud"""
     
-    def __init__(self, storage_path: str = "data/analytics"):
-        self.storage_path = Path(storage_path)
-        self.storage_path.mkdir(parents=True, exist_ok=True)
+    def __init__(self, zep_api_key: str):
+        if not zep_api_key:
+            raise ValueError("ZEP API key обязателен для AnalyticsService")
         
-        # Файлы для хранения данных
-        self.events_file = self.storage_path / "events.jsonl"
-        self.daily_stats_file = self.storage_path / "daily_stats.json"
-        
+        self.zep_client = Zep(api_key=zep_api_key)
+        self.analytics_group_id = "analytics_events"
+        self._group_initialized = False
+    
+    async def _ensure_group_exists(self):
+        """Обеспечивает существование группы для аналитики"""
+        if self._group_initialized:
+            return
+            
+        try:
+            # Создаем группу для хранения аналитических данных
+            await asyncio.to_thread(
+                self.zep_client.group.add,
+                group_id=self.analytics_group_id,
+                name="Bot Analytics Events",
+                description="Аналитические события бота Алена"
+            )
+            self._group_initialized = True
+            logger.debug(f"✅ Группа аналитики {self.analytics_group_id} готова")
+        except Exception as e:
+            # Группа может уже существовать - это нормально
+            logger.debug(f"Группа аналитики: {e}")
+            self._group_initialized = True
+    
     async def track_event(self, session_id: str, event_type: str, 
                          event_data: Dict[str, Any] = None):
-        """Отслеживает событие в аналитике"""
+        """Отслеживает событие в аналитике через ZEP Cloud"""
         try:
+            await self._ensure_group_exists()
+            
             event = AnalyticsData(
                 session_id=session_id,
                 event_type=event_type,
                 event_data=event_data or {}
             )
             
-            # Сохраняем событие
-            await self._save_event(event)
+            # Сохраняем событие в ZEP Cloud как JSON данные в группе
+            event_json = json.dumps(event.to_dict(), ensure_ascii=False)
             
-            # Обновляем статистику
-            await self._update_daily_stats(event)
+            await asyncio.to_thread(
+                self.zep_client.graph.add,
+                group_id=self.analytics_group_id,
+                type="json",
+                data=event_json
+            )
             
-            logger.debug(f"📊 Событие отслежено: {event_type} для {session_id}")
+            logger.debug(f"📊 Событие сохранено в ZEP: {event_type} для {session_id}")
             
         except Exception as e:
-            logger.error(f"❌ Ошибка отслеживания события: {e}")
+            logger.error(f"❌ Ошибка отслеживания события в ZEP: {e}")
+            raise
     
     async def get_session_events(self, session_id: str, 
                                days: int = 7) -> List[Dict[str, Any]]:
-        """Получает события для конкретной сессии"""
+        """Получает события для конкретной сессии из ZEP Cloud"""
         try:
+            await self._ensure_group_exists()
+            
+            # Выполняем поиск событий по сессии в ZEP группе
+            search_query = f"session_id: {session_id}"
+            
+            search_results = await asyncio.to_thread(
+                self.zep_client.graph.search,
+                group_id=self.analytics_group_id,
+                query=search_query,
+                scope="episodes"
+            )
+            
             events = []
             cutoff_date = datetime.now() - timedelta(days=days)
             
-            if not self.events_file.exists():
-                return events
-            
-            with open(self.events_file, 'r', encoding='utf-8') as f:
-                for line in f:
-                    try:
-                        event_data = json.loads(line.strip())
+            # Обрабатываем результаты поиска
+            for result in search_results.episodes or []:
+                try:
+                    if result.content:
+                        event_data = json.loads(result.content)
                         event_time = datetime.fromisoformat(event_data['timestamp'])
                         
-                        if (event_data['session_id'] == session_id and 
+                        if (event_data.get('session_id') == session_id and 
                             event_time >= cutoff_date):
                             events.append(event_data)
-                    except (json.JSONDecodeError, KeyError, ValueError):
-                        continue
+                except (json.JSONDecodeError, KeyError, ValueError) as e:
+                    logger.warning(f"Ошибка парсинга события: {e}")
+                    continue
             
             # Сортируем по времени
             events.sort(key=lambda x: x['timestamp'])
             return events
             
         except Exception as e:
-            logger.error(f"❌ Ошибка получения событий для {session_id}: {e}")
-            return []
+            logger.error(f"❌ Ошибка получения событий для {session_id} из ZEP: {e}")
+            raise
     
     async def get_conversion_funnel(self, days: int = 30) -> Dict[str, Any]:
-        """Анализирует воронку конверсии"""
+        """Анализирует воронку конверсии из данных ZEP Cloud"""
         try:
+            await self._ensure_group_exists()
+            
             funnel_data = {
                 's0_greeting': 0,
                 's1_business': 0, 
@@ -96,40 +136,48 @@ class AnalyticsService:
             
             cutoff_date = datetime.now() - timedelta(days=days)
             
-            if not self.events_file.exists():
-                return funnel_data
+            # Получаем все события из ZEP группы
+            search_results = await asyncio.to_thread(
+                self.zep_client.graph.search,
+                group_id=self.analytics_group_id,
+                query="event_type",  # Ищем все события с event_type
+                scope="episodes"
+            )
             
             # Анализируем события
-            with open(self.events_file, 'r', encoding='utf-8') as f:
-                for line in f:
-                    try:
-                        event_data = json.loads(line.strip())
-                        event_time = datetime.fromisoformat(event_data['timestamp'])
-                        
-                        if event_time < cutoff_date:
-                            continue
-                        
-                        event_type = event_data['event_type']
-                        
-                        # Состояния диалога
-                        if event_type == 'state_change':
-                            to_state = event_data['event_data'].get('to', '')
-                            if to_state in funnel_data:
-                                funnel_data[to_state] += 1
-                        
-                        # Статусы квалификации
-                        elif event_type == 'qualification_change':
-                            status = event_data['event_data'].get('status', '')
-                            key = f'qualification_{status}'
-                            if key in funnel_data:
-                                funnel_data[key] += 1
-                        
-                        # Эскалации
-                        elif event_type == 'escalation':
-                            funnel_data['escalations'] += 1
-                            
-                    except (json.JSONDecodeError, KeyError, ValueError):
+            for result in search_results.episodes or []:
+                try:
+                    if not result.content:
                         continue
+                        
+                    event_data = json.loads(result.content)
+                    event_time = datetime.fromisoformat(event_data['timestamp'])
+                    
+                    if event_time < cutoff_date:
+                        continue
+                    
+                    event_type = event_data['event_type']
+                    
+                    # Состояния диалога
+                    if event_type == 'state_change':
+                        to_state = event_data['event_data'].get('to', '')
+                        if to_state in funnel_data:
+                            funnel_data[to_state] += 1
+                    
+                    # Статусы квалификации
+                    elif event_type == 'qualification_change':
+                        status = event_data['event_data'].get('status', '')
+                        key = f'qualification_{status}'
+                        if key in funnel_data:
+                            funnel_data[key] += 1
+                    
+                    # Эскалации
+                    elif event_type == 'escalation':
+                        funnel_data['escalations'] += 1
+                        
+                except (json.JSONDecodeError, KeyError, ValueError) as e:
+                    logger.warning(f"Ошибка парсинга события в воронке: {e}")
+                    continue
             
             # Вычисляем конверсию
             total_sessions = funnel_data['s0_greeting'] or 1
@@ -147,38 +195,74 @@ class AnalyticsService:
             }
             
         except Exception as e:
-            logger.error(f"❌ Ошибка анализа воронки: {e}")
-            return {}
+            logger.error(f"❌ Ошибка анализа воронки из ZEP: {e}")
+            raise
     
     async def get_daily_stats(self, days: int = 30) -> List[Dict[str, Any]]:
-        """Получает ежедневную статистику"""
+        """Получает ежедневную статистику из ZEP Cloud"""
         try:
-            if not self.daily_stats_file.exists():
-                return []
+            await self._ensure_group_exists()
             
-            with open(self.daily_stats_file, 'r', encoding='utf-8') as f:
-                all_stats = json.load(f)
+            # Получаем все события из ZEP группы
+            search_results = await asyncio.to_thread(
+                self.zep_client.graph.search,
+                group_id=self.analytics_group_id,
+                query="timestamp",  # Ищем события с timestamp
+                scope="episodes"
+            )
             
-            # Фильтруем по дате
+            # Группируем события по дням
+            daily_stats = {}
             cutoff_date = datetime.now() - timedelta(days=days)
-            filtered_stats = []
             
-            for date_str, stats in all_stats.items():
+            for result in search_results.episodes or []:
                 try:
-                    stat_date = datetime.strptime(date_str, '%Y-%m-%d')
-                    if stat_date >= cutoff_date:
-                        stats['date'] = date_str
-                        filtered_stats.append(stats)
-                except ValueError:
+                    if not result.content:
+                        continue
+                        
+                    event_data = json.loads(result.content)
+                    event_time = datetime.fromisoformat(event_data['timestamp'])
+                    
+                    if event_time < cutoff_date:
+                        continue
+                    
+                    date_str = event_time.strftime('%Y-%m-%d')
+                    
+                    if date_str not in daily_stats:
+                        daily_stats[date_str] = {
+                            'total_events': 0,
+                            'sessions': set(),
+                            'event_types': {}
+                        }
+                    
+                    day_stats = daily_stats[date_str]
+                    day_stats['total_events'] += 1
+                    day_stats['sessions'].add(event_data.get('session_id', ''))
+                    
+                    event_type = event_data.get('event_type', 'unknown')
+                    if event_type not in day_stats['event_types']:
+                        day_stats['event_types'][event_type] = 0
+                    day_stats['event_types'][event_type] += 1
+                    
+                except (json.JSONDecodeError, KeyError, ValueError) as e:
+                    logger.warning(f"Ошибка парсинга события в статистике: {e}")
                     continue
+            
+            # Конвертируем в список
+            filtered_stats = []
+            for date_str, stats in daily_stats.items():
+                stats['date'] = date_str
+                stats['unique_sessions'] = len(stats['sessions'])
+                stats['sessions'] = list(stats['sessions'])
+                filtered_stats.append(stats)
             
             # Сортируем по дате
             filtered_stats.sort(key=lambda x: x['date'])
             return filtered_stats
             
         except Exception as e:
-            logger.error(f"❌ Ошибка получения ежедневной статистики: {e}")
-            return []
+            logger.error(f"❌ Ошибка получения ежедневной статистики из ZEP: {e}")
+            raise
     
     async def get_performance_metrics(self) -> Dict[str, Any]:
         """Получает метрики производительности"""
@@ -268,90 +352,45 @@ class AnalyticsService:
             logger.error(f"❌ Ошибка генерации отчета: {e}")
             return {}
     
-    async def _save_event(self, event: AnalyticsData):
-        """Сохраняет событие в файл"""
-        try:
-            event_json = json.dumps(event.to_dict(), ensure_ascii=False)
-            
-            with open(self.events_file, 'a', encoding='utf-8') as f:
-                f.write(event_json + '\n')
-                
-        except Exception as e:
-            logger.error(f"❌ Ошибка сохранения события: {e}")
-    
-    async def _update_daily_stats(self, event: AnalyticsData):
-        \"\"\"Обновляет ежедневную статистику\"\"\"
-        try:
-            today = event.timestamp.strftime('%Y-%m-%d')
-            
-            # Загружаем существующую статистику
-            daily_stats = {}
-            if self.daily_stats_file.exists():
-                with open(self.daily_stats_file, 'r', encoding='utf-8') as f:
-                    daily_stats = json.load(f)
-            
-            # Инициализируем день если его нет
-            if today not in daily_stats:
-                daily_stats[today] = {
-                    'total_events': 0,
-                    'sessions': set(),
-                    'event_types': {}
-                }
-            
-            # Обновляем статистику
-            day_stats = daily_stats[today]
-            day_stats['total_events'] += 1
-            
-            # Добавляем сессию (используем set для уникальности)
-            if isinstance(day_stats['sessions'], list):
-                day_stats['sessions'] = set(day_stats['sessions'])
-            day_stats['sessions'].add(event.session_id)
-            
-            # Считаем типы событий
-            event_type = event.event_type
-            if event_type not in day_stats['event_types']:
-                day_stats['event_types'][event_type] = 0
-            day_stats['event_types'][event_type] += 1
-            
-            # Конвертируем set обратно в list для JSON
-            day_stats['sessions'] = list(day_stats['sessions'])
-            day_stats['unique_sessions'] = len(day_stats['sessions'])
-            
-            # Сохраняем
-            with open(self.daily_stats_file, 'w', encoding='utf-8') as f:
-                json.dump(daily_stats, f, ensure_ascii=False, indent=2)
-                
-        except Exception as e:
-            logger.error(f"❌ Ошибка обновления ежедневной статистики: {e}")
-    
     async def _get_recent_events(self, hours: int = 24) -> List[Dict[str, Any]]:
-        \"\"\"Получает события за последние часы\"\"\"
+        """Получает события за последние часы из ZEP Cloud"""
         try:
+            await self._ensure_group_exists()
+            
+            # Получаем недавние события из ZEP группы
+            search_results = await asyncio.to_thread(
+                self.zep_client.graph.search,
+                group_id=self.analytics_group_id,
+                query="recent events",  # Общий поиск по недавним событиям
+                scope="episodes"
+            )
+            
             events = []
             cutoff_date = datetime.now() - timedelta(hours=hours)
             
-            if not self.events_file.exists():
-                return events
-            
-            with open(self.events_file, 'r', encoding='utf-8') as f:
-                for line in f:
-                    try:
-                        event_data = json.loads(line.strip())
-                        event_time = datetime.fromisoformat(event_data['timestamp'])
-                        
-                        if event_time >= cutoff_date:
-                            events.append(event_data)
-                    except (json.JSONDecodeError, KeyError, ValueError):
+            for result in search_results.episodes or []:
+                try:
+                    if not result.content:
                         continue
+                        
+                    event_data = json.loads(result.content)
+                    event_time = datetime.fromisoformat(event_data['timestamp'])
+                    
+                    if event_time >= cutoff_date:
+                        events.append(event_data)
+                        
+                except (json.JSONDecodeError, KeyError, ValueError) as e:
+                    logger.warning(f"Ошибка парсинга недавнего события: {e}")
+                    continue
             
             return events
             
         except Exception as e:
-            logger.error(f"❌ Ошибка получения недавних событий: {e}")
-            return []
+            logger.error(f"❌ Ошибка получения недавних событий из ZEP: {e}")
+            raise
     
     async def _generate_recommendations(self, report: Dict[str, Any]) -> List[str]:
-        \"\"\"Генерирует рекомендации на основе отчета\"\"\"
+        """Генерирует рекомендации на основе отчета"""
         recommendations = []
         
         try:
@@ -364,30 +403,30 @@ class AnalyticsService:
             
             if hot_lead_rate < 10:
                 recommendations.append(
-                    \"Низкая конверсия в горячие лиды. Рекомендуется улучшить квалификацию.\"
+                    "Низкая конверсия в горячие лиды. Рекомендуется улучшить квалификацию."
                 )
             
             if escalation_rate < 20:
                 recommendations.append(
-                    \"Низкий уровень эскалации. Возможно, пропускаются готовые клиенты.\"
+                    "Низкий уровень эскалации. Возможно, пропускаются готовые клиенты."
                 )
             
             # Анализируем воронку
             if funnel.get('s2_goal', 0) < 50:
                 recommendations.append(
-                    \"Много клиентов не доходят до определения цели. Улучшите вопросы о потребностях.\"
+                    "Много клиентов не доходят до определения цели. Улучшите вопросы о потребностях."
                 )
             
             if funnel.get('s5_budget', 0) < 30:
                 recommendations.append(
-                    \"Клиенты избегают обсуждения бюджета. Пересмотрите подход к выяснению бюджета.\"
+                    "Клиенты избегают обсуждения бюджета. Пересмотрите подход к выяснению бюджета."
                 )
             
             if not recommendations:
-                recommendations.append(\"Система работает эффективно. Продолжайте мониторинг.\")
+                recommendations.append("Система работает эффективно. Продолжайте мониторинг.")
             
             return recommendations
             
         except Exception as e:
-            logger.error(f\"❌ Ошибка генерации рекомендаций: {e}\")
-            return [\"Не удалось сгенерировать рекомендации\"]
+            logger.error(f"❌ Ошибка генерации рекомендаций: {e}")
+            return ["Не удалось сгенерировать рекомендации"]
