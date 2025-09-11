@@ -450,7 +450,8 @@ class AlenaAgent:
             history_text = "НЕДАВНИЕ СООБЩЕНИЯ:\n"
             for msg in dialog_history[-3:]:  # Последние 3 сообщения
                 role = "👤 Клиент" if msg['role'] == 'user' else "🤖 Алёна"
-                history_text += f"{role}: {msg['content'][:100]}...\n"
+                content = msg['content'][:200] if len(msg['content']) > 200 else msg['content']
+                history_text += f"{role}: {content}\n"
             
             messages.append({"role": "system", "content": history_text})
         

@@ -165,10 +165,11 @@ class MemoryService:
             if memory and memory.messages:
                 return [
                     {
-                        'role': msg.role,
+                        'role': msg.role_type,  # Используем role_type для стандартных ролей user/assistant
                         'content': msg.content,
                         'timestamp': msg.created_at,
-                        'metadata': getattr(msg, 'metadata', {})
+                        'metadata': getattr(msg, 'metadata', {}),
+                        'speaker_name': msg.role  # Сохраняем имя говорящего отдельно
                     }
                     for msg in memory.messages[-limit:]
                 ]
