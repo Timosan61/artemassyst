@@ -138,7 +138,7 @@ class AlenaAgent:
                     content=user_message
                 ),
                 Message(
-                    role="Анастасия",  # Имя бота-консультанта
+                    role="Алёна",  # Имя бота-консультанта
                     role_type="assistant",
                     content=bot_response
                 )
@@ -348,9 +348,6 @@ class AlenaAgent:
                 message_text=bot_response,
                 message_type="assistant"
             )
-            
-            # Совместимость: сохраняем также в старую систему памяти
-            await self.add_to_zep_memory(session_id, user_message, bot_response, user_name)
             
             # Синхронизация с Google Sheets при значимых изменениях
             if self.sheets_service and lead_data:

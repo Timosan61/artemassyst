@@ -210,10 +210,18 @@ class MemoryService:
                             lead_data: LeadData, message_type: str):
         """Сохраняет сообщение в ZEP память"""
         try:
+            # Определяем роль и имя для сообщения
+            if message_type == "user":
+                role_name = f"User_{session_id.split('_')[-1][:6]}" if '_' in session_id else session_id
+                role_type = "user"
+            else:
+                role_name = "Алёна"
+                role_type = "assistant"
+                
             # Создаем сообщение для ZEP
             message = Message(
-                role=message_type,
-                role_type=message_type,
+                role=role_name,
+                role_type=role_type,
                 content=message_text,
                 metadata={
                     'dialog_state': lead_data.current_dialog_state.value,
@@ -223,7 +231,7 @@ class MemoryService:
             )
             
             # Добавляем сообщение в память
-            await self.zep_client.memory.add_memory(
+            await self.zep_client.memory.add(
                 session_id=session_id,
                 messages=[message]
             )
