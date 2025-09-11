@@ -160,7 +160,7 @@ class MemoryService:
             return []
         
         try:
-            memory = await self.zep_client.memory.get_memory(session_id)
+            memory = await self.zep_client.memory.get(session_id=session_id)
             
             if memory and memory.messages:
                 return [
