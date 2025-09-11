@@ -52,7 +52,10 @@ class LeadData:
     phone: Optional[str] = None
     telegram_username: Optional[str] = None
     whatsapp: Optional[str] = None
-    city: Optional[str] = None
+    city: Optional[str] = None  # Откуда клиент (Волгодонск, Москва и т.д.)
+    current_location: Optional[str] = None  # Где сейчас находится
+    is_in_sochi: Optional[bool] = None  # Находится ли в Сочи сейчас
+    is_local: Optional[bool] = None  # Местный житель Сочи или нет
     
     # Бизнес-информация
     business_sphere: Optional[str] = None
@@ -60,12 +63,19 @@ class LeadData:
     current_automation_tasks: Optional[str] = None
     
     # Потребности и бюджет
-    automation_goal: Optional[AutomationGoal] = None
+    automation_goal: Optional[AutomationGoal] = None  # Цель покупки (инвестиции/ПМЖ и т.д.)
     payment_type: Optional[PaymentType] = None
     budget_min: Optional[int] = None
     budget_max: Optional[int] = None
+    mortgage_bank: Optional[str] = None  # Банк для ипотеки
+    needs_sell_own: Optional[bool] = None  # Нужна ли продажа своей недвижимости
     
-    # Технические требования
+    # Недвижимость
+    preferred_locations: List[str] = field(default_factory=list)  # Красная Поляна, Сириус и т.д.
+    property_type: Optional[str] = None  # дом, квартира, апартаменты, участок
+    property_params: Dict[str, Any] = field(default_factory=dict)  # комнаты, метраж, вид и т.д.
+    
+    # Технические требования (старые поля для совместимости)
     technical_requirements: List[str] = field(default_factory=list)
     automation_type: List[str] = field(default_factory=list)  # чат-бот, CRM, email, соцсети
     
@@ -73,10 +83,13 @@ class LeadData:
     implementation_date: Optional[datetime] = None
     urgency_level: Optional[str] = None  # high, medium, low
     ready_for_quick_decision: Optional[bool] = None
+    urgency_date: Optional[str] = None  # Дата приезда в Сочи
     
     # Опыт и готовность
     automation_experience: Optional[str] = None  # none, some, experienced
     needs_remote_setup: Optional[bool] = None
+    online_show_ready: Optional[bool] = None  # Готовность к онлайн-показу
+    sochi_experience: Optional[str] = None  # Опыт покупки в Сочи
     
     # Коммуникация
     preferred_contact_time: Optional[str] = None
@@ -101,6 +114,9 @@ class LeadData:
             'telegram_username': self.telegram_username,
             'whatsapp': self.whatsapp,
             'city': self.city,
+            'current_location': self.current_location,
+            'is_in_sochi': self.is_in_sochi,
+            'is_local': self.is_local,
             'business_sphere': self.business_sphere,
             'company_size': self.company_size,
             'current_automation_tasks': self.current_automation_tasks,
@@ -108,13 +124,21 @@ class LeadData:
             'payment_type': self.payment_type.value if self.payment_type else None,
             'budget_min': self.budget_min,
             'budget_max': self.budget_max,
+            'mortgage_bank': self.mortgage_bank,
+            'needs_sell_own': self.needs_sell_own,
+            'preferred_locations': self.preferred_locations,
+            'property_type': self.property_type,
+            'property_params': self.property_params,
             'technical_requirements': self.technical_requirements,
             'automation_type': self.automation_type,
             'implementation_date': self.implementation_date.isoformat() if self.implementation_date else None,
             'urgency_level': self.urgency_level,
             'ready_for_quick_decision': self.ready_for_quick_decision,
+            'urgency_date': self.urgency_date,
             'automation_experience': self.automation_experience,
             'needs_remote_setup': self.needs_remote_setup,
+            'online_show_ready': self.online_show_ready,
+            'sochi_experience': self.sochi_experience,
             'preferred_contact_time': self.preferred_contact_time,
             'preferred_contact_method': self.preferred_contact_method,
             'agreed_demo_slots': [slot.isoformat() for slot in self.agreed_demo_slots],
@@ -137,6 +161,9 @@ class LeadData:
         lead.telegram_username = data.get('telegram_username')
         lead.whatsapp = data.get('whatsapp')
         lead.city = data.get('city')
+        lead.current_location = data.get('current_location')
+        lead.is_in_sochi = data.get('is_in_sochi')
+        lead.is_local = data.get('is_local')
         
         # Бизнес-информация
         lead.business_sphere = data.get('business_sphere')
@@ -151,6 +178,13 @@ class LeadData:
         
         lead.budget_min = data.get('budget_min')
         lead.budget_max = data.get('budget_max')
+        lead.mortgage_bank = data.get('mortgage_bank')
+        lead.needs_sell_own = data.get('needs_sell_own')
+        
+        # Недвижимость
+        lead.preferred_locations = data.get('preferred_locations', [])
+        lead.property_type = data.get('property_type')
+        lead.property_params = data.get('property_params', {})
         
         # Технические требования
         lead.technical_requirements = data.get('technical_requirements', [])
@@ -162,10 +196,13 @@ class LeadData:
         
         lead.urgency_level = data.get('urgency_level')
         lead.ready_for_quick_decision = data.get('ready_for_quick_decision')
+        lead.urgency_date = data.get('urgency_date')
         
         # Опыт и готовность
         lead.automation_experience = data.get('automation_experience')
         lead.needs_remote_setup = data.get('needs_remote_setup')
+        lead.online_show_ready = data.get('online_show_ready')
+        lead.sochi_experience = data.get('sochi_experience')
         
         # Коммуникация
         lead.preferred_contact_time = data.get('preferred_contact_time')

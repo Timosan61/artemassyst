@@ -384,15 +384,35 @@ class AlenaAgent:
         
         if lead_data:
             client_info = []
+            
+            # Базовая информация
             if lead_data.name:
                 client_info.append(f"Имя: {lead_data.name}")
-            if lead_data.business_sphere:
-                client_info.append(f"Сфера: {lead_data.business_sphere}")
+            if getattr(lead_data, 'city', None):
+                client_info.append(f"Город: {lead_data.city}")
+            if getattr(lead_data, 'is_in_sochi', None) is not None:
+                sochi_status = "в Сочи" if lead_data.is_in_sochi else "не в Сочи"
+                client_info.append(f"Статус: {sochi_status}")
+                
+            # Цель и бюджет
             if lead_data.automation_goal:
                 client_info.append(f"Цель: {lead_data.automation_goal.value}")
             if lead_data.budget_min or lead_data.budget_max:
-                budget = f"Бюджет: ${lead_data.budget_min or 0}-{lead_data.budget_max or '∞'}"
+                budget = f"Бюджет: {lead_data.budget_min or 0}-{lead_data.budget_max or '∞'} руб"
                 client_info.append(budget)
+            if lead_data.payment_type:
+                client_info.append(f"Оплата: {lead_data.payment_type.value}")
+                
+            # Предпочтения по недвижимости
+            if getattr(lead_data, 'preferred_locations', None):
+                locations = ", ".join(lead_data.preferred_locations)
+                client_info.append(f"Локации: {locations}")
+            if getattr(lead_data, 'property_type', None):
+                client_info.append(f"Тип: {lead_data.property_type}")
+                
+            # Срочность
+            if getattr(lead_data, 'urgency_date', None):
+                client_info.append(f"Приезд: {lead_data.urgency_date}")
             
             if client_info:
                 context_parts.append(f"ДАННЫЕ КЛИЕНТА: {' | '.join(client_info)}")
