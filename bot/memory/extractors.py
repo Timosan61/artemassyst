@@ -39,21 +39,22 @@ class LeadDataExtractor:
     }
     
     AUTOMATION_GOALS = {
-        'экономия времени': AutomationGoal.TIME_SAVING,
-        'сэкономить время': AutomationGoal.TIME_SAVING,
-        'время': AutomationGoal.TIME_SAVING,
-        'увеличение продаж': AutomationGoal.SALES_INCREASE,
-        'увеличить продажи': AutomationGoal.SALES_INCREASE,
-        'больше продаж': AutomationGoal.SALES_INCREASE,
-        'продажи': AutomationGoal.SALES_INCREASE,
-        'снижение затрат': AutomationGoal.COST_REDUCTION,
-        'снизить затраты': AutomationGoal.COST_REDUCTION,
-        'экономить': AutomationGoal.COST_REDUCTION,
-        'качество': AutomationGoal.QUALITY_IMPROVEMENT,
-        'улучшить качество': AutomationGoal.QUALITY_IMPROVEMENT,
-        'масштабирование': AutomationGoal.SCALING,
-        'масштаб': AutomationGoal.SCALING,
-        'расширение': AutomationGoal.SCALING
+        'краткосрочные инвестиции': AutomationGoal.SHORT_INVESTMENT,
+        'короткие инвестиции': AutomationGoal.SHORT_INVESTMENT,
+        'на год': AutomationGoal.SHORT_INVESTMENT,
+        'долгосрочные инвестиции': AutomationGoal.LONG_INVESTMENT,
+        'длинные инвестиции': AutomationGoal.LONG_INVESTMENT,
+        'на долго': AutomationGoal.LONG_INVESTMENT,
+        'для проживания': AutomationGoal.RESIDENCE,
+        'для жизни': AutomationGoal.RESIDENCE,
+        'пмж': AutomationGoal.RESIDENCE,
+        'переезд': AutomationGoal.RESIDENCE,
+        'сбережения': AutomationGoal.SAVINGS,
+        'сохранить капитал': AutomationGoal.SAVINGS,
+        'сохранение': AutomationGoal.SAVINGS,
+        'арендный бизнес': AutomationGoal.RENTAL_BUSINESS,
+        'сдавать в аренду': AutomationGoal.RENTAL_BUSINESS,
+        'аренда': AutomationGoal.RENTAL_BUSINESS
     }
     
     PAYMENT_TYPES = {
