@@ -114,6 +114,7 @@ def send_business_message(chat_id, text, business_connection_id):
     """
     Отправка сообщения через Business API используя прямой HTTP запрос
     (pyTelegramBotAPI не поддерживает business_connection_id)
+    Возвращает True при успехе, False при ошибке
     """
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     data = {
@@ -128,13 +129,13 @@ def send_business_message(chat_id, text, business_connection_id):
         
         if result.get("ok"):
             logger.info(f"✅ Business API: сообщение отправлено через HTTP API")
-            return result.get("result")
+            return True  # Возвращаем True при успехе
         else:
             logger.error(f"❌ Business API ошибка: {result}")
-            return None
+            return False
     except Exception as e:
         logger.error(f"❌ Business API HTTP ошибка: {e}")
-        return None
+        return False
 
 
 # === ФУНКЦИИ ИМИТАЦИИ ЧЕЛОВЕЧЕСКОГО ПОВЕДЕНИЯ ===
@@ -253,14 +254,19 @@ async def send_human_like_response(chat_id, text, business_connection_id=None, u
             
             # Отправляем часть сообщения
             if business_connection_id:
+                logger.info(f"📤 Попытка отправить через Business API (часть {i+1}/{len(message_parts)})")
                 result = send_business_message(chat_id, part, business_connection_id)
-                if not result:
-                    logger.error(f"❌ Не удалось отправить часть {i+1}/{len(message_parts)} через Business API")
-                    # Fallback на обычное сообщение
+                if result:
+                    logger.info(f"✅ Business API успешно отправил часть {i+1}/{len(message_parts)}")
+                else:
+                    logger.error(f"❌ Business API не смог отправить часть {i+1}/{len(message_parts)}")
+                    logger.warning(f"🔄 Fallback: отправляю через обычный API")
                     bot.send_message(chat_id, part)
-                    logger.warning(f"⚠️ Отправлена часть {i+1} как обычное сообщение")
+                    logger.info(f"✅ Fallback: часть {i+1} отправлена через обычный API")
             else:
+                logger.info(f"📤 Отправка через обычный API (часть {i+1}/{len(message_parts)})")
                 bot.send_message(chat_id, part)
+                logger.info(f"✅ Обычный API отправил часть {i+1}/{len(message_parts)}")
             
             logger.info(f"✅ Отправлена часть {i+1}/{len(message_parts)} пользователю {user_name}")
         
@@ -290,6 +296,11 @@ update_counter = 0
 
 # Хранилище владельцев Business Connection для фильтрации сообщений
 business_owners = {}  # {business_connection_id: owner_user_id}
+
+# Дедупликация запросов (для предотвращения повторной обработки)
+processed_updates = {}  # {update_id_hash: timestamp}
+import hashlib
+import time
 
 @app.get("/")
 async def health_check():
@@ -719,7 +730,7 @@ async def create_google_sheets():
 @app.post("/webhook")
 async def process_webhook(request: Request):
     """Главный обработчик webhook"""
-    global update_counter
+    global update_counter, processed_updates
     try:
         # Проверяем secret token из заголовков
         secret_token = request.headers.get("X-Telegram-Bot-Api-Secret-Token")
@@ -734,6 +745,21 @@ async def process_webhook(request: Request):
         print(f"📨 Обработка webhook update...")
         
         update_dict = json.loads(json_string)
+        
+        # ДЕДУПЛИКАЦИЯ: проверяем не обработан ли уже этот update
+        update_hash = hashlib.md5(json_string.encode()).hexdigest()
+        current_time = time.time()
+        
+        # Очищаем старые записи (старше 5 минут)
+        processed_updates = {k: v for k, v in processed_updates.items() if current_time - v < 300}
+        
+        if update_hash in processed_updates:
+            logger.warning(f"🔄 ДУБЛИРУЮЩИЙ запрос обнаружен и ПРОПУЩЕН (hash: {update_hash[:8]})")
+            return {"ok": True, "status": "duplicate", "skipped": True}
+        
+        # Помечаем как обработанный
+        processed_updates[update_hash] = current_time
+        logger.info(f"✅ Новый уникальный запрос (hash: {update_hash[:8]})")
         
         # Сохраняем update для отладки
         update_counter += 1
