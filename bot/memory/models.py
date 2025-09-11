@@ -57,6 +57,18 @@ class LeadData:
     is_in_sochi: Optional[bool] = None  # Находится ли в Сочи сейчас
     is_local: Optional[bool] = None  # Местный житель Сочи или нет
     
+    # ДОПОЛНИТЕЛЬНЫЕ ПОЛЯ из инструкции по недвижимости
+    rooms_count: Optional[int] = None  # Количество комнат
+    area_min: Optional[int] = None  # Минимальная площадь
+    area_max: Optional[int] = None  # Максимальная площадь
+    view_preference: Optional[str] = None  # Вид: море, горы, парк
+    completion_date: Optional[str] = None  # Срок сдачи объекта
+    need_remote_deal: Optional[bool] = None  # Нужна удалённая сделка
+    online_viewing_ready: Optional[bool] = None  # Готовность к онлайн-показу
+    need_to_sell_current: Optional[bool] = None  # Нужна продажа своей недвижимости
+    current_property_city: Optional[str] = None  # Город текущей недвижимости для продажи
+    decision_maker: Optional[str] = None  # С кем принимает решение о покупке (супруг/супруга, партнер, сам)
+    
     # Бизнес-информация
     business_sphere: Optional[str] = None
     company_size: Optional[str] = None
@@ -117,6 +129,16 @@ class LeadData:
             'current_location': self.current_location,
             'is_in_sochi': self.is_in_sochi,
             'is_local': self.is_local,
+            'rooms_count': self.rooms_count,
+            'area_min': self.area_min,
+            'area_max': self.area_max,
+            'view_preference': self.view_preference,
+            'completion_date': self.completion_date,
+            'need_remote_deal': self.need_remote_deal,
+            'online_viewing_ready': self.online_viewing_ready,
+            'need_to_sell_current': self.need_to_sell_current,
+            'current_property_city': self.current_property_city,
+            'decision_maker': self.decision_maker,
             'business_sphere': self.business_sphere,
             'company_size': self.company_size,
             'current_automation_tasks': self.current_automation_tasks,

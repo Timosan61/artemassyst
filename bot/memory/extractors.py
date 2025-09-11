@@ -159,6 +159,12 @@ class LeadDataExtractor:
         # Извлечение банка для ипотеки
         cls._extract_mortgage_bank(message_lower, lead)
         
+        # Извлечение дополнительных параметров недвижимости
+        cls._extract_property_params(message, lead)
+        
+        # Извлечение информации о принятии решений
+        cls._extract_decision_maker(message_lower, lead)
+        
         # Обновление времени
         lead.updated_at = datetime.now()
         
@@ -401,6 +407,122 @@ class LeadDataExtractor:
         # Проверяем, оформлена ли ипотека
         if any(word in message_lower for word in ['оформлена', 'одобрена', 'есть одобрение']):
             lead.comments += ' Ипотека уже оформлена/одобрена.'
+    
+    @classmethod 
+    def _extract_property_params(cls, message: str, lead: LeadData):
+        """Извлечение параметров недвижимости: комнаты, площадь, вид"""
+        message_lower = message.lower()
+        
+        # Извлечение количества комнат
+        rooms_patterns = [
+            r'(\d)\s*комнат',
+            r'(\d)\s*к',
+            r'(\d)-комнат',
+            r'(\d)к',
+            r'студи[яю]',  # студия
+            r'однокомнатн',  # однокомнатная
+            r'двухкомнатн',  # двухкомнатная
+            r'трехкомнатн',  # трехкомнатная
+        ]
+        
+        for pattern in rooms_patterns:
+            match = re.search(pattern, message_lower)
+            if match:
+                if 'студи' in match.group(0):
+                    lead.rooms_count = 0  # студия
+                elif 'однокомнат' in match.group(0):
+                    lead.rooms_count = 1
+                elif 'двухкомнат' in match.group(0):
+                    lead.rooms_count = 2
+                elif 'трехкомнат' in match.group(0):
+                    lead.rooms_count = 3
+                else:
+                    lead.rooms_count = int(match.group(1))
+                break
+        
+        # Извлечение площади
+        area_patterns = [
+            r'(\d+)\s*кв\.?\s*м',
+            r'(\d+)\s*квадрат',
+            r'(\d+)\s*метр',
+            r'площад[ьь]\s*(\d+)',
+            r'от\s*(\d+)\s*до\s*(\d+)\s*кв',
+        ]
+        
+        for pattern in area_patterns:
+            match = re.search(pattern, message_lower)
+            if match:
+                if len(match.groups()) == 2:  # диапазон
+                    lead.area_min = int(match.group(1))
+                    lead.area_max = int(match.group(2))
+                else:
+                    area = int(match.group(1))
+                    if 'от' in match.group(0):
+                        lead.area_min = area
+                    else:
+                        lead.area_max = area
+                break
+        
+        # Извлечение предпочтений по виду
+        if any(word in message_lower for word in ['море', 'морской', 'на море', 'видом на море']):
+            lead.view_preference = 'море'
+        elif any(word in message_lower for word in ['горы', 'горный', 'на горы', 'видом на горы']):
+            lead.view_preference = 'горы'
+        elif any(word in message_lower for word in ['парк', 'зелень', 'лес']):
+            lead.view_preference = 'парк'
+        
+        # Готовность к онлайн-показу
+        if any(phrase in message_lower for phrase in [
+            'онлайн показ', 'онлайн-показ', 'удаленно посмотр', 'по видеосвязи', 
+            'через zoom', 'через скайп', 'виртуальный показ'
+        ]):
+            lead.online_viewing_ready = True
+        elif any(phrase in message_lower for phrase in [
+            'только вживую', 'только лично', 'не хочу онлайн'
+        ]):
+            lead.online_viewing_ready = False
+    
+    @classmethod
+    def _extract_decision_maker(cls, message_lower: str, lead: LeadData):
+        """Извлечение информации о принятии решений"""
+        
+        # С кем принимает решение
+        if any(phrase in message_lower for phrase in [
+            'с женой', 'с супругой', 'жена решает', 'супруга'
+        ]):
+            lead.decision_maker = 'супруга'
+        elif any(phrase in message_lower for phrase in [
+            'с мужем', 'с супругом', 'муж решает', 'супруг'
+        ]):
+            lead.decision_maker = 'супруг'
+        elif any(phrase in message_lower for phrase in [
+            'с партнер', 'с компаньон', 'с бизнес-партнер'
+        ]):
+            lead.decision_maker = 'партнер'
+        elif any(phrase in message_lower for phrase in [
+            'сам решаю', 'сама решаю', 'решаю один', 'решаю сам'
+        ]):
+            lead.decision_maker = 'сам'
+        elif any(phrase in message_lower for phrase in [
+            'с семьей', 'семейное решение', 'всей семьей'
+        ]):
+            lead.decision_maker = 'семья'
+        
+        # Нужна ли удаленная сделка
+        if any(phrase in message_lower for phrase in [
+            'удаленно', 'дистанционно', 'без приезда', 'через почту'
+        ]):
+            lead.need_remote_deal = True
+        elif any(phrase in message_lower for phrase in [
+            'только лично', 'приеду оформлять', 'лично подпишу'
+        ]):
+            lead.need_remote_deal = False
+        
+        # Нужна ли продажа текущей недвижимости
+        if any(phrase in message_lower for phrase in [
+            'продать свою', 'продажа квартир', 'продать дом', 'сначала продать'
+        ]):
+            lead.need_to_sell_current = True
 
 
 class DialogStateExtractor:
