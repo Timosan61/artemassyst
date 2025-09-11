@@ -48,7 +48,7 @@ class MemoryService:
         Returns:
             Dict с информацией о состоянии диалога и рекомендациями
         """
-        session_id = f"user_{user_id}"
+        session_id = user_id  # Используем user_id как есть, без префикса
         
         try:
             # Получаем текущие данные о лиде
