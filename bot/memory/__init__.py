@@ -4,7 +4,7 @@
 
 from .models import (
     DialogState,
-    ClientType, 
+    ClientType,
     AutomationGoal,
     PaymentType,
     LeadData,
@@ -20,22 +20,25 @@ from .extractors import (
 from .memory_service import MemoryService
 from .analytics import AnalyticsService
 from .reminders import ReminderService
+from .session_manager import SessionManager, session_manager
 
 __all__ = [
     # Models
     'DialogState',
     'ClientType',
-    'AutomationGoal', 
+    'AutomationGoal',
     'PaymentType',
     'LeadData',
     'ReminderTask',
     'AnalyticsData',
-    
+
     # Services
     'MemoryService',
-    'AnalyticsService', 
+    'AnalyticsService',
     'ReminderService',
-    
+    'SessionManager',
+    'session_manager',
+
     # Extractors
     'LeadDataExtractor',
     'DialogStateExtractor'

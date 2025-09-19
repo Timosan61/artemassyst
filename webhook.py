@@ -37,6 +37,20 @@ except ImportError:
     print("⚠️ Structured logging недоступен")
     STRUCTURED_LOGGING = False
 
+# Импорт новой системы управления сессиями
+try:
+    from session_manager_webhook import (
+        get_session_for_webhook,
+        update_session_after_processing,
+        is_duplicate_message,
+        get_existing_session_id
+    )
+    print("✅ Session manager webhook загружен")
+    ADVANCED_SESSION_MANAGEMENT = True
+except ImportError as e:
+    print(f"⚠️ Session manager webhook недоступен: {e}")
+    ADVANCED_SESSION_MANAGEMENT = False
+
 # Пытаемся импортировать AI agent
 try:
     import bot
@@ -953,7 +967,21 @@ async def process_webhook(request: Request):
                 # Если есть текст (включая транскрибированный голос) - обрабатываем через AI
                 if text and AI_ENABLED:
                     try:
-                        session_id = f"user_{user_id}"
+                        # Используем новую систему управления сессиями
+                        if ADVANCED_SESSION_MANAGEMENT:
+                            session_id, existing_session_id = get_session_for_webhook(
+                                str(user_id), str(chat_id), str(message_id)
+                            )
+
+                            # Проверяем дубликат сообщения
+                            if session_id is None:
+                                logger.warning(f"⚠️ Пропущено дублированное сообщение {message_id} от пользователя {user_id}")
+                                return '', 200
+                        else:
+                            # Резервная логика без продвинутой системы
+                            session_id = f"user_{user_id}"
+                            existing_session_id = None
+
                         # Создаем пользователя в Zep если нужно
                         if agent.zep_client:
                             await agent.ensure_user_exists(str(user_id), {
@@ -961,10 +989,24 @@ async def process_webhook(request: Request):
                                 'email': f'{user_id}@telegram.user'
                             })
                             await agent.ensure_session_exists(session_id, str(user_id))
+
                         start_time = datetime.now().timestamp()
-                        response = await agent.generate_response(text, session_id, user_name)
+                        response = await agent.generate_response(
+                            text,
+                            session_id,
+                            user_name,
+                            chat_id=str(chat_id) if chat_id else None,
+                            existing_session_id=existing_session_id
+                        )
                         response_time = datetime.now().timestamp() - start_time
-                        
+
+                        # Обновляем сессию после успешной обработки
+                        if ADVANCED_SESSION_MANAGEMENT:
+                            update_session_after_processing(
+                                str(user_id), str(chat_id), str(message_id),
+                                text, "user"
+                            )
+
                         # Structured logging для AI response
                         if STRUCTURED_LOGGING:
                             try:
@@ -1012,6 +1054,13 @@ async def process_webhook(request: Request):
                 # Отправляем ответ с имитацией человеческого поведения
                 await send_human_like_response(chat_id, response, user_name=user_name)
                 print(f"✅ Human-like ответ отправлен пользователю {user_name}")
+
+                # Обновляем сессию после отправки ответа бота
+                if ADVANCED_SESSION_MANAGEMENT and AI_ENABLED and text:
+                    update_session_after_processing(
+                        str(user_id), str(chat_id), str(message_id),
+                        response, "assistant"
+                    )
                 
             except Exception as e:
                 logger.error(f"Ошибка обработки сообщения: {e}")
@@ -1151,7 +1200,13 @@ async def process_webhook(request: Request):
                                 'email': f'{user_id}@business.telegram.user'
                             })
                             await agent.ensure_session_exists(session_id, str(user_id))
-                        response = await agent.generate_response(text, session_id, user_name)
+                        response = await agent.generate_response(
+                            text,
+                            session_id,
+                            user_name,
+                            chat_id=str(chat_id),
+                            existing_session_id=None  # Новая сессия для каждого сообщения
+                        )
                         logger.info(f"✅ AI ответ сгенерирован: {response[:100]}...")
                     else:
                         logger.info(f"🤖 AI отключен, использую стандартный ответ")

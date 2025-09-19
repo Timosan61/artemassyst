@@ -111,7 +111,12 @@ class LeadData:
     # Статус
     qualification_status: Optional[ClientType] = None
     current_dialog_state: DialogState = DialogState.S0_GREETING
-    
+
+    # История вопросов для предотвращения повторов
+    asked_questions: List[str] = field(default_factory=list)  # Список заданных вопросов
+    last_question_asked: Optional[str] = None  # Последний заданный вопрос
+    questions_answered: Dict[str, Any] = field(default_factory=dict)  # Ответы на вопросы по типам
+
     # Метаданные
     created_at: datetime = field(default_factory=datetime.now)
     updated_at: datetime = field(default_factory=datetime.now)
@@ -166,6 +171,9 @@ class LeadData:
             'agreed_demo_slots': [slot.isoformat() for slot in self.agreed_demo_slots],
             'qualification_status': self.qualification_status.value if self.qualification_status else None,
             'current_dialog_state': self.current_dialog_state.value,
+            'asked_questions': self.asked_questions,
+            'last_question_asked': self.last_question_asked,
+            'questions_answered': self.questions_answered,
             'created_at': self.created_at.isoformat(),
             'updated_at': self.updated_at.isoformat(),
             'utm_source': self.utm_source,
@@ -241,7 +249,12 @@ class LeadData:
             lead.qualification_status = ClientType(data['qualification_status'])
         if data.get('current_dialog_state'):
             lead.current_dialog_state = DialogState(data['current_dialog_state'])
-        
+
+        # История вопросов
+        lead.asked_questions = data.get('asked_questions', [])
+        lead.last_question_asked = data.get('last_question_asked')
+        lead.questions_answered = data.get('questions_answered', {})
+
         # Метаданные
         if data.get('created_at'):
             lead.created_at = datetime.fromisoformat(data['created_at'])

@@ -290,12 +290,16 @@ class AlenaAgent:
         """Fallback ответы когда LLM недоступны - выбрасываем ошибку"""
         raise Exception("LLM недоступен, fallback ответы отключены")
     
-    async def generate_response(self, user_message: str, session_id: str, user_name: str = None) -> str:
+    async def generate_response(self, user_message: str, session_id: str, user_name: str = None,
+                               chat_id: str = None, existing_session_id: str = None) -> str:
         try:
             # 🧠 ИНТЕЛЛЕКТУАЛЬНАЯ ОБРАБОТКА СООБЩЕНИЯ
+            # Используем новую систему сессий с уникальными session_id
             memory_result = await self.memory_service.process_message(
-                user_id=session_id, 
-                message_text=user_message
+                user_id=session_id,
+                message_text=user_message,
+                chat_id=chat_id,
+                existing_session_id=existing_session_id
             )
             
             if not memory_result.get('success', False):
@@ -346,7 +350,9 @@ class AlenaAgent:
             await self.memory_service.process_message(
                 user_id=session_id,
                 message_text=bot_response,
-                message_type="assistant"
+                message_type="assistant",
+                chat_id=chat_id,
+                existing_session_id=existing_session_id
             )
             
             # Синхронизация с Google Sheets при значимых изменениях
@@ -423,7 +429,7 @@ class AlenaAgent:
             DialogState.S1_BUSINESS: "Узнайте местоположение клиента и город", 
             DialogState.S2_GOAL: "Определите цель покупки недвижимости",
             DialogState.S3_PAYMENT: "Обсудите форму оплаты и бюджет",
-            DialogState.S4_REQUIREMENTS: "Выясните требования к объекту",
+            DialogState.S4_REQUIREMENTS: "Выясните недостающие требования к объекту (тип, локация, параметры)",
             DialogState.S5_BUDGET: "Уточните бюджет через примеры",
             DialogState.S6_URGENCY: "Определите срочность покупки",
             DialogState.S7_EXPERIENCE: "Узнайте опыт покупки в Сочи",
