@@ -26,21 +26,23 @@ class MemoryService:
         self.zep_api_key = zep_api_key
         self.enable_memory = enable_memory
         self.zep_client = None
-        
+        self._auth_error_detected = False
+
         # Инициализируем AnalyticsService с ZEP API ключом
         if not zep_api_key:
             raise ValueError("ZEP API key обязателен для работы системы памяти")
-        
+
         self.analytics = AnalyticsService(zep_api_key)
         self.reminders = ReminderService()
-        
+
         if self.enable_memory:
             try:
                 self.zep_client = AsyncZep(api_key=zep_api_key)
                 logger.info("✅ Инициализирован ZEP Cloud клиент")
             except Exception as e:
                 logger.error(f"❌ Ошибка инициализации ZEP Cloud: {e}")
-                raise
+                self.enable_memory = False
+                logger.warning("⚠️ Работаем в режиме без ZEP памяти из-за ошибки инициализации")
     
     async def process_message(self, user_id: str, message_text: str,
                             message_type: str = "user", chat_id: Optional[str] = None,
@@ -205,8 +207,32 @@ class MemoryService:
             except Exception as e:
                 error_message = str(e).lower()
 
+                # Проверяем на аутентификационные ошибки
+                if '401' in error_message or 'unauthorized' in error_message:
+                    if not self._auth_error_detected:
+                        self._auth_error_detected = True
+                        logger.error(f"❌ КРИТИЧЕСКАЯ ОШИБКА: ZEP API ключ недействителен (401 Unauthorized)")
+                        logger.error(f"   Проверьте переменную окружения ZEP_API_KEY")
+                        logger.error(f"   Длина ключа: {len(self.zep_api_key or '')}")
+                        logger.error(f"   Ключ начинается с: {self.zep_api_key[:8] if self.zep_api_key else 'пусто'}")
+
+                    # Отключаем ZEP память и работаем в режиме кэша
+                    self.enable_memory = False
+                    logger.warning(f"⚠️ Отключаем ZEP память из-за ошибки аутентификации")
+
+                    # Сохраняем в кэш сессии
+                    try:
+                        session_info = session_manager.get_session_info(session_id)
+                        if session_info:
+                            session_info['data_collected'] = lead_data.to_dict()
+                            logger.info(f"📝 Данные сохранены в кэш сессии для {session_id} (режим без ZEP)")
+                    except Exception as cache_error:
+                        logger.error(f"❌ Ошибка сохранения в кэш для {session_id}: {cache_error}")
+
+                    return
+
                 # Проверяем на rate limiting
-                if '429' in error_message or 'too many' in error_message:
+                elif '429' in error_message or 'too many' in error_message:
                     if attempt < max_retries - 1:
                         wait_time = retry_delay * (2 ** attempt)  # Экспоненциальная задержка
                         logger.warning(f"⚠️ Rate limit для {session_id}, попытка {attempt + 1}/{max_retries}, ожидание {wait_time}с")

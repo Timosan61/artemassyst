@@ -969,18 +969,30 @@ async def process_webhook(request: Request):
                     try:
                         # Используем новую систему управления сессиями
                         if ADVANCED_SESSION_MANAGEMENT:
-                            session_id, existing_session_id = get_session_for_webhook(
-                                str(user_id), str(chat_id), str(message_id)
-                            )
+                            try:
+                                session_id, existing_session_id = get_session_for_webhook(
+                                    str(user_id), str(chat_id), str(message_id)
+                                )
 
-                            # Проверяем дубликат сообщения
-                            if session_id is None:
-                                logger.warning(f"⚠️ Пропущено дублированное сообщение {message_id} от пользователя {user_id}")
-                                return '', 200
+                                # Проверяем дубликат сообщения
+                                if session_id is None:
+                                    logger.warning(f"⚠️ Пропущено дублированное сообщение {message_id} от пользователя {user_id}")
+                                    return '', 200
+
+                                logger.info(f"✅ Новая система сессий: session_id={session_id}, existing_session_id={existing_session_id}")
+
+                            except Exception as session_error:
+                                logger.error(f"⚠️ Ошибка в новой системе сессий: {session_error}")
+                                logger.error(f"📍 Параметры: user_id={user_id}, chat_id={chat_id}, message_id={message_id}")
+                                # Падаем обратно на старую систему
+                                session_id = f"user_{user_id}"
+                                existing_session_id = None
+                                ADVANCED_SESSION_MANAGEMENT = False  # Временно отключаем для этого запроса
                         else:
                             # Резервная логика без продвинутой системы
                             session_id = f"user_{user_id}"
                             existing_session_id = None
+                            logger.info(f"✅ Используем резервную систему сессий: session_id={session_id}")
 
                         # Создаем пользователя в Zep если нужно
                         if agent.zep_client:
@@ -1057,14 +1069,50 @@ async def process_webhook(request: Request):
 
                 # Обновляем сессию после отправки ответа бота
                 if ADVANCED_SESSION_MANAGEMENT and AI_ENABLED and text:
-                    update_session_after_processing(
-                        str(user_id), str(chat_id), str(message_id),
-                        response, "assistant"
-                    )
+                    try:
+                        update_session_after_processing(
+                            str(user_id), str(chat_id), str(message_id),
+                            response, "assistant"
+                        )
+                    except Exception as update_error:
+                        logger.warning(f"⚠️ Ошибка обновления сессии: {update_error}")
+                        # Не критично, продолжаем работу
                 
             except Exception as e:
-                logger.error(f"Ошибка обработки сообщения: {e}")
-                bot.send_message(chat_id, "Извините, произошла непредвиденная ошибка. Попробуйте написать снова.")
+                logger.error(f"❌ Ошибка обработки сообщения: {e}")
+                logger.error(f"📍 Детали ошибки:")
+                logger.error(f"   - user_id: {user_id}")
+                logger.error(f"   - chat_id: {chat_id}")
+                logger.error(f"   - message_id: {message_id}")
+                logger.error(f"   - session_id: {locals().get('session_id', 'не определен')}")
+                logger.error(f"   - existing_session_id: {locals().get('existing_session_id', 'не определен')}")
+                logger.error(f"   - AI_ENABLED: {AI_ENABLED}")
+                logger.error(f"   - ADVANCED_SESSION_MANAGEMENT: {ADVANCED_SESSION_MANAGEMENT}")
+                logger.error(f"Traceback:")
+                import traceback
+                logger.error(traceback.format_exc())
+
+                # Пробуем отправить сообщение об ошибке с учетом возможных проблем
+                try:
+                    # Определяем тип ошибки и отправляем соответствующее сообщение
+                    error_str = str(e).lower()
+
+                    if '401' in error_str or 'unauthorized' in error_str:
+                        error_msg = "⚠️ Извините, временные технические неполадки с системой памяти. Продолжаем диалог, но рекомендую связаться с поддержкой позже."
+                    elif '429' in error_str or 'rate limit' in error_str:
+                        error_msg = "⚠️ Слишком много запросов. Подождите минуту и попробуйте снова."
+                    elif 'openai' in error_str or 'anthropic' in error_str:
+                        error_msg = "⚠️ Сервис ИИ временно недоступен. Попробуйте написать через минуту."
+                    elif 'memory' in error_str or 'zep' in error_str:
+                        error_msg = "⚠️ Временные неполадки с памятью диалога. Продолжим без сохранения истории."
+                    else:
+                        error_msg = "Извините, произошла непредвиденная ошибка. Попробуйте написать снова."
+
+                    bot.send_message(chat_id, error_msg)
+                except Exception as send_error:
+                    logger.error(f"❌ Ошибка отправки сообщения об ошибке: {send_error}")
+                    # Если не можем отправить сообщение, просто возвращаем успешный HTTP ответ
+                    pass
         
         # === BUSINESS СООБЩЕНИЯ ===
         elif "business_message" in update_dict:
