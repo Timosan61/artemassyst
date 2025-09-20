@@ -78,7 +78,6 @@ class AlenaAgent:
             print("⚠️ Google Sheets требует активной системы памяти ZEP")
         
         self.instruction = self._load_instruction()
-        self.user_sessions = {}  # Резервное хранение сессий в памяти
     
     def _load_instruction(self) -> Dict[str, Any]:
         try:
@@ -120,104 +119,6 @@ class AlenaAgent:
             logger.info("📝 Инструкции перезагружены (без изменений)")
             print("📝 Инструкции перезагружены (без изменений)")
     
-    async def add_to_zep_memory(self, session_id: str, user_message: str, bot_response: str, user_name: str = None):
-        """Добавляет сообщения в Zep Memory с именами пользователей"""
-        if not self.zep_client:
-            print(f"⚠️ Zep клиент не инициализирован, используем локальную память для {session_id}")
-            self.add_to_local_session(session_id, user_message, bot_response)
-            return False
-            
-        try:
-            # Используем имя пользователя или ID для роли
-            user_role = user_name if user_name else f"User_{session_id.split('_')[-1][:6]}"
-            
-            messages = [
-                Message(
-                    role=user_role,  # Имя пользователя вместо generic "user"
-                    role_type="user",
-                    content=user_message
-                ),
-                Message(
-                    role="Алёна",  # Имя бота-консультанта
-                    role_type="assistant",
-                    content=bot_response
-                )
-            ]
-            
-            await self.zep_client.memory.add(session_id=session_id, messages=messages)
-            print(f"✅ Сообщения добавлены в Zep Cloud для сессии {session_id}")
-            print(f"   📝 User: {user_message[:50]}...")
-            print(f"   🤖 Bot: {bot_response[:50]}...")
-            return True
-            
-        except Exception as e:
-            print(f"❌ Ошибка при добавлении в Zep: {type(e).__name__}: {e}")
-            # Fallback: добавляем в локальную память
-            self.add_to_local_session(session_id, user_message, bot_response)
-            return False
-    
-    async def get_zep_memory_context(self, session_id: str) -> str:
-        """Получает контекст из Zep Memory"""
-        if not self.zep_client:
-            print(f"⚠️ Zep не доступен, используем локальную историю для {session_id}")
-            return self.get_local_session_history(session_id)
-            
-        try:
-            memory = await self.zep_client.memory.get(session_id=session_id)
-            context = memory.context if memory.context else ""
-            print(f"✅ Получен контекст из Zep для сессии {session_id}, длина: {len(context)}")
-            return context
-            
-        except Exception as e:
-            print(f"❌ Ошибка при получении контекста из Zep: {type(e).__name__}: {e}")
-            return self.get_local_session_history(session_id)
-    
-    async def get_zep_recent_messages(self, session_id: str, limit: int = 6) -> str:
-        """Получает последние сообщения из Zep Memory"""
-        try:
-            memory = await self.zep_client.memory.get(session_id=session_id)
-            if not memory.messages:
-                return ""
-            
-            recent_messages = memory.messages[-limit:]
-            formatted_messages = []
-            
-            for msg in recent_messages:
-                role = "Пользователь" if msg.role_type == "user" else "Ассистент"
-                formatted_messages.append(f"{role}: {msg.content}")
-            
-            return "\n".join(formatted_messages)
-            
-        except Exception as e:
-            print(f"❌ Ошибка при получении сообщений из Zep: {e}")
-            return self.get_local_session_history(session_id)
-    
-    def add_to_local_session(self, session_id: str, user_message: str, bot_response: str):
-        """Резервное локальное хранение сессий"""
-        if session_id not in self.user_sessions:
-            self.user_sessions[session_id] = []
-        
-        self.user_sessions[session_id].append({
-            "user": user_message,
-            "assistant": bot_response,
-            "timestamp": datetime.now().isoformat()
-        })
-        
-        # Ограничиваем историю 10 последними сообщениями
-        if len(self.user_sessions[session_id]) > 10:
-            self.user_sessions[session_id] = self.user_sessions[session_id][-10:]
-    
-    def get_local_session_history(self, session_id: str) -> str:
-        """Получает историю из локального хранилища"""
-        if session_id not in self.user_sessions:
-            return ""
-        
-        history = []
-        for exchange in self.user_sessions[session_id][-6:]:  # Последние 6 обменов
-            history.append(f"Пользователь: {exchange['user']}")
-            history.append(f"Ассистент: {exchange['assistant']}")
-        
-        return "\n".join(history) if history else ""
     
     async def call_llm(self, messages: list, max_tokens: int = None, temperature: float = None) -> str:
         """Роутер LLM запросов с fallback между OpenAI и Anthropic (с параметрами для живого общения)"""
@@ -580,109 +481,17 @@ class AlenaAgent:
             logger.error(f"❌ Ошибка обработки напоминания для {session_id}: {e}")
             return None
     
-    async def ensure_user_exists(self, user_id: str, user_data: Dict[str, Any] = None):
-        """Создает пользователя в Zep если его еще нет"""
-        if not self.zep_client:
-            return False
-            
-        try:
-            # Пытаемся получить пользователя
-            try:
-                user = await self.zep_client.user.get(user_id=user_id)
-                print(f"✅ Пользователь {user_id} уже существует в Zep")
-                return True
-            except:
-                # Пользователь не существует, создаем
-                pass
-            
-            # Создаем нового пользователя
-            user_info = user_data or {}
-            await self.zep_client.user.add(
-                user_id=user_id,
-                first_name=user_info.get('first_name', 'User'),
-                last_name=user_info.get('last_name', ''),
-                email=user_info.get('email', f'{user_id}@telegram.user'),
-                metadata={
-                    'source': 'telegram',
-                    'created_at': datetime.now().isoformat()
-                }
-            )
-            print(f"✅ Создан новый пользователь в Zep: {user_id}")
-            return True
-            
-        except Exception as e:
-            print(f"❌ Ошибка при создании пользователя в Zep: {e}")
-            return False
-    
-    async def ensure_session_exists(self, session_id: str, user_id: str):
-        """Создает сессию в Zep если ее еще нет"""
-        if not self.zep_client:
-            return False
-            
-        try:
-            # Создаем сессию
-            await self.zep_client.memory.add_session(
-                session_id=session_id,
-                user_id=user_id,
-                metadata={
-                    'channel': 'telegram',
-                    'created_at': datetime.now().isoformat()
-                }
-            )
-            print(f"✅ Создана сессия в Zep: {session_id} для пользователя {user_id}")
-            return True
-            
-        except Exception as e:
-            # Сессия может уже существовать или будет создана автоматически
-            print(f"ℹ️ Сессия {session_id} возможно уже существует или будет создана автоматически")
-            return True
     
     async def _sync_to_sheets_async(self, session_id: str):
         """Асинхронная синхронизация данных с Google Sheets"""
         if not self.sheets_service:
             return
-            
+
         try:
-            logger.debug(f"📊 Начинаю синхронизацию Google Sheets для сессии {session_id}")
-            
-            # Аутентификация если нужно
-            if not self.sheets_service._authenticated:
-                auth_success = await self.sheets_service.authenticate()
-                if not auth_success:
-                    logger.error("❌ Не удалось аутентифицироваться в Google Sheets")
-                    return
-            
-            # Создание таблицы если не создана
-            if not self.sheets_service.spreadsheet_id:
-                spreadsheet_id = await self.sheets_service.create_spreadsheet()
-                if not spreadsheet_id:
-                    logger.error("❌ Не удалось создать Google таблицу")
-                    return
-                logger.info(f"📊 Создана новая Google таблица: {spreadsheet_id}")
-            
-            # Синхронизация данных лидов
-            leads_success = await self.sheets_service.sync_leads_data(days=30)
-            if leads_success:
-                logger.debug(f"✅ Данные лидов синхронизированы для {session_id}")
-            
-            # Синхронизация аналитики
-            analytics_success = await self.sheets_service.sync_analytics_data(days=30)
-            if analytics_success:
-                logger.debug(f"✅ Аналитика синхронизирована для {session_id}")
-                
+            await self.sheets_service.sync_leads_data(days=30)
+            await self.sheets_service.sync_analytics_data(days=30)
         except Exception as e:
-            logger.error(f"❌ Ошибка асинхронной синхронизации Google Sheets: {e}")
-    
-    async def setup_google_sheets_periodic_sync(self):
-        """Запускает периодическую синхронизацию Google Sheets"""
-        if not self.sheets_service or not GOOGLE_SHEETS_ENABLED:
-            return
-            
-        try:
-            logger.info("🔄 Запуск периодической синхронизации Google Sheets")
-            await self.sheets_service.setup_periodic_sync(GOOGLE_SHEETS_SYNC_INTERVAL)
-        except Exception as e:
-            logger.error(f"❌ Ошибка периодической синхронизации Google Sheets: {e}")
+            logger.error(f"❌ Ошибка синхронизации Google Sheets: {e}")
     
     async def get_sheets_url(self) -> Optional[str]:
         """Возвращает URL Google таблицы если она создана"""
@@ -693,35 +502,14 @@ class AlenaAgent:
     async def manual_sheets_sync(self) -> bool:
         """Ручная синхронизация данных с Google Sheets"""
         if not self.sheets_service:
-            logger.warning("⚠️ Google Sheets сервис не инициализирован")
             return False
-            
+
         try:
-            # Аутентификация
-            if not self.sheets_service._authenticated:
-                auth_success = await self.sheets_service.authenticate()
-                if not auth_success:
-                    return False
-            
-            # Создание таблицы если нужно
-            if not self.sheets_service.spreadsheet_id:
-                spreadsheet_id = await self.sheets_service.create_spreadsheet()
-                if not spreadsheet_id:
-                    return False
-            
-            # Синхронизация
             leads_success = await self.sheets_service.sync_leads_data(days=30)
             analytics_success = await self.sheets_service.sync_analytics_data(days=30)
-            
-            if leads_success and analytics_success:
-                logger.info("✅ Ручная синхронизация Google Sheets завершена успешно")
-                return True
-            else:
-                logger.warning("⚠️ Ручная синхронизация Google Sheets завершена с ошибками")
-                return False
-                
+            return leads_success and analytics_success
         except Exception as e:
-            logger.error(f"❌ Ошибка ручной синхронизации Google Sheets: {e}")
+            logger.error(f"❌ Ошибка синхронизации Google Sheets: {e}")
             return False
 
     def get_welcome_message(self) -> str:
