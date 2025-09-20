@@ -21,12 +21,17 @@ logger = logging.getLogger(__name__)
 
 class MemoryService:
     """Интеллектуальная система памяти с интеграцией ZEP Cloud"""
-    
+
     def __init__(self, zep_api_key: str, enable_memory: bool = True):
         self.zep_api_key = zep_api_key
         self.enable_memory = enable_memory and bool(zep_api_key)
         self.zep_client = None
         self._auth_error_detected = False
+
+        # Локальный кэш для состояний и данных лидов
+        self._local_cache: Dict[str, LeadData] = {}
+        self._cache_timestamps: Dict[str, float] = {}
+        self._cache_ttl = 3600  # 1 час
 
         # Инициализируем AnalyticsService только если есть ZEP API ключ
         if zep_api_key:
@@ -144,15 +149,31 @@ class MemoryService:
             }
     
     async def get_lead_data(self, session_id: str) -> LeadData:
-        """Получает данные о лиде из памяти с кэшированием"""
+        """Получает данные о лиде из памяти с многоуровневым кэшированием"""
+
+        # 1. Проверяем локальный кэш
+        current_time = time.time()
+        if session_id in self._local_cache:
+            cache_age = current_time - self._cache_timestamps.get(session_id, 0)
+            if cache_age < self._cache_ttl:
+                logger.debug(f"✅ Данные лида получены из локального кэша для {session_id}")
+                return self._local_cache[session_id]
+
+        # 2. Если память отключена, возвращаем из кэша или создаем новый
         if not self.enable_memory:
+            if session_id in self._local_cache:
+                return self._local_cache[session_id]
             return LeadData()
 
-        # Сначала проверяем кэш сессии
+        # 3. Проверяем кэш сессии
         session_info = session_manager.get_session_info(session_id)
         if session_info and 'data_collected' in session_info:
-            logger.debug(f"✅ Данные лида получены из кэша для {session_id}")
-            return LeadData.from_dict(session_info['data_collected'])
+            logger.debug(f"✅ Данные лида получены из кэша сессии для {session_id}")
+            lead_data = LeadData.from_dict(session_info['data_collected'])
+            # Сохраняем в локальный кэш
+            self._local_cache[session_id] = lead_data
+            self._cache_timestamps[session_id] = current_time
+            return lead_data
 
         max_retries = 3
         retry_delay = 0.5
@@ -164,14 +185,20 @@ class MemoryService:
 
                 if session and hasattr(session, 'metadata') and session.metadata:
                     lead_data = LeadData.from_dict(session.metadata)
-                    # Сохраняем в кэш для будущего использования
+                    # Сохраняем в оба кэша для будущего использования
                     if session_info:
                         session_info['data_collected'] = session.metadata
-                    logger.debug(f"✅ Данные лида получены из ZEP для {session_id}")
+                    self._local_cache[session_id] = lead_data
+                    self._cache_timestamps[session_id] = current_time
+                    logger.debug(f"✅ Данные лида получены из ZEP и сохранены в кэш для {session_id}")
                     return lead_data
                 else:
                     logger.debug(f"ℹ️ Нет данных лида в ZEP для {session_id}, создаем новые")
-                    return LeadData()
+                    new_lead = LeadData()
+                    # Сохраняем в кэш даже пустые данные
+                    self._local_cache[session_id] = new_lead
+                    self._cache_timestamps[session_id] = current_time
+                    return new_lead
 
             except Exception as e:
                 error_message = str(e).lower()
@@ -194,6 +221,19 @@ class MemoryService:
     
     async def save_lead_data(self, session_id: str, lead_data: LeadData):
         """Сохраняет данные о лиде в память с повторными попытками"""
+
+        # ВСЕГДА сохраняем в локальный кэш
+        current_time = time.time()
+        self._local_cache[session_id] = lead_data
+        self._cache_timestamps[session_id] = current_time
+
+        # Также сохраняем в кэш сессии
+        session_info = session_manager.get_session_info(session_id)
+        if session_info:
+            session_info['data_collected'] = lead_data.to_dict()
+
+        logger.debug(f"💾 Данные лида сохранены в локальный кэш для {session_id}")
+
         if not self.enable_memory:
             return
 
