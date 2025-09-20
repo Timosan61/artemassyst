@@ -24,15 +24,17 @@ class MemoryService:
     
     def __init__(self, zep_api_key: str, enable_memory: bool = True):
         self.zep_api_key = zep_api_key
-        self.enable_memory = enable_memory
+        self.enable_memory = enable_memory and bool(zep_api_key)
         self.zep_client = None
         self._auth_error_detected = False
 
-        # Инициализируем AnalyticsService с ZEP API ключом
-        if not zep_api_key:
-            raise ValueError("ZEP API key обязателен для работы системы памяти")
+        # Инициализируем AnalyticsService только если есть ZEP API ключ
+        if zep_api_key:
+            self.analytics = AnalyticsService(zep_api_key)
+        else:
+            logger.warning("⚠️ ZEP API key не найден, аналитика отключена")
+            self.analytics = None
 
-        self.analytics = AnalyticsService(zep_api_key)
         self.reminders = ReminderService()
 
         if self.enable_memory:
@@ -99,18 +101,22 @@ class MemoryService:
             # Сохраняем данные лида
             await self.save_lead_data(session_id, updated_lead)
             
-            # Аналитика
-            if state_changed:
-                await self.analytics.track_event(
-                    session_id, 'state_change', 
-                    {'from': updated_lead.current_dialog_state.value, 'to': new_state.value}
-                )
-            
-            if status_changed:
-                await self.analytics.track_event(
-                    session_id, 'qualification_change',
-                    {'status': qualification_status.value}
-                )
+            # Аналитика (только если доступна)
+            if self.analytics:
+                try:
+                    if state_changed:
+                        await self.analytics.track_event(
+                            session_id, 'state_change',
+                            {'from': updated_lead.current_dialog_state.value, 'to': new_state.value}
+                        )
+
+                    if status_changed:
+                        await self.analytics.track_event(
+                            session_id, 'qualification_change',
+                            {'status': qualification_status.value}
+                        )
+                except Exception as analytics_error:
+                    logger.warning(f"⚠️ Ошибка аналитики (не критично): {analytics_error}")
             
             # Проверяем необходимость установки напоминаний
             await self._check_reminders(session_id, updated_lead, new_state)

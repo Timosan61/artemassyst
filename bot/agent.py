@@ -287,24 +287,30 @@ class AlenaAgent:
         return self._fallback_response(messages[-1]["content"] if messages else "")
     
     def _fallback_response(self, user_message: str) -> str:
-        """Fallback ответы когда LLM недоступны - выбрасываем ошибку"""
-        raise Exception("LLM недоступен, fallback ответы отключены")
+        """Fallback ответы когда LLM недоступны - возвращаем базовый ответ"""
+        logger.warning("⚠️ Используем fallback ответ - LLM недоступны")
+        return "Здравствуйте! Я Алена, ваш персональный менеджер по недвижимости в Сочи. Чем могу помочь?"
     
     async def generate_response(self, user_message: str, session_id: str, user_name: str = None,
                                chat_id: str = None, existing_session_id: str = None) -> str:
         try:
             # 🧠 ИНТЕЛЛЕКТУАЛЬНАЯ ОБРАБОТКА СООБЩЕНИЯ
             # Используем новую систему сессий с уникальными session_id
-            memory_result = await self.memory_service.process_message(
-                user_id=session_id,
-                message_text=user_message,
-                chat_id=chat_id,
-                existing_session_id=existing_session_id
-            )
-            
+            try:
+                memory_result = await self.memory_service.process_message(
+                    user_id=session_id,
+                    message_text=user_message,
+                    chat_id=chat_id,
+                    existing_session_id=existing_session_id
+                )
+            except Exception as memory_error:
+                logger.error(f"❌ Ошибка системы памяти (ZEP возможно недоступен): {memory_error}")
+                # Используем пустой результат для продолжения работы
+                memory_result = {'success': False, 'error': str(memory_error)}
+
             if not memory_result.get('success', False):
-                logger.error(f"❌ Ошибка системы памяти: {memory_result.get('error')}")
-                # Продолжаем с базовой логикой
+                logger.warning(f"⚠️ Система памяти недоступна: {memory_result.get('error')}")
+                # Продолжаем с базовой логикой без системы памяти
             
             # Получаем данные о клиенте и состоянии диалога
             lead_data = memory_result.get('lead_data')
@@ -483,14 +489,28 @@ class AlenaAgent:
         
         return messages
     
-    def _fallback_response_with_context(self, user_message: str, current_state: DialogState, 
+    def _fallback_response_with_context(self, user_message: str, current_state: DialogState,
                                       recommendations: Dict[str, Any]) -> str:
-        """Fallback ответ с учетом контекста диалога - выбрасываем ошибку"""
-        raise Exception("LLM недоступен, fallback ответы с контекстом отключены")
+        """Fallback ответ с учетом контекста диалога"""
+        logger.warning("⚠️ Используем fallback ответ с контекстом - LLM недоступны")
+
+        # Базовые ответы на основе состояния диалога
+        if current_state == DialogState.S0_GREETING:
+            return "Здравствуйте! Я Алена, ваш менеджер по недвижимости в Сочи. Подскажите, ищете для себя или как инвестицию?"
+        elif current_state == DialogState.S1_GOAL_PURPOSE:
+            return "Поняла вас. Вы сейчас в Сочи? Или планируете приезд? Если нет - из какого города будете рассматривать варианты?"
+        elif recommendations and 'questions' in recommendations:
+            questions = recommendations['questions']
+            if questions:
+                return questions[0]
+
+        # Базовый ответ по умолчанию
+        return "Спасибо за сообщение! Уточните, пожалуйста, для себя ищете недвижимость или как инвестицию?"
     
     def _emergency_fallback_response(self, user_message: str) -> str:
-        """Аварийный ответ при полном отказе систем - выбрасываем ошибку"""
-        raise Exception("Критическая ошибка: все системы недоступны, аварийные fallback отключены")
+        """Аварийный ответ при полном отказе систем"""
+        logger.error("🆘 Критическая ошибка: все системы недоступны, используем аварийный ответ")
+        return "Здравствуйте! Я Алена, ваш персональный менеджер по недвижимости в Сочи. Подскажите, пожалуйста, для себя ищете или как инвестицию?"
     
     def _generate_escalation_summary(self, lead_data) -> str:
         """Генерирует сводку для эскалации"""
