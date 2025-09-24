@@ -194,7 +194,7 @@ class AlenaAgent:
         return "Здравствуйте! Я Алена, ваш персональный менеджер по недвижимости в Сочи. Чем могу помочь?"
     
     async def generate_response(self, user_message: str, session_id: str, user_name: str = None,
-                               chat_id: str = None, existing_session_id: str = None) -> str:
+                               chat_id: str = None, existing_session_id: str = None) -> tuple[str, str]:
         try:
             # 🧠 ИНТЕЛЛЕКТУАЛЬНАЯ ОБРАБОТКА СООБЩЕНИЯ
             # Используем новую систему сессий с уникальными session_id
@@ -220,6 +220,7 @@ class AlenaAgent:
             qualification_status = memory_result.get('qualification_status', ClientType.COLD)
             recommendations = memory_result.get('recommendations', {})
             should_escalate = memory_result.get('should_escalate', False)
+            real_session_id = memory_result.get('session_id', session_id)  # Настоящий session_id из session_manager
 
             # Логируем входящее сообщение
             dialog_logger.log_message(
@@ -308,11 +309,11 @@ class AlenaAgent:
                 except Exception as sheets_error:
                     logger.error(f"❌ Ошибка синхронизации Google Sheets: {sheets_error}")
             
-            return bot_response
+            return bot_response, real_session_id
             
         except Exception as e:
             logger.error(f"❌ Критическая ошибка генерации ответа для {session_id}: {e}")
-            return self._emergency_fallback_response(user_message)
+            return self._emergency_fallback_response(user_message), session_id
     
     def _build_contextual_system_prompt(self, lead_data, current_state: DialogState, 
                                       qualification_status: ClientType, 

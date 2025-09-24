@@ -137,7 +137,8 @@ class MemoryService:
                 'status_changed': status_changed,
                 'recommendations': recommendations,
                 'should_escalate': self._should_escalate(updated_lead),
-                'success': True
+                'success': True,
+                'session_id': session_id  # Добавляем настоящий session_id
             }
             
         except Exception as e:

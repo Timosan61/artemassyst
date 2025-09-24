@@ -280,7 +280,7 @@ async def process_regular_message(message_data):
                 user_key = str(user_id)
                 session_id = user_sessions.get(user_key, user_key)
 
-                response = await agent.generate_response(
+                response, real_session_id = await agent.generate_response(
                     text,
                     session_id,
                     user_name,
@@ -288,8 +288,8 @@ async def process_regular_message(message_data):
                     existing_session_id=session_id if user_key in user_sessions else None
                 )
 
-                # Сохраняем session_id для следующих сообщений
-                user_sessions[user_key] = session_id
+                # Сохраняем НАСТОЯЩИЙ session_id для следующих сообщений
+                user_sessions[user_key] = real_session_id
 
                 # Structured logging
                 if STRUCTURED_LOGGING:
