@@ -4,11 +4,14 @@
 import re
 from typing import Dict, Any, Optional, List, Tuple
 from datetime import datetime, timedelta
+import logging
 
 from .models import (
-    DialogState, ClientType, AutomationGoal, 
+    DialogState, ClientType, AutomationGoal,
     PaymentType, LeadData
 )
+
+logger = logging.getLogger(__name__)
 
 
 class LeadDataExtractor:
@@ -573,9 +576,19 @@ class DialogStateExtractor:
     def determine_state(cls, message: str, current_state: DialogState, lead_data: LeadData) -> DialogState:
         """Определяет следующее состояние диалога"""
         message_lower = message.lower()
-        
+
         # Логика переходов между состояниями
-        return cls._get_next_state(message_lower, current_state, lead_data)
+        new_state = cls._get_next_state(message_lower, current_state, lead_data)
+
+        # Диагностическое логирование для отслеживания переходов
+        if new_state != current_state:
+            logger.info(f"🔄 ПЕРЕХОД СОСТОЯНИЯ: {current_state.value} → {new_state.value}")
+        elif current_state in [DialogState.S2_GOAL, DialogState.S3_PAYMENT, DialogState.S4_REQUIREMENTS] and new_state == DialogState.S0_GREETING:
+            logger.warning(f"⚠️ ПОДОЗРИТЕЛЬНЫЙ ОТКАТ: {current_state.value} → {new_state.value}")
+            logger.warning(f"   Сообщение: '{message[:100]}'")
+            logger.warning(f"   Данные лида: city={lead_data.city}, goal={lead_data.automation_goal}")
+
+        return new_state
     
     @classmethod
     def _get_next_state(cls, message: str, current_state: DialogState, lead: LeadData) -> DialogState:

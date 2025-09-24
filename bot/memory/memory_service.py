@@ -84,15 +84,22 @@ class MemoryService:
             )
             
             # Определяем новое состояние диалога
+            # ИСПРАВЛЕНИЕ: используем текущее состояние из current_lead, а не updated_lead
+            current_state = current_lead.current_dialog_state
             new_state = DialogStateExtractor.determine_state(
-                message_text, updated_lead.current_dialog_state, updated_lead
+                message_text, current_state, updated_lead
             )
+
+            logger.info(f"🔍 ОПРЕДЕЛЕНИЕ СОСТОЯНИЯ для {session_id}:")
+            logger.info(f"   Текущее: {current_state.value}")
+            logger.info(f"   Новое: {new_state.value}")
+            logger.info(f"   Сообщение: '{message_text[:100]}'...")
             
             # Обновляем статус квалификации
             qualification_status = DialogStateExtractor.calculate_qualification_status(updated_lead)
             
             # Проверяем изменения состояния
-            state_changed = updated_lead.current_dialog_state != new_state
+            state_changed = current_state != new_state
             status_changed = updated_lead.qualification_status != qualification_status
             
             # Обновляем данные
@@ -105,7 +112,13 @@ class MemoryService:
             
             # Сохраняем данные лида
             await self.save_lead_data(session_id, updated_lead)
-            
+
+            # Логируем итоговые данные после обработки
+            logger.info(f"🔄 ИТОГОВОЕ СОСТОЯНИЕ после обработки для {session_id}:")
+            logger.info(f"   State: {current_state.value} → {new_state.value}")
+            logger.info(f"   Qualification: {qualification_status.value}")
+            logger.info(f"   LeadData: {json.dumps(updated_lead.to_dict(), ensure_ascii=False, indent=2)}")
+
             # Аналитика (только если доступна)
             if self.analytics:
                 try:
@@ -191,7 +204,17 @@ class MemoryService:
                         session_info['data_collected'] = session.metadata
                     self._local_cache[session_id] = lead_data
                     self._cache_timestamps[session_id] = current_time
-                    logger.debug(f"✅ Данные лида получены из ZEP и сохранены в кэш для {session_id}")
+                    logger.info(f"✅ Данные лида получены из ZEP для {session_id}:")
+                    logger.info(f"📥 ZEP LOAD DATA: {json.dumps(session.metadata, ensure_ascii=False, indent=2)}")
+
+                    # Логируем в dialog_logger
+                    try:
+                        from bot.dialog_logger import dialog_logger
+                        user_id = session_id.split('_')[0] if '_' in session_id else session_id
+                        dialog_logger.log_zep_data(session_id, user_id, 'load', session.metadata)
+                    except Exception as log_error:
+                        logger.warning(f"⚠️ Ошибка логирования ZEP load: {log_error}")
+
                     return lead_data
                 else:
                     logger.debug(f"ℹ️ Нет данных лида в ZEP для {session_id}, создаем новые")
@@ -244,11 +267,22 @@ class MemoryService:
         for attempt in range(max_retries):
             try:
                 # Обновляем метаданные сессии в ZEP
+                lead_dict = lead_data.to_dict()
                 await self.zep_client.memory.update_session(
                     session_id=session_id,
-                    metadata=lead_data.to_dict()
+                    metadata=lead_dict
                 )
-                logger.debug(f"✅ Данные лида сохранены для {session_id}")
+                logger.info(f"✅ Данные лида сохранены в ZEP для {session_id}:")
+                logger.info(f"📋 ZEP SAVE DATA: {json.dumps(lead_dict, ensure_ascii=False, indent=2)}")
+
+                # Логируем в dialog_logger
+                try:
+                    from bot.dialog_logger import dialog_logger
+                    user_id = session_id.split('_')[0] if '_' in session_id else session_id
+                    dialog_logger.log_zep_data(session_id, user_id, 'save', lead_dict)
+                except Exception as log_error:
+                    logger.warning(f"⚠️ Ошибка логирования ZEP save: {log_error}")
+
                 return
 
             except Exception as e:

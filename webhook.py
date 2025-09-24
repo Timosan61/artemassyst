@@ -280,6 +280,10 @@ async def process_regular_message(message_data):
                 user_key = str(user_id)
                 session_id = user_sessions.get(user_key, user_key)
 
+                logger.info(f"🔗 WEBHOOK SESSION для {user_name} ({user_id}):")
+                logger.info(f"   Исходный session_id: {session_id}")
+                logger.info(f"   Existing session: {session_id if user_key in user_sessions else 'NEW'}")
+
                 response, real_session_id = await agent.generate_response(
                     text,
                     session_id,
@@ -287,6 +291,10 @@ async def process_regular_message(message_data):
                     chat_id=str(chat_id),
                     existing_session_id=session_id if user_key in user_sessions else None
                 )
+
+                logger.info(f"✅ WEBHOOK SESSION РЕЗУЛЬТАТ:")
+                logger.info(f"   Реальный session_id: {real_session_id}")
+                logger.info(f"   Сохранен в user_sessions[{user_key}]")
 
                 # Сохраняем НАСТОЯЩИЙ session_id для следующих сообщений
                 user_sessions[user_key] = real_session_id
@@ -507,6 +515,59 @@ async def reload_prompt():
         else:
             return {"error": "AI agent не загружен"}
     except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/admin/zep/client/{session_id}")
+async def get_client_data(session_id: str):
+    """Получить полные данные клиента из ZEP"""
+    try:
+        if AI_ENABLED and agent is not None:
+            memory_service = agent.memory_service
+            if memory_service.enable_memory:
+                # Получаем данные из ZEP
+                lead_data = await memory_service.get_lead_data(session_id)
+
+                # Получаем историю сообщений из ZEP
+                try:
+                    session = await memory_service.zep_client.memory.get_session(session_id)
+                    messages = []
+                    if session and hasattr(session, 'summary') and session.summary:
+                        messages.append({
+                            "type": "summary",
+                            "content": session.summary.content if hasattr(session.summary, 'content') else str(session.summary)
+                        })
+                except Exception as e:
+                    logger.warning(f"Не удалось получить историю сообщений: {e}")
+                    messages = []
+
+                # Получаем диалоги из dialog_logger
+                from bot.dialog_logger import dialog_logger
+                user_id = session_id.split('_')[0] if '_' in session_id else session_id
+                dialog_history = dialog_logger.get_user_dialog(user_id)
+
+                result = {
+                    "status": "success",
+                    "session_id": session_id,
+                    "user_id": user_id,
+                    "lead_data": lead_data.to_dict() if lead_data else {},
+                    "zep_messages": messages,
+                    "dialog_history": dialog_history,
+                    "memory_enabled": memory_service.enable_memory
+                }
+
+                # Логируем запрос данных клиента
+                logger.info(f"📋 ЗАПРОС ДАННЫХ КЛИЕНТА {session_id}:")
+                logger.info(f"   State: {lead_data.current_dialog_state.value if lead_data else 'UNKNOWN'}")
+                logger.info(f"   Qualification: {lead_data.qualification_status.value if lead_data else 'UNKNOWN'}")
+                logger.info(f"   Dialog history: {len(dialog_history)} сообщений")
+
+                return result
+            else:
+                return {"error": "ZEP память отключена"}
+        else:
+            return {"error": "AI agent не загружен"}
+    except Exception as e:
+        logger.error(f"Ошибка получения данных клиента {session_id}: {e}")
         return {"error": str(e)}
 
 @app.post("/admin/sheets/sync")

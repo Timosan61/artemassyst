@@ -167,6 +167,47 @@ class DialogLogger:
 
         return self.recent_dialogs[user_id][-limit:]
 
+    def log_zep_data(
+        self,
+        session_id: str,
+        user_id: str,
+        operation: str,  # 'save' или 'load'
+        zep_data: Dict
+    ) -> None:
+        """
+        Логирует операции с данными ZEP
+
+        Args:
+            session_id: ID сессии
+            user_id: ID пользователя
+            operation: Тип операции (save/load)
+            zep_data: Данные ZEP
+        """
+        timestamp = datetime.now().isoformat()
+
+        log_entry = {
+            "timestamp": timestamp,
+            "session_id": session_id,
+            "user_id": user_id,
+            "message_type": f"zep_{operation}",
+            "operation": operation,
+            "zep_data": zep_data,
+            "metadata": {
+                "data_fields": list(zep_data.keys()) if zep_data else [],
+                "data_size": len(str(zep_data)) if zep_data else 0
+            }
+        }
+
+        # Добавляем в буфер
+        with self.buffer_lock:
+            self.message_buffer.append(log_entry)
+
+        # Если буфер полный, сбрасываем в файл
+        if len(self.message_buffer) >= 10:
+            self.flush_buffer()
+
+        logger.info(f"📊 ZEP {operation.upper()}: {session_id} - {len(zep_data) if zep_data else 0} полей")
+
     def get_all_recent_dialogs(self, limit: int = 100) -> List[Dict]:
         """
         Получает все последние диалоги
