@@ -15,6 +15,7 @@ from .config import (
     ANTHROPIC_TEMPERATURE, ANTHROPIC_MAX_TOKENS, GOOGLE_SHEETS_ENABLED, GOOGLE_SHEETS_SYNC_INTERVAL
 )
 from .memory import MemoryService, DialogState, ClientType
+from .dialog_logger import dialog_logger
 
 # Настройка логирования
 logger = logging.getLogger(__name__)
@@ -219,6 +220,17 @@ class AlenaAgent:
             qualification_status = memory_result.get('qualification_status', ClientType.COLD)
             recommendations = memory_result.get('recommendations', {})
             should_escalate = memory_result.get('should_escalate', False)
+
+            # Логируем входящее сообщение
+            dialog_logger.log_message(
+                session_id=session_id,
+                user_id=session_id.split('_')[0] if '_' in session_id else session_id,
+                user_name=user_name or "Unknown",
+                message_type="user",
+                text=user_message,
+                state=current_state.value if hasattr(current_state, 'value') else str(current_state),
+                qualification=qualification_status.value if hasattr(qualification_status, 'value') else str(qualification_status)
+            )
             
             # Формируем улучшенный системный промпт с контекстом
             system_prompt = self._build_contextual_system_prompt(
@@ -252,7 +264,23 @@ class AlenaAgent:
                 escalation_note = self._generate_escalation_summary(lead_data)
                 logger.info(f"🔥 ЭСКАЛАЦИЯ для {session_id}: {escalation_note}")
                 print(f"🔥 ГОРЯЧИЙ ЛИД: {session_id} - {escalation_note}")
-            
+
+            # Логируем ответ бота
+            dialog_logger.log_message(
+                session_id=session_id,
+                user_id=session_id.split('_')[0] if '_' in session_id else session_id,
+                user_name=user_name or "Unknown",
+                message_type="assistant",
+                text=bot_response,
+                state=current_state.value,
+                qualification=qualification_status.value,
+                metadata={
+                    "should_escalate": should_escalate,
+                    "recommendations": recommendations,
+                    "chat_id": chat_id
+                }
+            )
+
             # Сохраняем ответ в память
             await self.memory_service.process_message(
                 user_id=session_id,

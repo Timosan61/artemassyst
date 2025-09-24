@@ -60,6 +60,9 @@ print(f"✅ Токен бота: {TELEGRAM_BOT_TOKEN[:20]}...")
 # === СОЗДАНИЕ БОТА ===
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 
+# Хранилище активных сессий пользователей для сохранения контекста
+user_sessions = {}  # {user_id: session_id}
+
 # === ЛОГИРОВАНИЕ ===
 os.makedirs("logs", exist_ok=True)
 
@@ -273,14 +276,20 @@ async def process_regular_message(message_data):
         # Генерируем ответ через AI
         if AI_ENABLED and agent and text:
             try:
-                session_id = str(user_id)
+                # Получаем или создаем session_id для пользователя
+                user_key = str(user_id)
+                session_id = user_sessions.get(user_key, user_key)
 
                 response = await agent.generate_response(
                     text,
                     session_id,
                     user_name,
-                    chat_id=str(chat_id)
+                    chat_id=str(chat_id),
+                    existing_session_id=session_id if user_key in user_sessions else None
                 )
+
+                # Сохраняем session_id для следующих сообщений
+                user_sessions[user_key] = session_id
 
                 # Structured logging
                 if STRUCTURED_LOGGING:
@@ -400,6 +409,84 @@ async def set_webhook():
         return {"status": "❌ ERROR", "error": str(e)}
 
 # === ADMIN ENDPOINTS ===
+
+@app.get("/admin/dialogs/stats")
+async def get_dialog_stats():
+    """Получить статистику по диалогам"""
+    try:
+        from bot.dialog_logger import dialog_logger
+        stats = dialog_logger.get_dialog_stats()
+        return {
+            "status": "success",
+            "data": stats
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/admin/dialogs/user/{user_id}")
+async def get_user_dialog(user_id: str, limit: int = 20):
+    """Получить диалог конкретного пользователя"""
+    try:
+        from bot.dialog_logger import dialog_logger
+        messages = dialog_logger.get_user_dialog(user_id, limit)
+        return {
+            "status": "success",
+            "user_id": user_id,
+            "messages_count": len(messages),
+            "data": messages
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/admin/dialogs/recent")
+async def get_recent_dialogs(limit: int = 50):
+    """Получить последние диалоги всех пользователей"""
+    try:
+        from bot.dialog_logger import dialog_logger
+        messages = dialog_logger.get_all_recent_dialogs(limit)
+        return {
+            "status": "success",
+            "messages_count": len(messages),
+            "data": messages
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/admin/dialogs/search")
+async def search_dialogs(query: str, user_id: str = None, limit: int = 50):
+    """Поиск по диалогам"""
+    try:
+        from bot.dialog_logger import dialog_logger
+        results = dialog_logger.search_dialogs(query, user_id)
+        return {
+            "status": "success",
+            "query": query,
+            "user_id": user_id,
+            "results_count": len(results),
+            "data": results[:limit]
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.get("/admin/dialogs/export/{user_id}")
+async def export_user_dialog(user_id: str, format: str = "json"):
+    """Экспорт диалога пользователя"""
+    try:
+        from bot.dialog_logger import dialog_logger
+        from fastapi.responses import PlainTextResponse
+
+        exported_data = dialog_logger.export_user_dialog(user_id, format)
+        if not exported_data:
+            return {"error": "Диалог пользователя не найден"}
+
+        if format == "txt":
+            return PlainTextResponse(exported_data,
+                                   media_type="text/plain; charset=utf-8")
+        else:
+            return PlainTextResponse(exported_data,
+                                   media_type="application/json; charset=utf-8")
+    except Exception as e:
+        return {"error": str(e)}
 
 @app.post("/admin/reload-prompt")
 async def reload_prompt():
