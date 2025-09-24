@@ -381,7 +381,7 @@ async def process_business_message(business_data):
 async def set_webhook():
     """Устанавливает webhook для бота"""
     try:
-        webhook_url = "https://artemmyassyst-production.up.railway.app/webhook"
+        webhook_url = "https://artemmyassyst-bot.ondigitalocean.app/webhook"
 
         # Настройки webhook
         webhook_data = {
