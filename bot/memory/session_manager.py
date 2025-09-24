@@ -66,13 +66,27 @@ class SessionManager:
         Returns:
             session_id для использования
         """
-        # Если есть существующая сессия и она активна
-        if existing_session_id and self.is_session_active(existing_session_id):
+        # ВАЖНО: Если есть existing_session_id, всегда используем его!
+        # Это критично для сохранения состояния диалога
+        if existing_session_id:
+            # Добавляем сессию в локальный кэш если ее там нет
+            if existing_session_id not in self.active_sessions:
+                current_time = int(time.time())
+                self.active_sessions[existing_session_id] = {
+                    'user_id': user_id,
+                    'chat_id': chat_id,
+                    'created_at': current_time,
+                    'last_activity': current_time,
+                    'question_history': set(),
+                    'data_collected': {}
+                }
+                logger.info(f"📂 Добавлена существующая сессия в кэш: {existing_session_id}")
+
             self.update_session_activity(existing_session_id)
             logger.info(f"📋 Используется существующая сессия: {existing_session_id}")
             return existing_session_id
 
-        # Создаем новую сессию
+        # Создаем новую сессию только если нет existing_session_id
         new_session_id = self.generate_session_id(user_id, chat_id)
         logger.info(f"🆕 Создана новая сессия для пользователя {user_id}")
         return new_session_id
